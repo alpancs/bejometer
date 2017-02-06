@@ -1,0 +1,2 @@
+# bejometer
+alat ukur kebejoan
