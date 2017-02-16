@@ -1,7 +1,7 @@
 var router = require('express').Router()
 
 router.get('/', (req, res, next) => {
-  res.redirect('http://alfan.coderhutan.com/bejometer')
+  res.render('index', { title: 'Express' })
 })
 
 module.exports = router
