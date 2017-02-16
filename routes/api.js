@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
+var router = require('express').Router()
+var tebakgender = require('tebakgender')
 
-router.get('/hitung-bejo/:name1/:name2', function(req, res, next) {
-  res.json({bejo: 0});
-});
+router.get('/bejo/:name1/:name2', (req, res, next) => {
+  res.json({bejo: 0})
+})
 
-router.get('/tebak-gender/:name', function(req, res, next) {
-  res.json({gender: 'M'});
-});
+router.get('/tebakgender/:name', (req, res, next) => {
+  res.json(tebakgender(req.params.name))
+})
 
-module.exports = router;
+module.exports = router
