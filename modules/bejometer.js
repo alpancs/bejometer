@@ -22,18 +22,12 @@ module.exports = (name1, time1, name2, time2) => {
   return {
     match,
     person1: {
-      estimation: {
-        gender: estimation1.gender,
-        confidence: estimation1.confidence
-      },
+      estimation: estimation1,
       indonesiaDay: indonesiaDay1,
       javaDay: javaDay1
     },
     person2: {
-      estimation: {
-        gender: estimation2.gender,
-        confidence: estimation2.confidence
-      },
+      estimation: estimation2,
       indonesiaDay: indonesiaDay2,
       javaDay: javaDay2
     }
