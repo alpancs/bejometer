@@ -47,8 +47,17 @@ router.get('/consultation/:name::date', (req, res) => {
   res.send(suggestions)
 })
 
-let filterPrediction = (prediction) =>
-  ({gender: prediction.gender, confidence: prediction.confidence})
+let filterPrediction = (prediction) => ({
+  gender: prediction.gender,
+  confidence: prediction.confidence,
+})
+
+let filterStudent = (student) => ({
+  name: student.name,
+  gender: student.gender,
+  place_of_birth: student.place_of_birth,
+  date_of_birth: student.date_of_birth,
+})
 
 let findSuggestions = (name, time, limit) => {
   let minMatch = 1
@@ -59,7 +68,7 @@ let findSuggestions = (name, time, limit) => {
     let student = students[i]
     let result = bejometer(name, time, student.name, student.date_of_birth)
     if (result.match >= minMatch) {
-      suggestions.push({match: result.match, person: student})
+      suggestions.push({match: result.match, person: filterStudent(student)})
       minMatch *= 0.99
     }
     if (suggestions.length === limit) break
