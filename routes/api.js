@@ -3,6 +3,7 @@ const router = new express.Router()
 const tebakgender = require('tebakgender')
 const sanitize = require('tebakgender/lib/sanitize')
 const bejometer = require('modules/bejometer')
+const students = require('modules/corpus/data-siswa-clean')
 
 router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
   let name1 = sanitize(req.params.name1).toUpperCase()
@@ -37,7 +38,36 @@ router.get('/tebakgenders/:names', (req, res) => {
   res.json(predictions)
 })
 
+router.get('/consultation/:name::date', (req, res) => {
+  let name = sanitize(req.params.name).toUpperCase()
+  let time = Date.parse(req.params.date)
+  let suggestions = findSuggestions(name, time, 6)
+  res.send(suggestions)
+})
+
 let filterPrediction = (prediction) =>
   ({gender: prediction.gender, confidence: prediction.confidence})
+
+let findSuggestions = (name, time, limit) => {
+  let minMatch = 1
+  let suggestions = []
+  let i = randomNumber()
+  while (suggestions.length < limit) {
+    i = (i + randomNumber()) % students.length
+    let student = students[i]
+    let result = bejometer(name, time, student.name, student.date_of_birth)
+    if (result.match >= minMatch) {
+      suggestions.push(student)
+      minMatch *= 0.99
+    }
+    if (suggestions.length === limit) break
+  }
+  return suggestions
+}
+
+let randomNumber = () => Math.floor(Math.random() * students.length)
+
+for (let student of students)
+  student.date_of_birth = Date.parse(student.date_of_birth)
 
 module.exports = router
