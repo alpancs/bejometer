@@ -41,7 +41,9 @@ router.get('/tebakgenders/:names', (req, res) => {
 router.get('/consultation/:name::date', (req, res) => {
   let name = sanitize(req.params.name).toUpperCase()
   let time = Date.parse(req.params.date)
-  let suggestions = findSuggestions(name, time, 6)
+  let limit = parseInt(req.query.limit || '0') || 6
+  limit = limit > 1000 ? 1000 : limit
+  let suggestions = findSuggestions(name, time, limit)
   res.send(suggestions)
 })
 
@@ -57,7 +59,7 @@ let findSuggestions = (name, time, limit) => {
     let student = students[i]
     let result = bejometer(name, time, student.name, student.date_of_birth)
     if (result.match >= minMatch) {
-      suggestions.push(student)
+      suggestions.push({match: result.match, person: student})
       minMatch *= 0.99
     }
     if (suggestions.length === limit) break
