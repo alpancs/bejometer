@@ -1,10 +1,12 @@
 module.exports = {
   'env': {
-    'browser': true,
     'es6': true,
     'node': true,
   },
   'extends': ['eslint:recommended', 'google'],
+  'parserOptions': {
+    'sourceType': 'module',
+  },
   'rules': {
     'indent': [
       'error',
@@ -17,6 +19,7 @@ module.exports = {
     'quotes': [
       'error',
       'single',
+      {'avoidEscape': true},
     ],
     'semi': [
       'error',

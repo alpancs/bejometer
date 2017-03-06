@@ -6,5 +6,5 @@ const kamisPonTime = new Date(1994, 6, 28).getTime()
 let diffDayMod = (time, mod) =>
   (mod + Math.floor((time - kamisPonTime) / oneDay) % mod) % mod
 
-exports.javaDay = time => javaDays[diffDayMod(time, 5)]
-exports.indonesiaDay = time => indonesiaDays[diffDayMod(time, 7)]
+exports.javaDay = (time) => javaDays[diffDayMod(time, 5)]
+exports.indonesiaDay = (time) => indonesiaDays[diffDayMod(time, 7)]

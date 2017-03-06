@@ -24,17 +24,17 @@ module.exports = (name1, time1, name2, time2) => {
     person1: {
       estimation: estimation1,
       indonesiaDay: indonesiaDay1,
-      javaDay: javaDay1
+      javaDay: javaDay1,
     },
     person2: {
       estimation: estimation2,
       indonesiaDay: indonesiaDay2,
-      javaDay: javaDay2
-    }
+      javaDay: javaDay2,
+    },
   }
 }
 
-let hash = array => { // djb2. source: http://www.cse.yorku.ca/~oz/hash.html
+let hash = (array) => { // djb2. source: http://www.cse.yorku.ca/~oz/hash.html
   let h = 5381
   for (let c of array) h = ((h << 5) + h + c.codePointAt(0)) % mod
   return h
