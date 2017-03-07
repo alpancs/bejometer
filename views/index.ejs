@@ -8,10 +8,28 @@
 </head>
 
 <body>
-  <input-person v-bind:person1></input-person>
-  <input-person v-bind:person2></input-person>
+  <div id="bejometer">
+    <div>
+      <label for="name1">Nama</label>
+      <input type="text" v-model="name1" id="name1">
+      <label for="date1">Tanggal Lahir</label>
+      <input type="date" v-model="date1" id="date1">
+    </div>
+
+    <div>
+      <label for="name2">Nama</label>
+      <input type="text" v-model="name2" id="name2">
+      <label for="date2">Tanggal Lahir</label>
+      <input type="date" v-model="date2" id="date2">
+    </div>
+
+    <div>
+      <a :href="`/bejometer/${name1}:${date1}&${name2}:${date2}`">Hitung</a>
+    </div>
+  </div>
 </body>
 
 <script src="<%= `/javascripts/vue/vue${production ? '.min' : ''}.js` %>"></script>
+<script src="/javascripts/common.js"></script>
 
 </html>
