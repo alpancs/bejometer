@@ -11,20 +11,20 @@
   <div id="bejometer">
     <div>
       <label for="name1">Nama</label>
-      <input type="text" v-model="name1" id="name1">
+      <input type="text" v-model="name1" id="name1" required>
       <label for="date1">Tanggal Lahir</label>
-      <input type="date" v-model="date1" id="date1">
+      <input type="date" v-model="date1" id="date1" required>
     </div>
 
     <div>
       <label for="name2">Nama</label>
-      <input type="text" v-model="name2" id="name2">
+      <input type="text" v-model="name2" id="name2" required>
       <label for="date2">Tanggal Lahir</label>
-      <input type="date" v-model="date2" id="date2">
+      <input type="date" v-model="date2" id="date2" required>
     </div>
 
     <div>
-      <a :href="`/bejometer/${name1}:${date1}&${name2}:${date2}`">Hitung</a>
+      <a :href=`/bejometer/${name1}:${date1}&${name2}:${date2}`>Hitung</a>
     </div>
   </div>
 </body>
