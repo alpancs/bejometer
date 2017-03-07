@@ -62,7 +62,7 @@ let filterStudent = (student) => ({
 let findSuggestions = (name, time, limit) => {
   let targets = tebakgender(name).gender === 'L' ? people.P : people.L
   let length = targets.length
-  let minMatch = 1
+  let minMatch = 0.999
   let failure = 0
   let suggestions = []
   let i = randomNumber(length)
@@ -76,7 +76,7 @@ let findSuggestions = (name, time, limit) => {
     } else {
       ++failure
     }
-    if (failure > 100) minMatch *= 0.99
+    if (failure > 100) minMatch *= 0.999
     if (suggestions.length === limit) break
   }
   return suggestions
