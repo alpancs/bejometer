@@ -54,16 +54,13 @@ new Vue({
       if (this.validate()) {
         this.requesting = true
         axios.get(`/api/bejometer/${this.buildParam()}`)
-          .then(
-            (response) => {
-              this.result = response.data
-              this.error = null
-            },
-            (error) => {
-              this.result = null
-              this.error = error
-            }
-          )
+          .then((response) => {
+            this.result = response.data
+            this.error = null
+          }, (error) => {
+            this.result = null
+            this.error = error
+          })
           .then(() => this.requesting = false)
       }
     },
