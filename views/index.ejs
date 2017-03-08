@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <div id="bejometer" hidden :hidden="!ready">
+  <div id="bejometer" hidden :hidden="false">
     <div v-if="inputErrors.length">
       <ul>
         <li v-for="inputError in inputErrors">{{inputError}}</li>
@@ -33,7 +33,7 @@
       <button type="button" @click="updateResult" :disabled="requesting">💪</button>
     </div>
 
-    <div v-if="!error && result">
+    <div v-if="result">
       <span>Person 1: {{result.person1.indonesia_day}} {{result.person1.java_day}}</span>
       <span>Person 2: {{result.person2.indonesia_day}} {{result.person2.java_day}}</span>
       <span>Match: {{result.match}}</span>
@@ -43,7 +43,7 @@
       <span>Error {{error.response.status}} {{error.response.statusText}}</span>
     </div>
 
-    <div v-if="updated && !inputErrors.length">
+    <div v-if="result">
       <span>Share:</span>
       <span style="text-decoration: underline">
         {{ buildShareURL() }}

@@ -5,11 +5,9 @@ new Vue({
     date1: localStorage.date1 || '',
     name2: localStorage.name2 || '',
     date2: localStorage.date2 || '',
-    ready: true,
-    result: undefined,
-    error: undefined,
+    result: null,
+    error: null,
     inputErrors: [],
-    updated: false,
     requesting: false,
   },
 
@@ -56,8 +54,16 @@ new Vue({
       if (this.validate()) {
         this.requesting = true
         axios.get(`/api/bejometer/${this.buildParam()}`)
-          .then((response) => this.result = response.data)
-          .catch((error) => this.error = error)
+          .then(
+            (response) => {
+              this.result = response.data
+              this.error = null
+            },
+            (error) => {
+              this.result = null
+              this.error = error
+            }
+          )
           .then(() => this.requesting = false)
       }
     },
