@@ -8,7 +8,13 @@
 </head>
 
 <body>
-  <div id="bejometer">
+  <div id="bejometer" hidden :hidden="!ready">
+    <div v-if="inputErrors.length">
+      <ul>
+        <li v-for="inputError in inputErrors">{{inputError}}</li>
+      </ul>
+    </div>
+
     <div>
       <label for="name1">Nama</label>
       <input type="text" v-model="name1">
@@ -24,28 +30,30 @@
     </div>
 
     <div>
-      <button type="button" @click="updateBejometer">💪</button>
+      <button type="button" @click="updateResult" :disabled="requesting">💪</button>
     </div>
 
-    <div v-if="bejometerResult">
-      <span>Person 1: {{bejometerResult.person1.indonesia_day}} {{bejometerResult.person1.java_day}}</span>
-      <span>Person 2: {{bejometerResult.person2.indonesia_day}} {{bejometerResult.person2.java_day}}</span>
-      <span>Match: {{bejometerResult.match}}</span>
+    <div v-if="!error && result">
+      <span>Person 1: {{result.person1.indonesia_day}} {{result.person1.java_day}}</span>
+      <span>Person 2: {{result.person2.indonesia_day}} {{result.person2.java_day}}</span>
+      <span>Match: {{result.match}}</span>
     </div>
 
-    <div v-if="bejometerResult === null">
-      <span>Error</span>
+    <div v-if="error">
+      <span>Error {{error.response.status}} {{error.response.statusText}}</span>
     </div>
 
-    <div>
+    <div v-if="updated && !inputErrors.length">
       <span>Share:</span>
-      <a :href=`${baseURL}/bejometer/${name1}:${date1}&${name2}:${date2}`>{{`${baseURL}/bejometer/${name1}:${date1}&${name2}:${date2}`}}</a>
+      <a :href=`${baseURL}/bejometer/${sanitize(name1)}:${date1}&${sanitize(name2)}:${date2}`>
+        {{ `${baseURL}/bejometer/${sanitize(name1)}:${date1}&${sanitize(name2)}:${date2}` }}
+      </a>
     </div>
   </div>
 </body>
 
-<script src="<%= `/javascripts/vue/vue${production ? '.min' : ''}.js` %>"></script>
-<script src="/javascripts/axios/axios.min.js"></script>
+<script src="/javascripts/vue/vue<%= production ? '.min' : '' %>.js"></script>
 <script src="/javascripts/common.js"></script>
+<script src="/javascripts/axios/axios.min.js"></script>
 
 </html>
