@@ -32,7 +32,7 @@ router.get('/tebakgender/:name', (req, res) => {
   res.json(filterPrediction(tebakgender(req.params.name)))
 })
 
-router.get('/tebakgenders/:names', (req, res) => {
+router.get('/bulk-tebakgender/:names', (req, res) => {
   let names = req.params.names.split(/ *, */)
   let predictions = names.map(tebakgender).map(filterPrediction)
   res.json(predictions)
