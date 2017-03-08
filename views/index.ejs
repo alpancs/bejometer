@@ -11,16 +11,30 @@
   <div id="bejometer">
     <div>
       <label for="name1">Nama</label>
-      <input type="text" v-model="name1" id="name1" required>
+      <input type="text" v-model="name1">
       <label for="date1">Tanggal Lahir</label>
-      <input type="date" v-model="date1" id="date1" required>
+      <input type="date" v-model="date1">
     </div>
 
     <div>
       <label for="name2">Nama</label>
-      <input type="text" v-model="name2" id="name2" required>
+      <input type="text" v-model="name2">
       <label for="date2">Tanggal Lahir</label>
-      <input type="date" v-model="date2" id="date2" required>
+      <input type="date" v-model="date2">
+    </div>
+
+    <div>
+      <button type="button" @click="updateBejometer">💪</button>
+    </div>
+
+    <div v-if="bejometerResult">
+      <span>Person 1: {{bejometerResult.person1.indonesia_day}} {{bejometerResult.person1.java_day}}</span>
+      <span>Person 2: {{bejometerResult.person2.indonesia_day}} {{bejometerResult.person2.java_day}}</span>
+      <span>Match: {{bejometerResult.match}}</span>
+    </div>
+
+    <div v-if="bejometerResult === null">
+      <span>Error</span>
     </div>
 
     <div>
