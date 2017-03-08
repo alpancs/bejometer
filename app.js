@@ -2,6 +2,7 @@ process.env.NODE_PATH = __dirname
 require('module').Module._initPaths()
 
 const express = require('express')
+const compression = require('compression')
 const path = require('path')
 const favicon = require('serve-favicon')
 const cookieParser = require('cookie-parser')
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use(compression())
 app.use(logger)
 app.use('/', index)
 app.use('/api', api)
