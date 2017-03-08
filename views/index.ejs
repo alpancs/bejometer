@@ -45,9 +45,9 @@
 
     <div v-if="updated && !inputErrors.length">
       <span>Share:</span>
-      <a :href=`${baseURL}/bejometer/${sanitize(name1)}:${date1}&${sanitize(name2)}:${date2}`>
-        {{ `${baseURL}/bejometer/${sanitize(name1)}:${date1}&${sanitize(name2)}:${date2}` }}
-      </a>
+      <span style="text-decoration: underline">
+        {{ buildShareURL() }}
+      </span>
     </div>
   </div>
 </body>

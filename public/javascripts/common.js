@@ -1,11 +1,10 @@
 new Vue({
   el: '#bejometer',
   data: {
-    baseURL: location.origin,
-    name1: '',
-    date1: '',
-    name2: '',
-    date2: '',
+    name1: localStorage.name1 || '',
+    date1: localStorage.date1 || '',
+    name2: localStorage.name2 || '',
+    date2: localStorage.date2 || '',
     ready: true,
     result: undefined,
     error: undefined,
@@ -32,16 +31,31 @@ new Vue({
       return this.inputErrors.length === 0
     },
 
-    updateResult: function() {
-      this.updated = true
+    saveToLocal: function() {
+      localStorage.name1 = this.name1
+      localStorage.date1 = this.date1
+      localStorage.name2 = this.name2
+      localStorage.date2 = this.date2
+    },
+
+    buildParam: function() {
       let name1 = this.sanitize(this.name1)
       let date1 = this.date1
       let name2 = this.sanitize(this.name2)
       let date2 = this.date2
+      return `${name1}:${date1}&${name2}:${date2}`
+    },
+
+    buildShareURL: function() {
+      return `${location.origin}/bejometer/${this.buildParam()}`
+    },
+
+    updateResult: function() {
+      this.updated = true
+      this.saveToLocal()
       if (this.validate()) {
         this.requesting = true
-        let param = `${name1}:${date1}&${name2}:${date2}`
-        axios.get(`/api/bejometer/${param}`)
+        axios.get(`/api/bejometer/${this.buildParam()}`)
           .then((response) => this.result = response.data)
           .catch((error) => this.error = error)
           .then(() => this.requesting = false)
