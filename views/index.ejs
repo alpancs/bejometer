@@ -3,7 +3,7 @@
 
 <head>
   <title>
-    <%= title %>
+    Bejometer
   </title>
 </head>
 
@@ -24,12 +24,14 @@
     </div>
 
     <div>
-      <a :href=`/bejometer/${name1}:${date1}&${name2}:${date2}`>Hitung</a>
+      <span>Share:</span>
+      <a :href=`${baseURL}/bejometer/${name1}:${date1}&${name2}:${date2}`>{{`${baseURL}/bejometer/${name1}:${date1}&${name2}:${date2}`}}</a>
     </div>
   </div>
 </body>
 
 <script src="<%= `/javascripts/vue/vue${production ? '.min' : ''}.js` %>"></script>
+<script src="/javascripts/axios/axios.min.js"></script>
 <script src="/javascripts/common.js"></script>
 
 </html>

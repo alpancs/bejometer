@@ -5,7 +5,7 @@ var app = new Vue({
     date1: '',
     name2: '',
     date2: '',
-    resultURL: '',
+    baseURL: location.origin,
   },
   methods: {
     buildURL: function() {
