@@ -1,11 +1,13 @@
 module.exports = {
   'env': {
-    'es6': true,
+    'browser': true,
     'node': true,
+    'es6': true,
   },
   'extends': ['eslint:recommended', 'google'],
-  'parserOptions': {
-    'sourceType': 'module',
+  'globals': {
+    'axios': true,
+    'Vue': true,
   },
   'rules': {
     'indent': [
@@ -19,11 +21,22 @@ module.exports = {
     'quotes': [
       'error',
       'single',
-      {'avoidEscape': true},
+      {
+        'avoidEscape': true,
+      },
     ],
     'semi': [
       'error',
       'never',
+    ],
+    'max-len': [
+      'error',
+      {
+        'ignoreUrls': true,
+        'ignoreStrings': true,
+        'ignoreTemplateLiterals': true,
+        'ignoreRegExpLiterals': true,
+      },
     ],
   },
 }
