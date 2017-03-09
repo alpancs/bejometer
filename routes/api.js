@@ -44,7 +44,7 @@ router.get('/consultation/:name::date', (req, res) => {
   let limit = parseInt(req.query.limit || '0') || 6
   limit = limit > 100 ? 100 : limit
   let suggestions = suggestion(name, time, limit)
-  res.send(suggestions.map(filterPerson))
+  res.json(suggestions.map(filterSuggestion))
 })
 
 let filterPrediction = (prediction) => ({
@@ -52,11 +52,12 @@ let filterPrediction = (prediction) => ({
   confidence: prediction.confidence,
 })
 
-let filterPerson = (person) => ({
-  name: person.name,
-  gender: person.gender,
-  place_of_birth: person.place_of_birth,
-  date_of_birth: person.date_of_birth,
+let filterSuggestion = (sug) => ({
+  match: sug.match,
+  name: sug.person.name,
+  gender: sug.person.gender,
+  place_of_birth: sug.person.place_of_birth,
+  date_of_birth: sug.person.date_of_birth,
 })
 
 module.exports = router

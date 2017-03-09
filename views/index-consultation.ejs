@@ -18,7 +18,7 @@
 
   <div v-if="result">
     <span>Suggestions:</span>
-    <span v-for="person in result">{{person.name}} {{new Date(person.date)}}</span>
+    <span v-for="person in result">{{person.name}} {{new Date(person.date_of_birth)}} {{person.match}}</span>
   </div>
 
   <div v-if="error">
