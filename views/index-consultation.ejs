@@ -1,0 +1,33 @@
+<div id="consultation" hidden :hidden="false">
+  <div v-if="inputErrors.length">
+    <ul>
+      <li v-for="inputError in inputErrors">{{inputError}}</li>
+    </ul>
+  </div>
+
+  <div>
+    <label for="name">Nama</label>
+    <input type="text" v-model="name">
+    <label for="date">Tanggal Lahir</label>
+    <input type="date" v-model="date">
+  </div>
+
+  <div>
+    <button type="button" @click="updateResult" :disabled="requesting">💪</button>
+  </div>
+
+  <div v-if="result">
+    <span>Suggestions:</span>
+    <span v-for="person in result">{{person.name}} {{new Date(person.date)}}</span>
+  </div>
+
+  <div v-if="error">
+    <span>Error {{error.response.status}} {{error.response.statusText}}</span>
+  </div>
+
+  <div v-if="result">
+    <span>Share:</span>
+    <span>{{ buildShareURL() }}</span>
+  </div>
+</div>
+<script src="/javascripts/index-consultation.js"></script>
