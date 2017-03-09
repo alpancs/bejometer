@@ -7,6 +7,7 @@ module.exports = {
   'extends': ['eslint:recommended', 'google'],
   'globals': {
     'axios': true,
+    'sanitize': true,
     'Vue': true,
   },
   'rules': {

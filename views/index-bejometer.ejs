@@ -1,0 +1,41 @@
+<div id="bejometer" hidden :hidden="false">
+  <div v-if="inputErrors.length">
+    <ul>
+      <li v-for="inputError in inputErrors">{{inputError}}</li>
+    </ul>
+  </div>
+
+  <div>
+    <label for="name1">Nama</label>
+    <input type="text" v-model="name1">
+    <label for="date1">Tanggal Lahir</label>
+    <input type="date" v-model="date1">
+  </div>
+
+  <div>
+    <label for="name2">Nama</label>
+    <input type="text" v-model="name2">
+    <label for="date2">Tanggal Lahir</label>
+    <input type="date" v-model="date2">
+  </div>
+
+  <div>
+    <button type="button" @click="updateResult" :disabled="requesting">💪</button>
+  </div>
+
+  <div v-if="result">
+    <span>Person 1: {{result.person1.gender}} {{result.person1.indonesia_day}} {{result.person1.java_day}}</span>
+    <span>Person 2: {{result.person2.gender}} {{result.person2.indonesia_day}} {{result.person2.java_day}}</span>
+    <span>Match: {{result.match}}</span>
+  </div>
+
+  <div v-if="error">
+    <span>Error {{error.response.status}} {{error.response.statusText}}</span>
+  </div>
+
+  <div v-if="result">
+    <span>Share:</span>
+    <span>{{ buildShareURL() }}</span>
+  </div>
+</div>
+<script src="/javascripts/index-bejometer.js"></script>

@@ -1,10 +1,10 @@
 new Vue({
   el: '#bejometer',
   data: {
-    name1: localStorage.name1 || '',
-    date1: localStorage.date1 || '',
-    name2: localStorage.name2 || '',
-    date2: localStorage.date2 || '',
+    name1: localStorage.bejometerName1 || '',
+    date1: localStorage.bejometerDate1 || '',
+    name2: localStorage.bejometerName2 || '',
+    date2: localStorage.bejometerDate2 || '',
     result: null,
     error: null,
     inputErrors: [],
@@ -12,34 +12,26 @@ new Vue({
   },
 
   methods: {
-    sanitize: function(name) {
-      return name.replace(/'/g, '')
-        .replace(/[^A-Za-z]/g, ' ')
-        .replace(/ +/g, ' ')
-        .trim()
-        .replace(/ /g, '-')
-    },
-
     validate: function() {
       let errors = []
-      if (this.name1.length === 0) errors.push('Nama 1 tolong diisi gan..')
-      if (this.date1.length === 0) errors.push('Tanggal lahir 1 tolong diisi gan..')
-      if (this.name2.length === 0) errors.push('Nama 2 tolong diisi gan..')
-      if (this.date2.length === 0) errors.push('Tanggal lahir 2 tolong diisi gan..')
+      if (sanitize(this.name1).length === 0) errors.push('Nama 1 tolong diisi dengan benar gan..')
+      if (this.date1.length === 0) errors.push('Tanggal lahir 1 tolong diisi dengan benar gan..')
+      if (sanitize(this.name2).length === 0) errors.push('Nama 2 tolong diisi dengan benar gan..')
+      if (this.date2.length === 0) errors.push('Tanggal lahir 2 tolong diisi dengan benar gan..')
       return errors
     },
 
     saveToLocal: function() {
-      localStorage.name1 = this.name1
-      localStorage.date1 = this.date1
-      localStorage.name2 = this.name2
-      localStorage.date2 = this.date2
+      localStorage.bejometerName1 = this.name1
+      localStorage.bejometerDate1 = this.date1
+      localStorage.bejometerName2 = this.name2
+      localStorage.bejometerDate2 = this.date2
     },
 
     buildParam: function() {
-      let name1 = this.sanitize(this.name1)
+      let name1 = sanitize(this.name1)
       let date1 = this.date1
-      let name2 = this.sanitize(this.name2)
+      let name2 = sanitize(this.name2)
       let date2 = this.date2
       return `${name1}:${date1}&${name2}:${date2}`
     },

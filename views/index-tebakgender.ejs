@@ -1,0 +1,30 @@
+<div id="tebakgender" hidden :hidden="false">
+  <div v-if="inputErrors.length">
+    <ul>
+      <li v-for="inputError in inputErrors">{{inputError}}</li>
+    </ul>
+  </div>
+
+  <div>
+    <label for="name">Nama</label>
+    <input type="text" v-model="name">
+  </div>
+
+  <div>
+    <button type="button" @click="updateResult" :disabled="requesting">💪</button>
+  </div>
+
+  <div v-if="result">
+    <span>{{result.gender}} {{result.confidence}}</span>
+  </div>
+
+  <div v-if="error">
+    <span>Error {{error.response.status}} {{error.response.statusText}}</span>
+  </div>
+
+  <div v-if="result">
+    <span>Share:</span>
+    <span>{{ buildShareURL() }}</span>
+  </div>
+</div>
+<script src="/javascripts/index-tebakgender.js"></script>
