@@ -5,6 +5,7 @@ new Vue({
     date1: localStorage.bejometerDate1 || '',
     name2: localStorage.bejometerName2 || '',
     date2: localStorage.bejometerDate2 || '',
+    shareURL: '',
     result: null,
     error: null,
     inputErrors: [],
@@ -36,21 +37,22 @@ new Vue({
       return `${name1}:${date1}&${name2}:${date2}`
     },
 
-    buildShareURL: function() {
-      return `${location.origin}/bejometer/${this.buildParam()}`
-    },
-
     updateResult: function() {
-      this.saveToLocal()
       this.inputErrors = this.validate()
       if (this.inputErrors.length) return
 
+      this.saveToLocal()
       this.requesting = true
       this.result = null
       this.error = null
+      this.shareURL = ''
+
       axios.get(`/api/bejometer/${this.buildParam()}`)
-        .then((response) => this.result = response.data,
-          (error) => this.error = error)
+        .then((response) => {
+          this.result = response.data
+          this.shareURL = `${location.origin}/bejometer/${this.buildParam()}`
+        })
+        .catch((error) => this.error = error)
         .then(() => this.requesting = false)
     },
   },

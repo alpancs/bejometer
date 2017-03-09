@@ -2,6 +2,7 @@ new Vue({
   el: '#tebakgender',
   data: {
     name: localStorage.tebakgenderName || '',
+    shareURL: '',
     result: null,
     error: null,
     inputErrors: [],
@@ -23,21 +24,22 @@ new Vue({
       return sanitize(this.name)
     },
 
-    buildShareURL: function() {
-      return `${location.origin}/tebakgender/${this.buildParam()}`
-    },
-
     updateResult: function() {
-      this.saveToLocal()
       this.inputErrors = this.validate()
       if (this.inputErrors.length) return
 
+      this.saveToLocal()
       this.requesting = true
       this.result = null
       this.error = null
+      this.shareURL = ''
+
       axios.get(`/api/tebakgender/${this.buildParam()}`)
-        .then((response) => this.result = response.data,
-          (error) => this.error = error)
+        .then((response) => {
+          this.result = response.data
+          this.shareURL = `${location.origin}/tebakgender/${this.buildParam()}`
+        })
+        .catch((error) => this.error = error)
         .then(() => this.requesting = false)
     },
   },

@@ -3,6 +3,7 @@ new Vue({
   data: {
     name: localStorage.consultationName || '',
     date: localStorage.consultationDate || '',
+    shareURL: '',
     result: null,
     error: null,
     inputErrors: [],
@@ -28,21 +29,22 @@ new Vue({
       return `${name}:${date}`
     },
 
-    buildShareURL: function() {
-      return `${location.origin}/consultation/${this.buildParam()}`
-    },
-
     updateResult: function() {
-      this.saveToLocal()
       this.inputErrors = this.validate()
       if (this.inputErrors.length) return
 
+      this.saveToLocal()
       this.requesting = true
       this.result = null
       this.error = null
+      this.shareURL = ''
+
       axios.get(`/api/consultation/${this.buildParam()}`)
-        .then((response) => this.result = response.data,
-          (error) => this.error = error)
+        .then((response) => {
+          this.result = response.data
+          this.shareURL = `${location.origin}/consultation/${this.buildParam()}`
+        })
+        .catch((error) => this.error = error)
         .then(() => this.requesting = false)
     },
   },

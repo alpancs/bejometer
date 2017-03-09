@@ -25,9 +25,9 @@
     <span>Error {{error.response.status}} {{error.response.statusText}}</span>
   </div>
 
-  <div v-if="result">
+  <div v-if="shareURL">
     <span>Share:</span>
-    <span>{{ buildShareURL() }}</span>
+    <span>{{ shareURL }}</span>
   </div>
 </div>
 <script src="/javascripts/index-consultation.js"></script>
