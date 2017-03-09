@@ -21,12 +21,12 @@ new Vue({
     },
 
     validate: function() {
-      this.inputErrors = []
-      if (this.name1.length === 0) this.inputErrors.push('Nama 1 tolong diisi gan..')
-      if (this.date1.length === 0) this.inputErrors.push('Tanggal lahir 1 tolong diisi gan..')
-      if (this.name2.length === 0) this.inputErrors.push('Nama 2 tolong diisi gan..')
-      if (this.date2.length === 0) this.inputErrors.push('Tanggal lahir 2 tolong diisi gan..')
-      return this.inputErrors.length === 0
+      let errors = []
+      if (this.name1.length === 0) errors.push('Nama 1 tolong diisi gan..')
+      if (this.date1.length === 0) errors.push('Tanggal lahir 1 tolong diisi gan..')
+      if (this.name2.length === 0) errors.push('Nama 2 tolong diisi gan..')
+      if (this.date2.length === 0) errors.push('Tanggal lahir 2 tolong diisi gan..')
+      return errors
     },
 
     saveToLocal: function() {
@@ -50,18 +50,16 @@ new Vue({
 
     updateResult: function() {
       this.saveToLocal()
-      if (this.validate()) {
-        this.requesting = true
-        axios.get(`/api/bejometer/${this.buildParam()}`)
-          .then((response) => {
-            this.result = response.data
-            this.error = null
-          }, (error) => {
-            this.result = null
-            this.error = error
-          })
-          .then(() => this.requesting = false)
-      }
+      this.inputErrors = this.validate()
+      if (this.inputErrors.length) return
+
+      this.requesting = true
+      this.result = null
+      this.error = null
+      axios.get(`/api/bejometer/${this.buildParam()}`)
+        .then((response) => this.result = response.data,
+          (error) => this.error = error)
+        .then(() => this.requesting = false)
     },
   },
 })
