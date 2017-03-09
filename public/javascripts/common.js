@@ -49,7 +49,6 @@ new Vue({
     },
 
     updateResult: function() {
-      this.updated = true
       this.saveToLocal()
       if (this.validate()) {
         this.requesting = true
