@@ -6,9 +6,9 @@ const bejometer = require('modules/bejometer')
 const suggestion = require('modules/suggestion')
 
 router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
-  let name1 = sanitize(req.params.name1).toUpperCase()
+  let name1 = sanitize(req.params.name1)
   let time1 = Date.parse(req.params.date1)
-  let name2 = sanitize(req.params.name2).toUpperCase()
+  let name2 = sanitize(req.params.name2)
   let time2 = Date.parse(req.params.date2)
   let result = bejometer(name1, time1, name2, time2)
   res.json({
@@ -39,7 +39,7 @@ router.get('/bulk-tebakgender/:names', (req, res) => {
 })
 
 router.get('/consultation/:name::date', (req, res) => {
-  let name = sanitize(req.params.name).toUpperCase()
+  let name = sanitize(req.params.name)
   let time = Date.parse(req.params.date)
   let limit = parseInt(req.query.limit || '0') || 6
   limit = limit > 100 ? 100 : limit
