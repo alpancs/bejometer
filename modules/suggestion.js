@@ -3,7 +3,7 @@ const bejometer = require('modules/bejometer')
 const students = require('corpus/data-siswa-clean')
 
 for (let student of students)
-  student.date_of_birth = Date.parse(student.date_of_birth)
+  student.dateOfBirth = Date.parse(student.dateOfBirth)
 
 let people = {
   L: students.filter((student) => student.gender === 'L'),
@@ -20,7 +20,7 @@ module.exports = (name, time, limit) => {
   while (suggestions.length < limit) {
     i = (i + randomNumber(length)) % length
     let target = targets[i]
-    let result = bejometer(name, time, target.name, target.date_of_birth)
+    let result = bejometer(name, time, target.name, target.dateOfBirth)
     if (result.match >= minMatch) {
       suggestions.push({match: result.match, person: target})
       failure >>= 1
