@@ -1,17 +1,25 @@
-<div id="tebakgender" hidden :hidden="false">
+<div id="tebakgender" hidden :hidden="false" class="green-text">
   <div v-if="inputErrors.length">
     <ul>
       <li v-for="inputError in inputErrors">{{inputError}}</li>
     </ul>
   </div>
 
-  <div>
-    <label for="name">Nama</label>
-    <input type="text" v-model="name">
+  <div class="row">
+    <div class="col l3"></div>
+    <div class="col s12 m12 l6">
+      <div class="input-field">
+        <input type="text" v-model="name">
+        <label for="name">Nama</label>
+      </div>
+    </div>
+    <div class="col l3"></div>
   </div>
 
-  <div>
-    <button type="button" @click="updateResult" :disabled="requesting">💪</button>
+  <div class="center">
+    <button class="btn green waves-effect" type="button" @click="updateResult" :disabled="requesting">
+      <i class="material-icons">send</i>
+    </button>
   </div>
 
   <div v-if="result">

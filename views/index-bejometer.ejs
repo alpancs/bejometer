@@ -1,26 +1,39 @@
-<div id="bejometer" hidden :hidden="false">
+<div id="bejometer" hidden :hidden="false" class="pink-text">
   <div v-if="inputErrors.length">
     <ul>
       <li v-for="inputError in inputErrors">{{inputError}}</li>
     </ul>
   </div>
 
-  <div>
-    <label for="name1">Nama</label>
-    <input type="text" v-model="name1">
-    <label for="date1">Tanggal Lahir</label>
-    <input type="date" v-model="date1">
+  <div class="row">
+    <div class="col l1"></div>
+    <div class="col s12 m12 l5">
+      <div class="input-field">
+        <input type="text" v-model="name1">
+        <label for="name1">Nama Orang Pertama</label>
+      </div>
+      <div class="input-field">
+        <input type="date" class="datepicker" v-model="date1">
+        <label for="date1">Tanggal Lahir</label>
+      </div>
+    </div>
+    <div class="col s12 m12 l5">
+      <div class="input-field">
+        <input type="text" v-model="name2">
+        <label for="name2">Nama Orang Kedua</label>
+      </div>
+      <div class="input-field">
+        <input type="date" class="datepicker" v-model="date2">
+        <label for="date2">Tanggal Lahir</label>
+      </div>
+    </div>
+    <div class="col l1"></div>
   </div>
 
-  <div>
-    <label for="name2">Nama</label>
-    <input type="text" v-model="name2">
-    <label for="date2">Tanggal Lahir</label>
-    <input type="date" v-model="date2">
-  </div>
-
-  <div>
-    <button type="button" @click="updateResult" :disabled="requesting">💪</button>
+  <div class="center">
+    <button class="btn pink waves-effect" type="button" @click="updateResult" :disabled="requesting">
+      <i class="material-icons">send</i>
+    </button>
   </div>
 
   <div v-if="result">
