@@ -4,6 +4,7 @@
 <head>
   <title>Bejometer, Alat Ukur Kabegjan</title>
   <meta name="description" content="Sebagai sebuah alat ukur, Bejometer selalu memberikan hasil yang konsisten. Bejometer menghitung dengan seksama setiap detil nama dan tanggal yang dimasukkan, tidak asal mengeluarkan angka acak sebagai hasil.">
+  <link rel="stylesheet" href="/stylesheets/materialize.min.css">
   <script src="/javascripts/vue/vue<%= production ? '.min' : '' %>.js"></script>
 </head>
 
@@ -13,7 +14,11 @@
   <%- include('index-consultation') %>
 </body>
 
-<script src="/javascripts/axios/axios.min.js"></script>
 <script src="/javascripts/index.js"></script>
+<%#
+<script src="/javascripts/jquery-3.1.1.min.js"></script>
+<script src="/javascripts/materialize.min.js"></script>
+%>
+<script src="/javascripts/axios/axios.min.js"></script>
 
 </html>

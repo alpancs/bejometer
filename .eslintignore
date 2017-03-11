@@ -1,4 +1,4 @@
 public/javascripts/axios
-public/javascripts/materialize
 public/javascripts/vue
+public/javascripts/materialize.min.js
 public/javascripts/index.js
