@@ -47,13 +47,13 @@ new Vue({
       this.error = null
       this.shareURL = ''
 
-      axios.get(`/api/bejometer/${this.buildParam()}`)
-        .then((response) => {
-          this.result = response.data
+      $.get(`/api/bejometer/${this.buildParam()}`)
+        .done((response) => {
+          this.result = response
           this.shareURL = `${location.origin}/bejometer/${this.buildParam()}`
         })
-        .catch((error) => this.error = error)
-        .then(() => this.requesting = false)
+        .fail((error) => this.error = error)
+        .always(() => this.requesting = false)
     },
   },
 })

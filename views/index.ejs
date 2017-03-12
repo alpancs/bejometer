@@ -60,21 +60,17 @@
   </div> -->
 </body>
 
-<link rel="stylesheet" href="/stylesheets/materialize.min.css">
-
-<% let vuejs = production ? 'vue.min.js' : 'vue.js' %>
-<script src="/javascripts/vue/<%= vuejs %>"></script>
-<script src="/javascripts/index-bejometer.js"></script>
-<script src="/javascripts/index-consultation.js"></script>
-<script src="/javascripts/index-tebakgender.js"></script>
-
 <script src="/javascripts/jquery-3.1.1.min.js"></script>
 <script src="/javascripts/materialize.min.js"></script>
 
+<% let vuejs = production ? 'vue.min.js' : 'vue.js' %>
+<script src="/javascripts/<%= vuejs %>"></script>
+<script src="/javascripts/index-bejometer.js"></script>
+<script src="/javascripts/index-consultation.js"></script>
+<script src="/javascripts/index-tebakgender.js"></script>
 <script src="/javascripts/index.js"></script>
 
-<script src="/javascripts/axios/axios.min.js"></script>
-
+<link rel="stylesheet" href="/stylesheets/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </html>

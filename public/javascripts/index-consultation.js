@@ -39,13 +39,13 @@ new Vue({
       this.error = null
       this.shareURL = ''
 
-      axios.get(`/api/consultation/${this.buildParam()}`)
-        .then((response) => {
-          this.result = response.data
+      $.get(`/api/consultation/${this.buildParam()}`)
+        .done((response) => {
+          this.result = response
           this.shareURL = `${location.origin}/consultation/${this.buildParam()}`
         })
-        .catch((error) => this.error = error)
-        .then(() => this.requesting = false)
+        .fail((error) => this.error = error)
+        .always(() => this.requesting = false)
     },
   },
 })
