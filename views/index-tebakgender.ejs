@@ -1,4 +1,4 @@
-<div id="tebakgender" hidden :hidden="false" class="green-text">
+<div id="tebakgender" hidden :hidden="false" class="pink-text">
   <div v-if="inputErrors.length">
     <ul>
       <li v-for="inputError in inputErrors">{{inputError}}</li>
@@ -17,8 +17,8 @@
   </div>
 
   <div class="center">
-    <button class="btn green waves-effect" type="button" @click="updateResult" :disabled="requesting">
-      <i class="material-icons">send</i>
+    <button class="btn pink waves-effect" type="button" @click="updateResult" :disabled="requesting">
+      TEBAK GENDER
     </button>
   </div>
 

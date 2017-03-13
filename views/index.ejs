@@ -6,6 +6,8 @@
   <meta name="description" content="Sebagai sebuah alat ukur, Bejometer selalu memberikan hasil yang konsisten. Bejometer menghitung dengan seksama setiap detil nama dan tanggal yang dimasukkan, tidak asal mengeluarkan angka acak sebagai hasil.">
   <meta name=viewport content="width=device-width, initial-scale=1">
   <link rel="preload" href="/stylesheets/materialize.min.css" onload="this.rel='stylesheet'">
+  <link rel="preload" href="/stylesheets/font-awesome.min.css" onload="this.rel='stylesheet'">
+  <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" onload="this.rel='stylesheet'">
 </head>
 
 <body>
@@ -13,52 +15,29 @@
     <nav class="nav-extended pink">
       <div class="nav-content">
         <ul class="tabs tabs-transparent tabs-fixed-width">
-          <li class="tab"><a href="#bejometer">Bejometer</a></li>
-          <li class="tab"><a href="#consultation">Konsultasi</a></li>
-          <li class="tab"><a href="#tebakgender">Tebak Gender</a></li>
+          <li class="tab"><a href="#bejometer">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+          </a></li>
+          <li class="tab"><a href="#consultation">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </a></li>
+          <li class="tab"><a href="#tebakgender">
+            <i class="fa fa-venus-mars" aria-hidden="true"></i>
+          </a></li>
         </ul>
       </div>
     </nav>
   </div>
 
   <div class="row">
-    <div class="">
+    <div class="col s1 m1 l1"></div>
+    <div class="col s10 m10 l10">
       <%- include('index-bejometer') %>
       <%- include('index-consultation') %>
       <%- include('index-tebakgender') %>
     </div>
+    <div class="col s1 m1 l1"></div>
   </div>
-
-  <!-- <div class="row">
-    <div class="col s12">
-      <ul class="tabs pink">
-        <li class="tab col s4"><a href="#bejometer">Bejometer</a></li>
-        <li class="tab col s4"><a href="#consultation">Konsultasi</a></li>
-        <li class="tab col s4"><a href="#tebakgender">Tebak Gender</a></li>
-      </ul>
-    </div>
-    <%- include('index-bejometer') %>
-    <%- include('index-consultation') %>
-    <%- include('index-tebakgender') %>
-  </div> -->
-
-  <!-- <div class="row">
-    <div class="col l2 hide-on-med-and-below"></div>
-    <div class="col l8 m8 s8">
-      <div class="carousel carousel-slider">
-        <div class="carousel-item">
-          <%- include('index-bejometer') %>
-        </div>
-        <div class="carousel-item">
-          <%- include('index-consultation') %>
-        </div>
-        <div class="carousel-item">
-          <%- include('index-tebakgender') %>
-        </div>
-      </div>
-    </div>
-    <div class="col l2"></div>
-  </div> -->
 </body>
 
 <script src="/javascripts/jquery-3.1.1.min.js"></script>
@@ -70,7 +49,5 @@
 <script src="/javascripts/index-consultation.js"></script>
 <script src="/javascripts/index-tebakgender.js"></script>
 <script src="/javascripts/index.js"></script>
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </html>

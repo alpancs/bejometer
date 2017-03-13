@@ -1,4 +1,4 @@
-<div id="consultation" hidden :hidden="false" class="yellow-text text-darken-2">
+<div id="consultation" hidden :hidden="false" class="pink-text">
   <div v-if="inputErrors.length">
     <ul>
       <li v-for="inputError in inputErrors">{{inputError}}</li>
@@ -21,8 +21,8 @@
   </div>
 
   <div class="center">
-    <button class="btn yellow darken-2 waves-effect" type="button" @click="updateResult" :disabled="requesting">
-      <i class="material-icons">send</i>
+    <button class="btn pink waves-effect" type="button" @click="updateResult" :disabled="requesting">
+      KONSULTASI
     </button>
   </div>
 

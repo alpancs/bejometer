@@ -1,8 +1,6 @@
 $(document).ready(function() {
-  // $('ul.tabs').tabs()
+  $('ul.tabs').tabs()
   // $('ul.tabs').tabs('select_tab', 'tebakgender')
-  // $(".button-collapse").sideNav()
-  // $('.carousel.carousel-slider').carousel({fullWidth: true})
   $('.datepicker').pickadate({
     selectMonths: true,
     selectYears: 100,
