@@ -1,9 +1,14 @@
 $(document).ready(function() {
-  $('ul.tabs').tabs('select_tab', localStorage.lastTab)
+  if (localStorage.lastTab)
+    $('ul.tabs').tabs('select_tab', localStorage.lastTab)
+  else
+    $('ul.tabs').tabs()
+
   $('.datepicker').pickadate({
     selectMonths: true,
     selectYears: 100,
   })
+
 })
 
 let sanitize = function(name) {
