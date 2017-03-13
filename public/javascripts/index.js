@@ -1,6 +1,5 @@
 $(document).ready(function() {
-  $('ul.tabs').tabs()
-  // $('ul.tabs').tabs('select_tab', 'tebakgender')
+  $('ul.tabs').tabs('select_tab', localStorage.lastTab)
   $('.datepicker').pickadate({
     selectMonths: true,
     selectYears: 100,
