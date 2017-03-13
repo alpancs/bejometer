@@ -9,12 +9,14 @@
     <div class="col l3"></div>
     <div class="col s12 m12 l6">
       <div class="input-field">
-        <input type="text" v-model="name">
-        <label for="name">Nama</label>
+        <i class="material-icons prefix">account_box</i>
+        <input type="text" v-model="name" id="nameConsultation">
+        <label for="nameConsultation">Nama</label>
       </div>
       <div class="input-field">
-        <input type="date" class="datepicker" v-model="date">
-        <label for="date">Tanggal Lahir</label>
+        <i class="material-icons prefix">today</i>
+        <input type="date" class="datepicker" v-model="date" id="dateConsultation">
+        <label for="dateConsultation">Tanggal Lahir</label>
       </div>
     </div>
     <div class="col l3"></div>
