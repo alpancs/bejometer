@@ -6,7 +6,8 @@ $(document).ready(function() {
 
   $('.datepicker').pickadate({
     selectMonths: true,
-    selectYears: 100,
+    selectYears: 200,
+    format: 'yyyy-mm-dd',
   })
 
 })
