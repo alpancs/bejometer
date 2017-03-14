@@ -1,42 +1,19 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>Bejometer, Alat Ukur Kabegjan</title>
-  <meta name="description" content="Sebagai sebuah alat ukur, Bejometer selalu memberikan hasil yang konsisten. Bejometer menghitung dengan seksama setiap detil nama dan tanggal yang dimasukkan, tidak asal mengeluarkan angka acak sebagai hasil.">
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <link rel="preload" type="text/css" href="/stylesheets/materialize.min.css" media="screen,projection" onload="this.rel='stylesheet'">
-  <link rel="preload" href="/stylesheets/font-awesome.min.css" onload="this.rel='stylesheet'">
-  <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" onload="this.rel='stylesheet'">
-</head>
+<%- include('header') %>
 
 <body>
-  <nav class="nav-extended pink">
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo center">Bejometer</a>
-    </div>
-    <div class="nav-content">
-      <ul class="tabs tabs-transparent tabs-fixed-width">
-        <li class="tab"><a href="#bejometer" onclick="localStorage.lastTab='bejometer'">
-          <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
-        </a></li>
-        <li class="tab"><a href="#consultation" onclick="localStorage.lastTab='consultation'">
-          <i class="fa fa-search fa-2x" aria-hidden="true"></i>
-        </a></li>
-        <li class="tab"><a href="#tebakgender" onclick="localStorage.lastTab='tebakgender'">
-          <i class="fa fa-venus-mars fa-2x" aria-hidden="true"></i>
-        </a></li>
-      </ul>
-    </div>
-  </nav>
+  <%- include('navbar') %>
 
   <div class="row">
     <div class="col s12 m12 l12">
-      <%- include('index-bejometer') %>
-      <%- include('index-consultation') %>
-      <%- include('index-tebakgender') %>
+      <%- include('bejometer') %>
+      <%- include('consultation') %>
+      <%- include('tebakgender') %>
     </div>
   </div>
+
+  <%- include('footer') %>
 </body>
 
 <script src="/javascripts/jquery-3.1.1.min.js"></script>
@@ -44,9 +21,9 @@
 
 <% let vuejs = production ? 'vue.min.js' : 'vue.js' %>
 <script src="/javascripts/<%= vuejs %>"></script>
-<script src="/javascripts/index-bejometer.js"></script>
-<script src="/javascripts/index-consultation.js"></script>
-<script src="/javascripts/index-tebakgender.js"></script>
+<script src="/javascripts/bejometer.js"></script>
+<script src="/javascripts/consultation.js"></script>
+<script src="/javascripts/tebakgender.js"></script>
 <script src="/javascripts/index.js"></script>
 
 </html>
