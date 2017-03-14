@@ -11,7 +11,6 @@ const app = express()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-app.use(require('middleware/https'))
 app.use(require('middleware/logger'))
 
 app.use(compression())
