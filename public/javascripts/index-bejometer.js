@@ -38,6 +38,8 @@ new Vue({
     },
 
     updateResult: function() {
+      this.date1 = $('#date1').val()
+      this.date2 = $('#date2').val()
       this.inputErrors = this.validate()
       if (this.inputErrors.length) return
 

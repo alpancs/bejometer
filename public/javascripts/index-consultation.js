@@ -30,6 +30,7 @@ new Vue({
     },
 
     updateResult: function() {
+      this.date = $('#dateConsultation').val()
       this.inputErrors = this.validate()
       if (this.inputErrors.length) return
 
