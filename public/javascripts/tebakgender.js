@@ -25,10 +25,10 @@ new Vue({
     },
 
     updateResult: function() {
+      this.saveToLocal()
       this.inputErrors = this.validate()
       if (this.inputErrors.length) return
 
-      this.saveToLocal()
       this.requesting = true
       this.result = null
       this.error = null

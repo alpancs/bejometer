@@ -40,10 +40,10 @@ new Vue({
     updateResult: function() {
       this.date1 = $('#date1').val()
       this.date2 = $('#date2').val()
+      this.saveToLocal()
       this.inputErrors = this.validate()
       if (this.inputErrors.length) return
 
-      this.saveToLocal()
       this.requesting = true
       this.result = null
       this.error = null
