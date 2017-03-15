@@ -5,11 +5,11 @@ const sanitize = require('tebakgender/lib/sanitize')
 const bejometer = require('modules/bejometer')
 const suggestion = require('modules/suggestion')
 
-router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
-  let name1 = sanitize(req.params.name1)
-  let time1 = Date.parse(req.params.date1)
-  let name2 = sanitize(req.params.name2)
-  let time2 = Date.parse(req.params.date2)
+router.get('/bejometer', (req, res) => {
+  let name1 = sanitize(req.query.name1)
+  let time1 = Date.parse(req.query.date1)
+  let name2 = sanitize(req.query.name2)
+  let time2 = Date.parse(req.query.date2)
   let result = bejometer(name1, time1, name2, time2)
   res.json({
     match: result.match,
@@ -28,19 +28,19 @@ router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
   })
 })
 
-router.get('/tebakgender/:name', (req, res) => {
-  res.json(filterPrediction(tebakgender(req.params.name)))
+router.get('/tebakgender', (req, res) => {
+  res.json(filterPrediction(tebakgender(req.query.name)))
 })
 
-router.get('/bulk-tebakgender/:names', (req, res) => {
-  let names = req.params.names.split(/ *, */)
+router.get('/bulk-tebakgender', (req, res) => {
+  let names = req.query.names
   let predictions = names.map(tebakgender).map(filterPrediction)
   res.json(predictions)
 })
 
-router.get('/consultation/:name::date', (req, res) => {
-  let name = sanitize(req.params.name)
-  let time = Date.parse(req.params.date)
+router.get('/consultation', (req, res) => {
+  let name = sanitize(req.query.name)
+  let time = Date.parse(req.query.date)
   let limit = parseInt(req.query.limit || '0') || 6
   limit = limit > 100 ? 100 : limit
   let suggestions = suggestion(name, time, limit)
