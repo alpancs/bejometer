@@ -6,10 +6,10 @@ const bejometer = require('modules/bejometer')
 const suggestion = require('modules/suggestion')
 
 router.get('/bejometer', (req, res) => {
-  let name1 = sanitize(req.query.name1)
-  let time1 = Date.parse(req.query.date1)
-  let name2 = sanitize(req.query.name2)
-  let time2 = Date.parse(req.query.date2)
+  let name1 = sanitize(req.query.name1 || '')
+  let time1 = Date.parse(req.query.date1) || Date.now()
+  let name2 = sanitize(req.query.name2 || '')
+  let time2 = Date.parse(req.query.date2) || Date.now()
   let result = bejometer(name1, time1, name2, time2)
   res.json({
     match: result.match,
@@ -29,18 +29,18 @@ router.get('/bejometer', (req, res) => {
 })
 
 router.get('/tebakgender', (req, res) => {
-  res.json(filterPrediction(tebakgender(req.query.name)))
+  res.json(filterPrediction(tebakgender(req.query.name || '')))
 })
 
 router.get('/bulk-tebakgender', (req, res) => {
-  let names = req.query.names
+  let names = req.query.names || []
   let predictions = names.map(tebakgender).map(filterPrediction)
   res.json(predictions)
 })
 
 router.get('/consultation', (req, res) => {
-  let name = sanitize(req.query.name)
-  let time = Date.parse(req.query.date)
+  let name = sanitize(req.query.name || '')
+  let time = Date.parse(req.query.date) || Date.now()
   let limit = parseInt(req.query.limit || '0') || 6
   limit = limit > 100 ? 100 : limit
   let suggestions = suggestion(name, time, limit)
