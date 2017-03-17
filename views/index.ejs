@@ -41,7 +41,7 @@
           </md-input-container>
 
           <md-layout md-align="center">
-            <md-button id="bejometerButton" @click.native="openDialog('bejometerResult')" :disabled="requesting.bejometer" type="submit" class="md-raised md-primary">JODOH?</md-button>
+            <md-button id="bejometerButton" :disabled="requesting.bejometer" type="submit" class="md-raised md-primary">JODOH?</md-button>
           </md-layout>
         </form>
       </md-tab>
@@ -83,7 +83,10 @@
     <md-dialog md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
       <md-dialog-title>Hasil Bejometer</md-dialog-title>
 
-      <md-dialog-content>{{bejometerResult}} {{shareURL.bejometer}}</md-dialog-content>
+      <md-dialog-content :hidden="result.bejometer">
+        <md-spinner md-indeterminate></md-spinner>
+      </md-dialog-content>
+      <md-dialog-content :hidden="!result.bejometer">match: {{result.bejometer && result.bejometer.match}}. share URL: {{shareURL.bejometer}}</md-dialog-content>
 
       <md-dialog-actions>
         <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>

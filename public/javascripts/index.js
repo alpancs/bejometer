@@ -20,17 +20,23 @@ new Vue({
     result: {},
     error: {},
     shareURL: {},
-    bejometerResult: {},
   },
 
   methods: {
     submit(app) {
       this.requesting[app] = true
+      this.openDialog(`${app}Result`)
+
+      this.result[app] = null
+      this.shareURL[app] = ''
+      this.error[app] = null
+
       let params = this.buildParam(app)
       axios.get(`/api/${app}`, {params})
         .then((response) => {
-          this.bejometerResult = response.data
+          this.result[app] = response.data
           this.shareURL[app] = this.buildShareURL(app)
+          console.log(this.result[app]);
         })
         .catch((error) => this.error[app] = error)
         .then(() => this.requesting[app] = false)
