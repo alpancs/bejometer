@@ -1,5 +1,4 @@
-public/javascripts/jquery-3.1.1.min.js
+public/javascripts/axios.min.js
+public/javascripts/vue-material.js
 public/javascripts/vue.js
 public/javascripts/vue.min.js
-public/javascripts/materialize.min.js
-public/javascripts/index.js

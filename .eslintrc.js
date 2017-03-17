@@ -6,9 +6,10 @@ module.exports = {
   },
   'extends': ['eslint:recommended', 'google'],
   'globals': {
-    '$': true,
     'sanitize': true,
     'Vue': true,
+    'VueMaterial': true,
+    'axios': true,
   },
   'rules': {
     'indent': [
