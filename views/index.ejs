@@ -81,9 +81,9 @@
     <md-dialog md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
       <md-dialog-title>Hasil Bejometer</md-dialog-title>
       <md-dialog-content>
-        <md-spinner v-if="bejometerRequesting" md-indeterminate></md-spinner>
-        <md-layout v-if="bejometerResult">
-          match: {{bejometerResult.match}}. share URL: {{bejometerShareURL}}
+        <md-layout v-if="bejometerResult" md-align="center">
+          <md-spinner v-if="bejometerRequesting" md-indeterminate></md-spinner>
+          result: {{bejometerResult}}. share URL: {{bejometerShareURL}}
         </md-layout>
         <md-layout v-if="bejometerError">
           error: {{bejometerError}}
@@ -97,14 +97,9 @@
     <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
       <md-dialog-title>Hasil Konsultasi</md-dialog-title>
       <md-dialog-content>
-        <md-spinner v-if="consultationRequesting" md-indeterminate></md-spinner>
-        <md-layout v-if="consultationResult">
-          <md-list>
-            <md-list-item v-for="result in consultationResult">
-              {{result}}
-            </md-list-item>
-          </md-list>
-          share URL: {{consultationShareURL}}
+        <md-layout v-if="consultationResult" md-align="center">
+          <md-spinner v-if="consultationRequesting" md-indeterminate></md-spinner>
+          result: {{consultationResult}}. share URL: {{consultationShareURL}}
         </md-layout>
         <md-layout v-if="consultationError">
           error: {{consultationError}}
@@ -118,9 +113,9 @@
     <md-dialog md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
       <md-dialog-title>Hasil Tebakgender</md-dialog-title>
       <md-dialog-content>
-        <md-spinner v-if="tebakgenderRequesting" md-indeterminate></md-spinner>
-        <md-layout v-if="tebakgenderResult">
-          gender: {{tebakgenderResult.gender}}. share URL: {{tebakgenderShareURL}}
+        <md-layout v-if="tebakgenderResult" md-align="center">
+          <md-spinner v-if="tebakgenderRequesting" md-indeterminate></md-spinner>
+          result: {{tebakgenderResult}}. share URL: {{tebakgenderShareURL}}
         </md-layout>
         <md-layout v-if="tebakgenderError">
           error: {{tebakgenderError}}
