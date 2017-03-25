@@ -1,4 +1,5 @@
 public/javascripts/axios.min.js
-public/javascripts/vue-material.js
+public/javascripts/vue-material-custom.js
+public/javascripts/vue-material-v0.7.1.js
 public/javascripts/vue.js
 public/javascripts/vue.min.js

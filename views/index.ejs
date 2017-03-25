@@ -6,55 +6,54 @@
   <meta name="description" content="Sebagai sebuah alat ukur, Bejometer selalu memberikan hasil yang konsisten. Bejometer menghitung dengan seksama setiap detil nama dan tanggal yang dimasukkan, tidak asal mengeluarkan angka acak sebagai hasil.">
   <meta name=viewport content="width=device-width, initial-scale=1">
 
-  <link rel="preload" href="/stylesheets/vue-material.css" onload="this.rel='stylesheet'">
-  <link rel="preload" href="/stylesheets/font-awesome.min.css" onload="this.rel='stylesheet'">
+  <link rel="preload" href="/stylesheets/vue-material-v0.7.1.css" onload="this.rel='stylesheet'">
 
   <link rel="preload" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" onload="this.rel='stylesheet'">
   <link rel="preload" href="//fonts.googleapis.com/icon?family=Material+Icons" onload="this.rel='stylesheet'">
 </head>
 
 <body>
-  <div id="index">
+  <div id="app">
     <md-tabs md-fixed>
-      <md-tab md-icon-fa="fa fa-2x fa-heart">
-        <form novalidate @submit.stop.prevent="submit('bejometer')">
+      <md-tab md-icon="favorite_border">
+        <form novalidate @submit.stop.prevent="submitBejometer">
           <md-input-container>
-            <md-icon md-iconset="fa fa-user fa-fw"></md-icon>
+            <md-icon>person</md-icon>
             <label>Nama anda</label>
             <md-input v-model="input.bejometer.name1"></md-input>
           </md-input-container>
           <md-input-container>
-            <md-icon md-iconset="fa fa-calendar fa-fw"></md-icon>
+            <md-icon>today</md-icon>
             <label>Tanggal lahir anda</label>
             <md-input type="date" v-model="input.bejometer.date1"></md-input>
           </md-input-container>
 
           <md-input-container>
-            <md-icon md-iconset="fa fa-user fa-fw"></md-icon>
+            <md-icon>person</md-icon>
             <label>Nama "dia"</label>
             <md-input v-model="input.bejometer.name2"></md-input>
           </md-input-container>
           <md-input-container>
-            <md-icon md-iconset="fa fa-calendar fa-fw"></md-icon>
+            <md-icon>today</md-icon>
             <label>Tanggal lahir "dia"</label>
             <md-input type="date" v-model="input.bejometer.date2"></md-input>
           </md-input-container>
 
           <md-layout md-align="center">
-            <md-button id="bejometerButton" :disabled="requesting.bejometer" type="submit" class="md-raised md-primary">JODOH?</md-button>
+            <md-button id="bejometerButton" :disabled="requestingBejometer" type="submit" class="md-raised md-primary">JODOH?</md-button>
           </md-layout>
         </form>
       </md-tab>
 
-      <md-tab md-icon-fa="fa fa-2x fa-search">
+      <md-tab md-icon="search">
         <form novalidate @submit.stop.prevent="submit">
           <md-input-container>
-            <md-icon md-iconset="fa fa-user fa-fw"></md-icon>
+            <md-icon>person</md-icon>
             <label>Nama</label>
             <md-input v-model="input.consultation.name"></md-input>
           </md-input-container>
           <md-input-container>
-            <md-icon md-iconset="fa fa-calendar fa-fw"></md-icon>
+            <md-icon>today</md-icon>
             <label>Tanggal lahir</label>
             <md-input type="date" v-model="input.consultation.date"></md-input>
           </md-input-container>
@@ -65,10 +64,10 @@
         </form>
       </md-tab>
 
-      <md-tab md-icon-fa="fa fa-2x fa-venus-mars">
+      <md-tab md-icon="wc">
         <form novalidate @submit.stop.prevent="submit">
           <md-input-container>
-            <md-icon md-iconset="fa fa-user fa-fw"></md-icon>
+            <md-icon>person</md-icon>
             <label>Nama</label>
             <md-input v-model="input.tebakgender.name"></md-input>
           </md-input-container>
@@ -83,13 +82,15 @@
     <md-dialog md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
       <md-dialog-title>Hasil Bejometer</md-dialog-title>
 
-      <md-dialog-content :hidden="result.bejometer">
-        <md-spinner md-indeterminate></md-spinner>
+      <md-dialog-content>
+        <md-spinner v-if="requestingBejometer" md-indeterminate></md-spinner>
+        <md-layout v-if="resultBejometer">
+          match: {{resultBejometer.match}}. share URL: {{shareURLBejometer}}
+        </md-layout>
       </md-dialog-content>
-      <md-dialog-content :hidden="!result.bejometer">match: {{result.bejometer && result.bejometer.match}}. share URL: {{shareURL.bejometer}}</md-dialog-content>
 
       <md-dialog-actions>
-        <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
+        <md-button class="md-raised" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
       </md-dialog-actions>
     </md-dialog>
   </div>
@@ -97,7 +98,7 @@
 
 <% let vuejs = production ? 'vue.min.js' : 'vue.js' %>
 <script src="/javascripts/<%= vuejs %>"></script>
-<script src="/javascripts/vue-material.js"></script>
+<script src="/javascripts/vue-material-v0.7.1.js"></script>
 <script async src="/javascripts/index.js"></script>
 <script async src="/javascripts/axios.min.js"></script>
 
