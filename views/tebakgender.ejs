@@ -12,7 +12,9 @@
 </md-tab>
 
 <md-dialog md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
-  <md-spinner v-if="tebakgenderRequesting" md-indeterminate></md-spinner>
+  <md-layout md-align="center" v-if="tebakgenderRequesting">
+    <md-spinner md-indeterminate></md-spinner>
+  </md-layout>
   <div v-if="tebakgenderResult">
     <md-dialog-title>Hasil Tebakgender</md-dialog-title>
     <md-dialog-content>

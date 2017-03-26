@@ -27,7 +27,9 @@
 </md-tab>
 
 <md-dialog md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
-  <md-spinner v-if="bejometerRequesting" md-indeterminate></md-spinner>
+  <md-layout md-align="center" v-if="bejometerRequesting">
+    <md-spinner md-indeterminate></md-spinner>
+  </md-layout>
   <div v-if="bejometerResult">
     <md-dialog-title>Hasil Bejometer</md-dialog-title>
     <md-dialog-content>

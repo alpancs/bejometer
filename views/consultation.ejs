@@ -17,7 +17,9 @@
 </md-tab>
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
-  <md-spinner v-if="consultationRequesting" md-indeterminate></md-spinner>
+  <md-layout md-align="center" v-if="consultationRequesting">
+    <md-spinner md-indeterminate></md-spinner>
+  </md-layout>
   <div v-if="consultationResult">
     <md-dialog-title>Hasil Konsultasi</md-dialog-title>
     <md-dialog-content>
