@@ -1,0 +1,43 @@
+<md-tab md-icon="favorite_border">
+  <form novalidate @submit.stop.prevent="bejometerSubmit">
+    <md-input-container>
+      <md-icon>person</md-icon>
+      <label>Nama anda</label>
+      <md-input v-model="bejometerInput.name1"></md-input>
+    </md-input-container>
+    <md-input-container>
+      <md-icon>today</md-icon>
+      <label>Tanggal lahir anda</label>
+      <md-input type="date" v-model="bejometerInput.date1"></md-input>
+    </md-input-container>
+    <md-input-container>
+      <md-icon>person</md-icon>
+      <label>Nama "dia"</label>
+      <md-input v-model="bejometerInput.name2"></md-input>
+    </md-input-container>
+    <md-input-container>
+      <md-icon>today</md-icon>
+      <label>Tanggal lahir "dia"</label>
+      <md-input type="date" v-model="bejometerInput.date2"></md-input>
+    </md-input-container>
+    <md-layout md-align="center">
+      <md-button id="bejometerButton" :disabled="bejometerRequesting" type="submit" class="md-raised md-primary">JODOH?</md-button>
+    </md-layout>
+  </form>
+</md-tab>
+
+<md-dialog md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
+  <md-dialog-title>Hasil Bejometer</md-dialog-title>
+  <md-dialog-content>
+    <md-layout v-if="bejometerResult" md-align="center">
+      <md-spinner v-if="bejometerRequesting" md-indeterminate></md-spinner>
+      result: {{bejometerResult}}. share URL: {{bejometerShareURL}}
+    </md-layout>
+    <md-layout v-if="bejometerError">
+      error: {{bejometerError}}
+    </md-layout>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
+  </md-dialog-actions>
+</md-dialog>

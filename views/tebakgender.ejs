@@ -1,0 +1,28 @@
+<md-tab md-icon="wc">
+  <form novalidate @submit.stop.prevent="tebakgenderSubmit">
+    <md-input-container>
+      <md-icon>person</md-icon>
+      <label>Nama</label>
+      <md-input v-model="tebakgenderInput.name"></md-input>
+    </md-input-container>
+    <md-layout md-align="center">
+      <md-button id="tebakgenderButton" :disabled="tebakgenderRequesting" type="submit" class="md-raised md-primary">TEBAK GENDER</md-button>
+    </md-layout>
+  </form>
+</md-tab>
+
+<md-dialog md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
+  <md-dialog-title>Hasil Tebakgender</md-dialog-title>
+  <md-dialog-content>
+    <md-layout v-if="tebakgenderResult" md-align="center">
+      <md-spinner v-if="tebakgenderRequesting" md-indeterminate></md-spinner>
+      result: {{tebakgenderResult}}. share URL: {{tebakgenderShareURL}}
+    </md-layout>
+    <md-layout v-if="tebakgenderError">
+      error: {{tebakgenderError}}
+    </md-layout>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button class="md-primary" @click.native="closeDialog('tebakgenderResult')">Tutup</md-button>
+  </md-dialog-actions>
+</md-dialog>
