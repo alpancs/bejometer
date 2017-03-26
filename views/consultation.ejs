@@ -17,17 +17,14 @@
 </md-tab>
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
-  <md-dialog-title>Hasil Konsultasi</md-dialog-title>
-  <md-dialog-content>
-    <md-layout v-if="consultationResult" md-align="center">
-      <md-spinner v-if="consultationRequesting" md-indeterminate></md-spinner>
+  <md-spinner v-if="consultationRequesting" md-indeterminate></md-spinner>
+  <div v-if="consultationResult">
+    <md-dialog-title>Hasil Konsultasi</md-dialog-title>
+    <md-dialog-content>
       result: {{consultationResult}}. share URL: {{consultationShareURL}}
-    </md-layout>
-    <md-layout v-if="consultationError">
-      error: {{consultationError}}
-    </md-layout>
-  </md-dialog-content>
-  <md-dialog-actions>
-    <md-button class="md-primary" @click.native="closeDialog('consultationResult')">Tutup</md-button>
-  </md-dialog-actions>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button class="md-primary" @click.native="closeDialog('consultationResult')">Tutup</md-button>
+    </md-dialog-actions>
+  </div>
 </md-dialog>

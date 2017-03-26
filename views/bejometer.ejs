@@ -27,17 +27,14 @@
 </md-tab>
 
 <md-dialog md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
-  <md-dialog-title>Hasil Bejometer</md-dialog-title>
-  <md-dialog-content>
-    <md-layout v-if="bejometerResult" md-align="center">
-      <md-spinner v-if="bejometerRequesting" md-indeterminate></md-spinner>
+  <md-spinner v-if="bejometerRequesting" md-indeterminate></md-spinner>
+  <div v-if="bejometerResult">
+    <md-dialog-title>Hasil Bejometer</md-dialog-title>
+    <md-dialog-content>
       result: {{bejometerResult}}. share URL: {{bejometerShareURL}}
-    </md-layout>
-    <md-layout v-if="bejometerError">
-      error: {{bejometerError}}
-    </md-layout>
-  </md-dialog-content>
-  <md-dialog-actions>
-    <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
-  </md-dialog-actions>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
+    </md-dialog-actions>
+  </div>
 </md-dialog>

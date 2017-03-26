@@ -12,17 +12,14 @@
 </md-tab>
 
 <md-dialog md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
-  <md-dialog-title>Hasil Tebakgender</md-dialog-title>
-  <md-dialog-content>
-    <md-layout v-if="tebakgenderResult" md-align="center">
-      <md-spinner v-if="tebakgenderRequesting" md-indeterminate></md-spinner>
+  <md-spinner v-if="tebakgenderRequesting" md-indeterminate></md-spinner>
+  <div v-if="tebakgenderResult">
+    <md-dialog-title>Hasil Tebakgender</md-dialog-title>
+    <md-dialog-content>
       result: {{tebakgenderResult}}. share URL: {{tebakgenderShareURL}}
-    </md-layout>
-    <md-layout v-if="tebakgenderError">
-      error: {{tebakgenderError}}
-    </md-layout>
-  </md-dialog-content>
-  <md-dialog-actions>
-    <md-button class="md-primary" @click.native="closeDialog('tebakgenderResult')">Tutup</md-button>
-  </md-dialog-actions>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button class="md-primary" @click.native="closeDialog('tebakgenderResult')">Tutup</md-button>
+    </md-dialog-actions>
+  </div>
 </md-dialog>
