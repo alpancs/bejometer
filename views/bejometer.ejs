@@ -35,8 +35,14 @@
     <md-dialog-content>
       result: {{bejometerResult}}. share URL: {{bejometerShareURL}}
     </md-dialog-content>
-    <md-dialog-actions>
-      <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
-    </md-dialog-actions>
   </div>
+  <div v-if="bejometerError">
+    <md-dialog-title>Bejometer Error</md-dialog-title>
+    <md-dialog-content>
+      error: {{bejometerError}}
+    </md-dialog-content>
+  </div>
+  <md-dialog-actions>
+    <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
+  </md-dialog-actions>
 </md-dialog>

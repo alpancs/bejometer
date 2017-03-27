@@ -20,8 +20,14 @@
     <md-dialog-content>
       result: {{tebakgenderResult}}. share URL: {{tebakgenderShareURL}}
     </md-dialog-content>
-    <md-dialog-actions>
-      <md-button class="md-primary" @click.native="closeDialog('tebakgenderResult')">Tutup</md-button>
-    </md-dialog-actions>
   </div>
+  <div v-if="tebakgenderError">
+    <md-dialog-title>Tebakgender Error</md-dialog-title>
+    <md-dialog-content>
+      error: {{tebakgenderError}}
+    </md-dialog-content>
+  </div>
+  <md-dialog-actions>
+    <md-button class="md-primary" @click.native="closeDialog('tebakgenderResult')">Tutup</md-button>
+  </md-dialog-actions>
 </md-dialog>

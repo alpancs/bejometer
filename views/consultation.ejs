@@ -25,8 +25,14 @@
     <md-dialog-content>
       result: {{consultationResult}}. share URL: {{consultationShareURL}}
     </md-dialog-content>
-    <md-dialog-actions>
-      <md-button class="md-primary" @click.native="closeDialog('consultationResult')">Tutup</md-button>
-    </md-dialog-actions>
   </div>
+  <div v-if="consultationError">
+    <md-dialog-title>Konsultasi Error</md-dialog-title>
+    <md-dialog-content>
+      error: {{consultationError}}
+    </md-dialog-content>
+  </div>
+  <md-dialog-actions>
+    <md-button class="md-primary" @click.native="closeDialog('consultationResult')">Tutup</md-button>
+  </md-dialog-actions>
 </md-dialog>
