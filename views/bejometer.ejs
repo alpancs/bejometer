@@ -33,14 +33,22 @@
   <div v-if="bejometerResult">
     <md-dialog-title>Hasil Bejometer</md-dialog-title>
     <md-dialog-content>
-      result: {{bejometerResult}}. share URL: {{bejometerShareURL}}
+      <div v-if="bejometerResult.person1.gender === bejometerResult.person2.gender">
+        Maaf {{bejometerResult.person1.gender === 'L' ? 'mas' : 'mbak'}},
+        Bejometer tidak mengenal hubungan sesama jenis.
+      </div>
+      <div v-if="bejometerResult.person1.gender !== bejometerResult.person2.gender">
+        <div>{{bejometerResult.person1.gender === 'L' ? 'Mas' : 'Mbak'}} {{bejometerInput.name1}}</div>
+        <div>{{bejometerResult.person1.indonesiaDay}} {{bejometerResult.person1.javaDay}}</div>
+        <md-icon>favorite</md-icon>
+        <div>{{bejometerResult.person2.gender === 'L' ? 'Mas' : 'Mbak'}} {{bejometerInput.name2}}</div>
+        <div>{{bejometerResult.person2.indonesiaDay}} {{bejometerResult.person2.javaDay}}</div>
+        <div>{{Math.round(bejometerResult.match*10000)/100}}% Jodoh</div>
+      </div>
     </md-dialog-content>
   </div>
   <div v-if="bejometerError">
     <md-dialog-title>Bejometer Error</md-dialog-title>
-    <md-dialog-content>
-      error: {{bejometerError}}
-    </md-dialog-content>
   </div>
   <md-dialog-actions>
     <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
