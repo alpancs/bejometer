@@ -56,8 +56,8 @@ let filterSuggestion = (sug) => ({
   match: sug.match,
   name: sug.person.name,
   gender: sug.person.gender,
-  placeOfBirth: sug.person.place_of_birth,
-  dateOfBirth: sug.person.date_of_birth,
+  placeOfBirth: sug.person.placeOfBirth,
+  dateOfBirth: sug.person.dateOfBirth,
 })
 
 module.exports = router
