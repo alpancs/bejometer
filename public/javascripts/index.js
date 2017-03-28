@@ -3,8 +3,15 @@ Vue.use(VueMaterial)
 Vue.material.registerTheme('default', {
   primary: 'pink',
   accent: 'white',
-  warn: 'deep-orange',
+  warn: 'grey',
   background: 'white',
+})
+
+Vue.material.registerTheme('dialog', {
+  primary: 'pink',
+  accent: 'pink',
+  warn: 'grey',
+  background: 'pink',
 })
 
 new Vue({

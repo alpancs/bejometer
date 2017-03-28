@@ -26,31 +26,29 @@
   </form>
 </md-tab>
 
-<md-dialog md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
-  <md-layout md-align="center" v-if="bejometerRequesting">
-    <md-spinner md-indeterminate></md-spinner>
-  </md-layout>
-  <div v-if="bejometerResult">
-    <md-dialog-title>Hasil Bejometer</md-dialog-title>
-    <md-dialog-content>
-      <div v-if="bejometerResult.person1.gender === bejometerResult.person2.gender">
-        Maaf {{bejometerResult.person1.gender === 'L' ? 'mas' : 'mbak'}},
-        Bejometer tidak mengenal hubungan sesama jenis.
-      </div>
-      <div v-if="bejometerResult.person1.gender !== bejometerResult.person2.gender">
-        <div>{{bejometerResult.person1.gender === 'L' ? 'Mas' : 'Mbak'}} {{bejometerInput.name1}}</div>
-        <div>{{bejometerResult.person1.indonesiaDay}} {{bejometerResult.person1.javaDay}}</div>
-        <md-icon>favorite</md-icon>
-        <div>{{bejometerResult.person2.gender === 'L' ? 'Mas' : 'Mbak'}} {{bejometerInput.name2}}</div>
-        <div>{{bejometerResult.person2.indonesiaDay}} {{bejometerResult.person2.javaDay}}</div>
-        <div>{{Math.round(bejometerResult.match*10000)/100}}% Jodoh</div>
-      </div>
-    </md-dialog-content>
-  </div>
-  <div v-if="bejometerError">
-    <md-dialog-title>Bejometer Error</md-dialog-title>
-  </div>
-  <md-dialog-actions>
-    <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
-  </md-dialog-actions>
-</md-dialog>
+<md-theme md-name="dialog">
+  <md-dialog md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
+    <md-layout md-align="center" v-if="bejometerRequesting">
+      <md-spinner md-indeterminate></md-spinner>
+    </md-layout>
+    <div v-if="bejometerResult">
+      <md-layout md-align="center" v-if="bejometerResult.person1.gender === bejometerResult.person2.gender">
+        <span>Maaf {{bejometerResult.person1.gender === 'L' ? 'mas' : 'mbak'}}, Bejometer tidak mengenal hubungan sesama jenis.</span>
+      </md-layout>
+      <md-layout md-column v-if="bejometerResult.person1.gender !== bejometerResult.person2.gender">
+        <md-layout>{{bejometerResult.person1.gender === 'L' ? 'Mas' : 'Mbak'}} {{bejometerInput.name1}}</md-layout>
+        <md-layout>{{bejometerResult.person1.indonesiaDay}} {{bejometerResult.person1.javaDay}}</md-layout>
+        <md-layout><md-icon>favorite</md-icon></md-layout>
+        <md-layout>{{bejometerResult.person2.gender === 'L' ? 'Mas' : 'Mbak'}} {{bejometerInput.name2}}</md-layout>
+        <md-layout>{{bejometerResult.person2.indonesiaDay}} {{bejometerResult.person2.javaDay}}</md-layout>
+        <md-layout>{{Math.round(bejometerResult.match*10000)/100}}% Jodoh</md-layout>
+      </md-layout>
+    </div>
+    <md-dialog-content v-if="bejometerError">Bejometer Error</md-dialog-content>
+    <md-layout md-align="center" v-if="!bejometerRequesting">
+      <md-dialog-actions>
+        <md-button @click.native="closeDialog('bejometerResult')">Tutup</md-button>
+      </md-dialog-actions>
+    </md-layout>
+  </md-dialog>
+</md-theme>
