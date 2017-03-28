@@ -136,6 +136,16 @@ new Vue({
         .replace(/ /g, '-')
     },
 
+    toTitleCase(text) {
+      return text.split(' ')
+        .map((word) => word.charAt(0).toUpperCase()+word.slice(1).toLowerCase())
+        .join(' ')
+    },
+
+    toPercent(value) {
+      return Math.round(value * 10000) / 100 + '%'
+    },
+
     openDialog(ref) {
       this.$refs[ref].open()
     },
