@@ -7,13 +7,6 @@ Vue.material.registerTheme('default', {
   background: 'white',
 })
 
-Vue.material.registerTheme('dialog', {
-  primary: 'pink',
-  accent: 'pink',
-  warn: 'grey',
-  background: 'pink',
-})
-
 new Vue({
   el: '#app',
 

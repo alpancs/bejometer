@@ -26,30 +26,29 @@
   </form>
 </md-tab>
 
-<md-theme :md-name="bejometerRequesting ? 'default' : 'dialog'">
-  <md-dialog class="md-subheading" md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
+<md-dialog class="md-subheading" md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
+  <md-dialog-content>
     <md-layout md-align="center" v-if="bejometerRequesting">
       <md-spinner md-indeterminate></md-spinner>
     </md-layout>
     <div v-if="bejometerResult">
-      <md-dialog-title><md-layout md-align="center">Hasil Bejometer</md-layout></md-dialog-title>
-      <md-layout md-align="center" v-if="bejometerResult.person1.gender === bejometerResult.person2.gender">
+      <md-layout md-align="center" class="md-warn" v-if="bejometerResult.person1.gender === bejometerResult.person2.gender">
         Maaf {{bejometerResult.person1.gender === 'L' ? 'mas' : 'mbak'}}, Bejometer tidak mengenal hubungan sesama jenis.
       </md-layout>
       <md-layout md-column v-if="bejometerResult.person1.gender !== bejometerResult.person2.gender">
         <md-layout md-align="center">{{bejometerResult.person1.gender === 'L' ? 'Mas' : 'Mbak'}} {{bejometerInput.name1}}</md-layout>
         <md-layout md-align="center" v-if="bejometerInput.date1">{{toTitleCase(bejometerResult.person1.indonesiaDay+' '+bejometerResult.person1.javaDay)}}</md-layout>
-        <md-layout md-align="center"><md-icon>favorite</md-icon></md-layout>
+        <md-layout md-align="center" class="md-primary"><md-icon>favorite</md-icon></md-layout>
         <md-layout md-align="center">{{bejometerResult.person2.gender === 'L' ? 'Mas' : 'Mbak'}} {{bejometerInput.name2}}</md-layout>
         <md-layout md-align="center" v-if="bejometerInput.date2">{{toTitleCase(bejometerResult.person2.indonesiaDay+' '+bejometerResult.person2.javaDay)}}</md-layout>
-        <md-layout md-align="center" class="md-title">{{toPercent(bejometerResult.match)}} Jodoh</md-layout>
+        <md-layout md-align="center" class="md-title md-primary">{{toPercent(bejometerResult.match)}} Jodoh</md-layout>
       </md-layout>
     </div>
-    <md-dialog-content v-if="bejometerError">Bejometer Error</md-dialog-content>
-    <md-layout md-align="center" v-if="!bejometerRequesting">
-      <md-dialog-actions>
-        <md-button @click.native="closeDialog('bejometerResult')">Tutup</md-button>
-      </md-dialog-actions>
+    <md-layout md-align="center" v-if="bejometerError">Bejometer Error</md-layout>
+  </md-dialog-content>
+  <md-dialog-actions v-if="!bejometerRequesting">
+    <md-layout md-align="center">
+      <md-button @click.native="closeDialog('bejometerResult')">Tutup</md-button>
     </md-layout>
-  </md-dialog>
-</md-theme>
+  </md-dialog-actions>
+</md-dialog>
