@@ -17,8 +17,8 @@
 </md-tab>
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
-  <md-dialog-title v-if="consultationResult">Rekomendasi jodoh untuk {{consultationInput.name}}</md-dialog-title>
-  <md-dialog-title v-if="consultationError">Error</md-dialog-title>
+  <md-dialog-title v-if="consultationResult">Rekomendasi jodoh untuk {{toTitleCase(consultationInput.name)}}</md-dialog-title>
+  <md-dialog-title v-if="consultationError"><md-layout md-align="center">NJEBLUG</md-layout></md-dialog-title>
   <md-dialog-content>
     <md-layout md-align="center" v-if="consultationRequesting">
       <md-spinner md-indeterminate></md-spinner>
