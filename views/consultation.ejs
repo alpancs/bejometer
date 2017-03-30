@@ -27,7 +27,7 @@
       <md-list class="md-triple-line">
         <md-list-item v-for="person in consultationResult">
           <div class="md-list-text-container">
-            <span>{{person.name}}</span>
+            <span>{{toTitleCase(person.name)}}</span>
             <span>{{person.placeOfBirth}}, {{new Date(person.dateOfBirth).toLocaleDateString()}}</span>
             <span>{{toPercent(person.match)}} jodoh</span>
           </div>

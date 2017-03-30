@@ -109,9 +109,9 @@ new Vue({
     },
 
     bejometerBuildShareURL(name1, date1, name2, date2) {
-      name1 = this.sanitize(name1 || '')
+      name1 = this.sanitize(name1 || '').toLowerCase()
       date1 = date1 || ''
-      name2 = this.sanitize(name2 || '')
+      name2 = this.sanitize(name2 || '').toLowerCase()
       date2 = date2 || ''
       return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
     },
@@ -135,8 +135,9 @@ new Vue({
     },
 
     toTitleCase(text) {
-      return text.split(' ')
-        .map((word) => word.charAt(0).toUpperCase()+word.slice(1).toLowerCase())
+      return text.toLowerCase()
+        .split(' ')
+        .map((word) => word.charAt(0).toUpperCase()+word.slice(1))
         .join(' ')
     },
 
