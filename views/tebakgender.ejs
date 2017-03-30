@@ -2,7 +2,7 @@
   <form novalidate @submit.stop.prevent="tebakgenderSubmit">
     <md-input-container>
       <md-icon>person</md-icon>
-      <label>Nama</label>
+      <label>Nama orang, bukan nama hewan</label>
       <md-input v-model="tebakgenderInput.name"></md-input>
     </md-input-container>
     <md-layout md-align="center">
@@ -11,22 +11,26 @@
   </form>
 </md-tab>
 
-<md-dialog md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
-  <md-layout md-align="center" v-if="tebakgenderRequesting">
-    <md-spinner md-indeterminate></md-spinner>
-  </md-layout>
-  <div v-if="tebakgenderResult">
-    <md-dialog-title>Hasil Tebakgender</md-dialog-title>
-    <md-dialog-content>
-      result: {{tebakgenderResult}}. share URL: {{tebakgenderShareURL}}
-    </md-dialog-content>
-  </div>
-  <div v-if="tebakgenderError">
-    <md-dialog-title>Tebakgender Error</md-dialog-title>
-    <md-dialog-content>
-      error: {{tebakgenderError}}
-    </md-dialog-content>
-  </div>
+<md-dialog class="md-subheading" md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
+  <md-dialog-title v-if="tebakgenderError"><md-layout md-align="center">NJEBLUG</md-layout></md-dialog-title>
+  <md-dialog-content>
+    <md-layout md-align="center" v-if="tebakgenderRequesting">
+      <md-spinner md-indeterminate></md-spinner>
+    </md-layout>
+    <div v-if="tebakgenderResult">
+      <span v-if="tebakgenderResult.confidence > 0.5">
+        {{toTitleCase(tebakgenderInput.name)}}
+        <span v-if="tebakgenderResult.confidence < 0.95">sepertinya</span>
+        adalah nama
+        {{tebakgenderResult.gender === 'L' ? 'laki-laki' : 'perempuan'}}.
+      </span>
+      <span v-if="tebakgenderResult.confidence <= 0.5">
+        {{toTitleCase(tebakgenderInput.name)}}
+        bukan nama orang.
+      </span>
+    </div>
+    <md-layout md-align="center" v-if="tebakgenderError"><md-icon class="md-size-2x">sentiment_dissatisfied</md-icon></md-layout>
+  </md-dialog-content>
   <md-dialog-actions>
     <md-button class="md-primary" @click.native="closeDialog('tebakgenderResult')">Tutup</md-button>
   </md-dialog-actions>
