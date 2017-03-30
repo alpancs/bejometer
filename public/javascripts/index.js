@@ -52,7 +52,12 @@ new Vue({
       axios.get('/api/bejometer', {params})
         .then((response) => {
           this.bejometerResult = response.data
-          this.bejometerShareURL = this.bejometerBuildShareURL()
+          this.bejometerShareURL = this.bejometerBuildShareURL(
+            this.bejometerInput.name1,
+            this.bejometerInput.date1,
+            this.bejometerInput.name2,
+            this.bejometerInput.date2
+          )
         })
         .catch((error) => this.bejometerError = error)
         .then(() => this.bejometerRequesting = false)
@@ -103,11 +108,11 @@ new Vue({
       localStorage.tebakgenderInput = JSON.stringify(this.tebakgenderInput)
     },
 
-    bejometerBuildShareURL() {
-      let name1 = this.sanitize(this.bejometerInput.name1 || '')
-      let date1 = this.bejometerInput.date1 || ''
-      let name2 = this.sanitize(this.bejometerInput.name2 || '')
-      let date2 = this.bejometerInput.date2 || ''
+    bejometerBuildShareURL(name1, date1, name2, date2) {
+      name1 = this.sanitize(name1 || '')
+      date1 = date1 || ''
+      name2 = this.sanitize(name2 || '')
+      date2 = date2 || ''
       return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
     },
 

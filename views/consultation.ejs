@@ -18,6 +18,7 @@
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
   <md-dialog-title v-if="consultationResult">Rekomendasi jodoh untuk {{consultationInput.name}}</md-dialog-title>
+  <md-dialog-title v-if="consultationError">Error</md-dialog-title>
   <md-dialog-content>
     <md-layout md-align="center" v-if="consultationRequesting">
       <md-spinner md-indeterminate></md-spinner>
@@ -30,6 +31,9 @@
             <span>{{person.placeOfBirth}}, {{new Date(person.dateOfBirth).toLocaleDateString()}}</span>
             <span>{{toPercent(person.match)}} jodoh</span>
           </div>
+          <md-button class="md-icon-button md-list-action" :href="bejometerBuildShareURL(consultationInput.name, consultationInput.date, person.name, person.dateOfBirth)" target="_blank">
+            <md-icon class="md-primary">open_in_new</md-icon>
+          </md-button>
           <md-divider></md-divider>
         </md-list-item>
       </md-list>

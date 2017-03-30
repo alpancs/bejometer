@@ -27,6 +27,7 @@
 </md-tab>
 
 <md-dialog class="md-subheading" md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
+  <md-dialog-title v-if="bejometerError">Error</md-dialog-title>
   <md-dialog-content>
     <md-layout md-align="center" v-if="bejometerRequesting">
       <md-spinner md-indeterminate></md-spinner>
