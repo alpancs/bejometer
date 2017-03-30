@@ -44,7 +44,7 @@
         <md-layout md-align="center" class="md-title md-primary md-raised">{{toPercent(bejometerResult.match)}} Jodoh</md-layout>
       </md-layout>
     </div>
-    <md-layout md-align="center" v-if="bejometerError">Bejometer Error</md-layout>
+    <md-layout md-align="center" v-if="bejometerError"><md-icon class="md-size-2x">sentiment_dissatisfied</md-icon></md-layout>
   </md-dialog-content>
   <md-dialog-actions v-if="!bejometerRequesting">
     <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>

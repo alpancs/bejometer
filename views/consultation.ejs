@@ -17,21 +17,24 @@
 </md-tab>
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
-  <md-layout md-align="center" v-if="consultationRequesting">
-    <md-spinner md-indeterminate></md-spinner>
-  </md-layout>
-  <div v-if="consultationResult">
-    <md-dialog-title>Hasil Konsultasi</md-dialog-title>
-    <md-dialog-content>
-      result: {{consultationResult}}. share URL: {{consultationShareURL}}
-    </md-dialog-content>
-  </div>
-  <div v-if="consultationError">
-    <md-dialog-title>Konsultasi Error</md-dialog-title>
-    <md-dialog-content>
-      error: {{consultationError}}
-    </md-dialog-content>
-  </div>
+  <md-dialog-content>
+    <md-layout md-align="center" v-if="consultationRequesting">
+      <md-spinner md-indeterminate></md-spinner>
+    </md-layout>
+    <div v-if="consultationResult">
+      <md-list class="custom-list md-triple-line">
+        <md-list-item v-for="person in consultationResult">
+          <div class="md-list-text-container">
+            <span>{{person.name}}</span>
+            <span>{{person.placeOfBirth}}</span>
+            <span>{{toPercent(person.match)}}</span>
+          </div>
+          <md-divider class="md-inset"></md-divider>
+        </md-list-item>
+      </md-list>
+    </div>
+    <md-layout md-align="center" v-if="consultationError"><md-icon class="md-size-2x">sentiment_dissatisfied</md-icon></md-layout>
+  </md-dialog-content>
   <md-dialog-actions>
     <md-button class="md-primary" @click.native="closeDialog('consultationResult')">Tutup</md-button>
   </md-dialog-actions>
