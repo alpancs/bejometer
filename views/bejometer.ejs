@@ -47,8 +47,6 @@
     <md-layout md-align="center" v-if="bejometerError">Bejometer Error</md-layout>
   </md-dialog-content>
   <md-dialog-actions v-if="!bejometerRequesting">
-    <md-layout md-align="center">
-      <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
-    </md-layout>
+    <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
   </md-dialog-actions>
 </md-dialog>
