@@ -18,15 +18,16 @@
       <md-spinner md-indeterminate></md-spinner>
     </md-layout>
     <div v-if="tebakgenderResult">
-      <span v-if="tebakgenderResult.confidence > 0.5">
+      <span v-if="tebakgenderResult.confidence > 0.33">
         {{toTitleCase(tebakgenderInput.name)}}
         <span v-if="tebakgenderResult.confidence < 0.95">sepertinya</span>
         adalah nama
         {{tebakgenderResult.gender === 'L' ? 'laki-laki' : 'perempuan'}}.
       </span>
-      <span v-if="tebakgenderResult.confidence <= 0.5">
-        {{toTitleCase(tebakgenderInput.name)}}
-        bukan nama orang.
+      <span v-if="tebakgenderResult.confidence <= 0.33">
+        Hmm, tidak yakin {{toTitleCase(tebakgenderInput.name)}}
+        laki-laki atau perempuan.
+        Mungkin juga bukan nama orang.
       </span>
     </div>
     <md-layout md-align="center" v-if="tebakgenderError"><md-icon class="md-size-2x">sentiment_dissatisfied</md-icon></md-layout>
