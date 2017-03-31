@@ -67,7 +67,8 @@ new Vue({
       axios.get('/api/consultation', {params})
       .then((response) => {
         this.consultationResult = response.data
-        this.openDialog('consultationResult')
+        if (this.human(this.consultationResult.person.genderConfidence))
+          this.openDialog('consultationResult')
       })
       .catch(() => this.$refs.error.open())
       .then(() => this.consultationRequesting = false)

@@ -8,6 +8,7 @@
     <md-layout md-align="center">
       <md-button id="tebakgenderButton" :disabled="tebakgenderRequesting" type="submit" class="md-raised md-primary">TEBAK GENDER</md-button>
     </md-layout>
+    <md-progress md-indeterminate v-if="tebakgenderRequesting"></md-progress>
   </form>
 </md-tab>
 

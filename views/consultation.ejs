@@ -4,6 +4,7 @@
       <md-icon>person</md-icon>
       <label>Nama</label>
       <md-input v-model="consultationName"></md-input>
+      <span class="md-error">Harus nama orang, bukan nama hewan</span>
     </md-input-container>
     <md-input-container>
       <md-icon>today</md-icon>
@@ -13,11 +14,16 @@
     <md-layout md-align="center">
       <md-button id="consultationButton" :disabled="consultationRequesting" type="submit" class="md-raised md-primary">KONSULTASI</md-button>
     </md-layout>
+    <md-progress md-indeterminate v-if="consultationRequesting"></md-progress>
   </form>
 </md-tab>
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
-  <md-dialog-title>Rekomendasi jodoh untuk {{toTitleCase(consultationName)}}</md-dialog-title>
+  <md-dialog-title v-if="consultationResult">
+    Rekomendasi jodoh untuk
+    {{consultationResult.person.gender === 'L' ? 'mas' : 'mbak'}}
+    {{toTitleCase(consultationName)}}
+  </md-dialog-title>
   <md-dialog-content v-if="consultationResult">
     <md-list class="md-triple-line">
       <md-list-item v-for="person in consultationResult.suggestions">
