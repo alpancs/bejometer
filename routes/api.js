@@ -44,7 +44,14 @@ router.get('/consultation', (req, res) => {
   let limit = parseInt(req.query.limit || '0') || 6
   limit = limit > 100 ? 100 : limit
   let suggestions = suggestion(name, time, limit)
-  res.json(suggestions.map(filterSuggestion))
+  let prediction = tebakgender(name)
+  res.json({
+    person: {
+      gender: prediction.gender,
+      genderConfidence: prediction.confidence,
+    },
+    suggestions: suggestions.map(filterSuggestion),
+  })
 })
 
 let filterPrediction = (prediction) => ({

@@ -1,6 +1,6 @@
 <md-tab md-icon="search">
   <form novalidate @submit.stop.prevent="consultationSubmit">
-    <md-input-container>
+    <md-input-container :class="consultationResult && !human(consultationResult.person.genderConfidence) ? 'md-input-invalid' : ''">
       <md-icon>person</md-icon>
       <label>Nama</label>
       <md-input v-model="consultationName"></md-input>
@@ -17,10 +17,10 @@
 </md-tab>
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
-  <md-dialog-title v-if="consultationResult">Rekomendasi jodoh untuk {{toTitleCase(consultationName)}}</md-dialog-title>
+  <md-dialog-title>Rekomendasi jodoh untuk {{toTitleCase(consultationName)}}</md-dialog-title>
   <md-dialog-content v-if="consultationResult">
     <md-list class="md-triple-line">
-      <md-list-item v-for="person in consultationResult">
+      <md-list-item v-for="person in consultationResult.suggestions">
         <div class="md-list-text-container">
           <span>{{toTitleCase(person.name)}}</span>
           <span>{{person.placeOfBirth}}, {{new Date(person.dateOfBirth).toLocaleDateString()}}</span>

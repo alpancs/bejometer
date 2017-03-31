@@ -93,9 +93,9 @@ new Vue({
     },
 
     bejometerBuildShareURL(name1, date1, name2, date2) {
-      name1 = sanitize(name1 || '').toLowerCase()
+      name1 = this.sanitize(name1 || '').toLowerCase()
       date1 = date1 || ''
-      name2 = sanitize(name2 || '').toLowerCase()
+      name2 = this.sanitize(name2 || '').toLowerCase()
       date2 = date2 || ''
       return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
     },
@@ -127,14 +127,14 @@ new Vue({
 })
 
 /*
-let consultationBuildShareURL = (name, date) => {
-  name = sanitize(name || '').toLowerCase()
+consultationBuildShareURL = (name, date) {
+  name = this.sanitize(name || '').toLowerCase()
   date = date || ''
   return `${location.origin}/consultation/${name}:${date}`
 }
 
-let tebakgenderBuildShareURL = (name) => {
-  name = sanitize(name || '').toLowerCase()
+tebakgenderBuildShareURL = (name) {
+  name = this.sanitize(name || '').toLowerCase()
   return `${location.origin}/tebakgender/${name}`
 }
 */
