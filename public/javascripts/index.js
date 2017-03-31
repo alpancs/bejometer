@@ -38,8 +38,6 @@ new Vue({
   methods: {
     bejometerSubmit() {
       this.bejometerRequesting = true
-      this.openDialog('bejometerResult')
-
       this.bejometerResult = null
       this.bejometerShareURL = null
       this.bejometerError = null
@@ -53,6 +51,7 @@ new Vue({
       axios.get('/api/bejometer', {params})
       .then((response) => {
         this.bejometerResult = response.data
+        this.openDialog('bejometerResult')
         this.bejometerShareURL = bejometerBuildShareURL(
           this.bejometerName1,
           this.bejometerDate1,
@@ -71,8 +70,6 @@ new Vue({
 
     consultationSubmit() {
       this.consultationRequesting = true
-      this.openDialog('consultationResult')
-
       this.consultationResult = null
       this.consultationShareURL = null
       this.consultationError = null
@@ -84,6 +81,7 @@ new Vue({
       axios.get('/api/consultation', {params})
       .then((response) => {
         this.consultationResult = response.data
+        this.openDialog('consultationResult')
         this.consultationShareURL = this.consultationBuildShareURL()
       })
       .catch((error) => this.consultationError = error)
@@ -95,8 +93,6 @@ new Vue({
 
     tebakgenderSubmit() {
       this.tebakgenderRequesting = true
-      this.openDialog('tebakgenderResult')
-
       this.tebakgenderResult = null
       this.tebakgenderShareURL = null
       this.tebakgenderError = null
@@ -105,6 +101,7 @@ new Vue({
       axios.get('/api/tebakgender', {params})
       .then((response) => {
         this.tebakgenderResult = response.data
+        this.openDialog('tebakgenderResult')
         this.tebakgenderShareURL = this.tebakgenderBuildShareURL()
       })
       .catch((error) => this.tebakgenderError = error)
