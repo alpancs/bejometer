@@ -1,32 +1,38 @@
 <md-tab md-icon="favorite_border">
-  <form novalidate @submit.stop.prevent="bejometerSubmit">
-    <md-input-container :class="bejometerResult && !human(bejometerResult.person1.genderConfidence) ? 'md-input-invalid' : ''">
-      <md-icon>person</md-icon>
-      <label>Nama anda</label>
-      <md-input v-model="bejometerName1"></md-input>
-      <span class="md-error">Harus nama orang, bukan nama hewan</span>
-    </md-input-container>
-    <md-input-container>
-      <md-icon>today</md-icon>
-      <label>Tanggal lahir anda</label>
-      <md-input type="date" v-model="bejometerDate1"></md-input>
-    </md-input-container>
-    <md-input-container :class="bejometerResult && !human(bejometerResult.person2.genderConfidence) ? 'md-input-invalid' : ''">
-      <md-icon>person</md-icon>
-      <label>Nama "dia"</label>
-      <md-input v-model="bejometerName2"></md-input>
-      <span class="md-error">Harus nama orang, bukan nama hewan</span>
-    </md-input-container>
-    <md-input-container>
-      <md-icon>today</md-icon>
-      <label>Tanggal lahir "dia"</label>
-      <md-input type="date" v-model="bejometerDate2"></md-input>
-    </md-input-container>
-    <md-layout md-align="center">
-      <md-button id="bejometerButton" :disabled="bejometerRequesting" type="submit" class="md-raised md-primary">JODOH?</md-button>
+  <md-layout md-row>
+    <md-layout md-flex="25" md-hide-small></md-layout>
+    <md-layout md-column>
+      <form novalidate @submit.stop.prevent="bejometerSubmit">
+        <md-input-container :class="bejometerResult && !human(bejometerResult.person1.genderConfidence) ? 'md-input-invalid' : ''">
+          <md-icon>person</md-icon>
+          <label>Nama anda</label>
+          <md-input v-model="bejometerName1"></md-input>
+          <span class="md-error">Harus nama orang, bukan nama hewan</span>
+        </md-input-container>
+        <md-input-container>
+          <md-icon>today</md-icon>
+          <label>Tanggal lahir anda</label>
+          <md-input type="date" v-model="bejometerDate1"></md-input>
+        </md-input-container>
+        <md-input-container :class="bejometerResult && !human(bejometerResult.person2.genderConfidence) ? 'md-input-invalid' : ''">
+          <md-icon>person</md-icon>
+          <label>Nama "dia"</label>
+          <md-input v-model="bejometerName2"></md-input>
+          <span class="md-error">Harus nama orang, bukan nama hewan</span>
+        </md-input-container>
+        <md-input-container>
+          <md-icon>today</md-icon>
+          <label>Tanggal lahir "dia"</label>
+          <md-input type="date" v-model="bejometerDate2"></md-input>
+        </md-input-container>
+        <md-layout md-align="center">
+          <md-button id="bejometerButton" :disabled="bejometerRequesting" type="submit" class="md-raised md-primary">JODOH?</md-button>
+        </md-layout>
+        <md-progress md-indeterminate v-if="bejometerRequesting"></md-progress>
+      </form>
     </md-layout>
-    <md-progress md-indeterminate v-if="bejometerRequesting"></md-progress>
-  </form>
+    <md-layout md-flex="25" md-hide-small></md-layout>
+  </md-layout>
 </md-tab>
 
 <md-dialog class="md-subheading" md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">

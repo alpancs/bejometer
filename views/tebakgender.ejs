@@ -1,15 +1,21 @@
 <md-tab md-icon="wc">
-  <form novalidate @submit.stop.prevent="tebakgenderSubmit">
-    <md-input-container>
-      <md-icon>person</md-icon>
-      <label>Nama orang, bukan nama hewan</label>
-      <md-input v-model="tebakgenderName"></md-input>
-    </md-input-container>
-    <md-layout md-align="center">
-      <md-button id="tebakgenderButton" :disabled="tebakgenderRequesting" type="submit" class="md-raised md-primary">TEBAK GENDER</md-button>
+  <md-layout md-row>
+    <md-layout md-flex="25" md-hide-small></md-layout>
+    <md-layout md-column>
+      <form novalidate @submit.stop.prevent="tebakgenderSubmit">
+        <md-input-container>
+          <md-icon>person</md-icon>
+          <label>Nama orang, bukan nama hewan</label>
+          <md-input v-model="tebakgenderName"></md-input>
+        </md-input-container>
+        <md-layout md-align="center">
+          <md-button id="tebakgenderButton" :disabled="tebakgenderRequesting" type="submit" class="md-raised md-primary">TEBAK GENDER</md-button>
+        </md-layout>
+        <md-progress md-indeterminate v-if="tebakgenderRequesting"></md-progress>
+      </form>
     </md-layout>
-    <md-progress md-indeterminate v-if="tebakgenderRequesting"></md-progress>
-  </form>
+    <md-layout md-flex="25" md-hide-small></md-layout>
+  </md-layout>
 </md-tab>
 
 <md-dialog class="md-subheading" md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">

@@ -1,21 +1,27 @@
 <md-tab md-icon="search">
-  <form novalidate @submit.stop.prevent="consultationSubmit">
-    <md-input-container :class="consultationResult && !human(consultationResult.person.genderConfidence) ? 'md-input-invalid' : ''">
-      <md-icon>person</md-icon>
-      <label>Nama</label>
-      <md-input v-model="consultationName"></md-input>
-      <span class="md-error">Harus nama orang, bukan nama hewan</span>
-    </md-input-container>
-    <md-input-container>
-      <md-icon>today</md-icon>
-      <label>Tanggal lahir</label>
-      <md-input type="date" v-model="consultationDate"></md-input>
-    </md-input-container>
-    <md-layout md-align="center">
-      <md-button id="consultationButton" :disabled="consultationRequesting" type="submit" class="md-raised md-primary">KONSULTASI</md-button>
+  <md-layout md-row>
+    <md-layout md-flex="25" md-hide-small></md-layout>
+    <md-layout md-column>
+      <form novalidate @submit.stop.prevent="consultationSubmit">
+        <md-input-container :class="consultationResult && !human(consultationResult.person.genderConfidence) ? 'md-input-invalid' : ''">
+          <md-icon>person</md-icon>
+          <label>Nama</label>
+          <md-input v-model="consultationName"></md-input>
+          <span class="md-error">Harus nama orang, bukan nama hewan</span>
+        </md-input-container>
+        <md-input-container>
+          <md-icon>today</md-icon>
+          <label>Tanggal lahir</label>
+          <md-input type="date" v-model="consultationDate"></md-input>
+        </md-input-container>
+        <md-layout md-align="center">
+          <md-button id="consultationButton" :disabled="consultationRequesting" type="submit" class="md-raised md-primary">KONSULTASI</md-button>
+        </md-layout>
+        <md-progress md-indeterminate v-if="consultationRequesting"></md-progress>
+      </form>
     </md-layout>
-    <md-progress md-indeterminate v-if="consultationRequesting"></md-progress>
-  </form>
+    <md-layout md-flex="25" md-hide-small></md-layout>
+  </md-layout>
 </md-tab>
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
