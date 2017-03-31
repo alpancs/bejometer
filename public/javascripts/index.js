@@ -21,22 +21,18 @@ new Vue({
 
     bejometerRequesting: false,
     bejometerResult: null,
-    bejometerShareURL: null,
 
     consultationRequesting: false,
     consultationResult: null,
-    consultationShareURL: null,
 
     tebakgenderRequesting: false,
     tebakgenderResult: null,
-    tebakgenderShareURL: null,
   },
 
   methods: {
     bejometerSubmit() {
       this.bejometerRequesting = true
       this.bejometerResult = null
-      this.bejometerShareURL = null
 
       let params = {
         name1: this.bejometerName1,
@@ -63,7 +59,6 @@ new Vue({
     consultationSubmit() {
       this.consultationRequesting = true
       this.consultationResult = null
-      this.consultationShareURL = null
 
       let params = {
         name: this.consultationName,
@@ -73,7 +68,6 @@ new Vue({
       .then((response) => {
         this.consultationResult = response.data
         this.openDialog('consultationResult')
-        this.consultationShareURL = this.consultationBuildShareURL()
       })
       .catch(() => this.$refs.error.open())
       .then(() => this.consultationRequesting = false)
@@ -85,19 +79,25 @@ new Vue({
     tebakgenderSubmit() {
       this.tebakgenderRequesting = true
       this.tebakgenderResult = null
-      this.tebakgenderShareURL = null
 
       let params = {name: this.tebakgenderName}
       axios.get('/api/tebakgender', {params})
       .then((response) => {
         this.tebakgenderResult = response.data
         this.openDialog('tebakgenderResult')
-        this.tebakgenderShareURL = this.tebakgenderBuildShareURL()
       })
       .catch(() => this.$refs.error.open())
       .then(() => this.tebakgenderRequesting = false)
 
       localStorage.tebakgenderName = this.tebakgenderName
+    },
+
+    bejometerBuildShareURL(name1, date1, name2, date2) {
+      name1 = sanitize(name1 || '').toLowerCase()
+      date1 = date1 || ''
+      name2 = sanitize(name2 || '').toLowerCase()
+      date2 = date2 || ''
+      return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
     },
 
     openDialog(ref) {
@@ -127,14 +127,6 @@ new Vue({
 })
 
 /*
-let bejometerBuildShareURL = (name1, date1, name2, date2) => {
-  name1 = sanitize(name1 || '').toLowerCase()
-  date1 = date1 || ''
-  name2 = sanitize(name2 || '').toLowerCase()
-  date2 = date2 || ''
-  return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
-}
-
 let consultationBuildShareURL = (name, date) => {
   name = sanitize(name || '').toLowerCase()
   date = date || ''

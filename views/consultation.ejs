@@ -16,9 +16,9 @@
   </form>
 </md-tab>
 
-<md-dialog v-if="consultationResult" md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
+<md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
   <md-dialog-title v-if="consultationResult">Rekomendasi jodoh untuk {{toTitleCase(consultationName)}}</md-dialog-title>
-  <md-dialog-content>
+  <md-dialog-content v-if="consultationResult">
     <md-list class="md-triple-line">
       <md-list-item v-for="person in consultationResult">
         <div class="md-list-text-container">

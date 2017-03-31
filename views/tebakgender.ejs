@@ -11,8 +11,8 @@
   </form>
 </md-tab>
 
-<md-dialog v-if="tebakgenderResult" class="md-subheading" md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
-  <md-dialog-content>
+<md-dialog class="md-subheading" md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
+  <md-dialog-content v-if="tebakgenderResult">
     <span v-if="human(tebakgenderResult.confidence)">
       <span v-if="tebakgenderResult.confidence < 0.95">Sepertinya</span>
       {{toTitleCase(tebakgenderName)}}

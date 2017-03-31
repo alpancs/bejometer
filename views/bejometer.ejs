@@ -29,8 +29,8 @@
   </form>
 </md-tab>
 
-<md-dialog v-if="bejometerResult" class="md-subheading" md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
-  <md-dialog-content>
+<md-dialog class="md-subheading" md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
+  <md-dialog-content v-if="bejometerResult">
     <md-layout md-align="center" v-if="bejometerResult.person1.gender === bejometerResult.person2.gender">
       Maaf {{bejometerResult.person1.gender === 'L' ? 'mas' : 'mbak'}}, Bejometer tidak mengenal hubungan sesama jenis.
     </md-layout>
