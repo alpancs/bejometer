@@ -144,5 +144,10 @@ let tebakgenderBuildShareURL = (name) => {
   return `${location.origin}/tebakgender/${name}`
 }
 
-toTitleCase, toPercent, human,
-bejometerBuildShareURL, consultationBuildShareURL, tebakgenderBuildShareURL
+sanitize
+toTitleCase
+toPercent
+human
+bejometerBuildShareURL
+consultationBuildShareURL
+tebakgenderBuildShareURL
