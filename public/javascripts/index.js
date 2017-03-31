@@ -21,7 +21,6 @@ new Vue({
 
     bejometerRequesting: false,
     bejometerResult: null,
-    bejometerError: null,
     bejometerShareURL: null,
 
     consultationRequesting: false,
@@ -40,7 +39,6 @@ new Vue({
       this.bejometerRequesting = true
       this.bejometerResult = null
       this.bejometerShareURL = null
-      this.bejometerError = null
 
       let params = {
         name1: this.bejometerName1,
@@ -51,15 +49,11 @@ new Vue({
       axios.get('/api/bejometer', {params})
       .then((response) => {
         this.bejometerResult = response.data
-        this.openDialog('bejometerResult')
-        this.bejometerShareURL = bejometerBuildShareURL(
-          this.bejometerName1,
-          this.bejometerDate1,
-          this.bejometerName2,
-          this.bejometerDate2
-        )
+        if (human(this.bejometerResult.person1.genderConfidence) &&
+            human(this.bejometerResult.person2.genderConfidence))
+          this.openDialog('bejometerResult')
       })
-      .catch((error) => this.bejometerError = error)
+      .catch(() => this.$refs.error.open())
       .then(() => this.bejometerRequesting = false)
 
       localStorage.bejometerName1 = this.bejometerName1
