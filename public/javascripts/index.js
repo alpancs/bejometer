@@ -122,13 +122,13 @@ new Vue({
     },
 
     consultationBuildShareURL() {
-      let name = this.sanitize(this.consultationName || '')
+      let name = this.sanitize(this.consultationName || '').toLowerCase()
       let date = this.consultationDate || ''
       return `${location.origin}/consultation/${name}:${date}`
     },
 
     tebakgenderBuildShareURL() {
-      let name = this.sanitize(this.tebakgenderName || '')
+      let name = this.sanitize(this.tebakgenderName || '').toLowerCase()
       return `${location.origin}/tebakgender/${name}`
     },
 
