@@ -53,7 +53,7 @@ new Vue({
       axios.get('/api/bejometer', {params})
       .then((response) => {
         this.bejometerResult = response.data
-        this.bejometerShareURL = this.bejometerBuildShareURL(
+        this.bejometerShareURL = bejometerBuildShareURL(
           this.bejometerName1,
           this.bejometerDate1,
           this.bejometerName2,
@@ -113,43 +113,6 @@ new Vue({
       localStorage.tebakgenderName = this.tebakgenderName
     },
 
-    bejometerBuildShareURL(name1, date1, name2, date2) {
-      name1 = this.sanitize(name1 || '').toLowerCase()
-      date1 = date1 || ''
-      name2 = this.sanitize(name2 || '').toLowerCase()
-      date2 = date2 || ''
-      return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
-    },
-
-    consultationBuildShareURL() {
-      let name = this.sanitize(this.consultationName || '').toLowerCase()
-      let date = this.consultationDate || ''
-      return `${location.origin}/consultation/${name}:${date}`
-    },
-
-    tebakgenderBuildShareURL() {
-      let name = this.sanitize(this.tebakgenderName || '').toLowerCase()
-      return `${location.origin}/tebakgender/${name}`
-    },
-
-    sanitize(name) {
-      return name.replace(/[^A-Za-z']/g, ' ')
-        .replace(/ +/g, ' ')
-        .trim()
-        .replace(/ /g, '-')
-    },
-
-    toTitleCase(text) {
-      return text.toLowerCase()
-        .split(' ')
-        .map((word) => word.charAt(0).toUpperCase()+word.slice(1))
-        .join(' ')
-    },
-
-    toPercent(value) {
-      return Math.round(value * 10000) / 100 + '%'
-    },
-
     openDialog(ref) {
       this.$refs[ref].open()
     },
@@ -159,3 +122,30 @@ new Vue({
     },
   },
 })
+
+let sanitize = (name) => name.replace(/[^A-Za-z']/g, ' ').replace(/ +/g, ' ').trim().replace(/ /g, '-')
+let toTitleCase = (text) => text.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase()+word.slice(1)).join(' ')
+let toPercent = (value) => Math.round(value * 10000) / 100 + '%'
+let human = (confidence) => confidence > 0.33
+
+let bejometerBuildShareURL = (name1, date1, name2, date2) => {
+  name1 = sanitize(name1 || '').toLowerCase()
+  date1 = date1 || ''
+  name2 = sanitize(name2 || '').toLowerCase()
+  date2 = date2 || ''
+  return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
+}
+
+let consultationBuildShareURL = (name, date) => {
+  name = sanitize(name || '').toLowerCase()
+  date = date || ''
+  return `${location.origin}/consultation/${name}:${date}`
+}
+
+let tebakgenderBuildShareURL = (name) => {
+  name = sanitize(name || '').toLowerCase()
+  return `${location.origin}/tebakgender/${name}`
+}
+
+toTitleCase, toPercent, human,
+bejometerBuildShareURL, consultationBuildShareURL, tebakgenderBuildShareURL
