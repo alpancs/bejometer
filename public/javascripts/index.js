@@ -47,8 +47,8 @@ new Vue({
       axios.get('/api/bejometer', {params})
       .then((response) => {
         this.bejometerResult = response.data
-        if (human(this.bejometerResult.person1.genderConfidence) &&
-            human(this.bejometerResult.person2.genderConfidence))
+        if (this.human(this.bejometerResult.person1.genderConfidence) &&
+            this.human(this.bejometerResult.person2.genderConfidence))
           this.openDialog('bejometerResult')
       })
       .catch(() => this.$refs.error.open())
