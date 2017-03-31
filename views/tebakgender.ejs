@@ -11,26 +11,19 @@
   </form>
 </md-tab>
 
-<md-dialog class="md-subheading" md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
-  <md-dialog-title v-if="tebakgenderError"><md-layout md-align="center">NJEBLUG</md-layout></md-dialog-title>
+<md-dialog v-if="tebakgenderResult" class="md-subheading" md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
   <md-dialog-content>
-    <md-layout md-align="center" v-if="tebakgenderRequesting">
-      <md-spinner md-indeterminate></md-spinner>
-    </md-layout>
-    <div v-if="tebakgenderResult">
-      <span v-if="tebakgenderResult.confidence > 0.33">
-        {{toTitleCase(tebakgenderName)}}
-        <span v-if="tebakgenderResult.confidence < 0.95">sepertinya</span>
-        adalah nama
-        {{tebakgenderResult.gender === 'L' ? 'laki-laki' : 'perempuan'}}.
-      </span>
-      <span v-if="tebakgenderResult.confidence <= 0.33">
-        Hmm, tidak yakin {{toTitleCase(tebakgenderName)}}
-        laki-laki atau perempuan.
-        Mungkin juga bukan nama orang.
-      </span>
-    </div>
-    <md-layout md-align="center" v-if="tebakgenderError"><md-icon class="md-size-2x">sentiment_dissatisfied</md-icon></md-layout>
+    <span v-if="human(tebakgenderResult.confidence)">
+      <span v-if="tebakgenderResult.confidence < 0.95">Sepertinya</span>
+      {{toTitleCase(tebakgenderName)}}
+      adalah nama
+      {{tebakgenderResult.gender === 'L' ? 'laki-laki' : 'perempuan'}}.
+    </span>
+    <span v-if="!human(tebakgenderResult.confidence)">
+      Hmm, tidak yakin {{toTitleCase(tebakgenderName)}}
+      laki-laki atau perempuan.
+      Mungkin juga bukan nama orang.
+    </span>
   </md-dialog-content>
   <md-dialog-actions>
     <md-button class="md-primary" @click.native="closeDialog('tebakgenderResult')">Tutup</md-button>

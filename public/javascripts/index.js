@@ -25,12 +25,10 @@ new Vue({
 
     consultationRequesting: false,
     consultationResult: null,
-    consultationError: null,
     consultationShareURL: null,
 
     tebakgenderRequesting: false,
     tebakgenderResult: null,
-    tebakgenderError: null,
     tebakgenderShareURL: null,
   },
 
@@ -66,7 +64,6 @@ new Vue({
       this.consultationRequesting = true
       this.consultationResult = null
       this.consultationShareURL = null
-      this.consultationError = null
 
       let params = {
         name: this.consultationName,
@@ -78,7 +75,7 @@ new Vue({
         this.openDialog('consultationResult')
         this.consultationShareURL = this.consultationBuildShareURL()
       })
-      .catch((error) => this.consultationError = error)
+      .catch(() => this.$refs.error.open())
       .then(() => this.consultationRequesting = false)
 
       localStorage.consultationName = this.consultationName
@@ -89,7 +86,6 @@ new Vue({
       this.tebakgenderRequesting = true
       this.tebakgenderResult = null
       this.tebakgenderShareURL = null
-      this.tebakgenderError = null
 
       let params = {name: this.tebakgenderName}
       axios.get('/api/tebakgender', {params})
@@ -98,7 +94,7 @@ new Vue({
         this.openDialog('tebakgenderResult')
         this.tebakgenderShareURL = this.tebakgenderBuildShareURL()
       })
-      .catch((error) => this.tebakgenderError = error)
+      .catch(() => this.$refs.error.open())
       .then(() => this.tebakgenderRequesting = false)
 
       localStorage.tebakgenderName = this.tebakgenderName

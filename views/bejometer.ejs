@@ -1,6 +1,6 @@
 <md-tab md-icon="favorite_border">
   <form novalidate @submit.stop.prevent="bejometerSubmit">
-    <md-input-container :class="bejometerResult && bejometerResult.person1.genderConfidence <= 0.33 ? 'md-input-invalid' : ''">
+    <md-input-container :class="bejometerResult && !human(bejometerResult.person1.genderConfidence) ? 'md-input-invalid' : ''">
       <md-icon>person</md-icon>
       <label>Nama anda</label>
       <md-input v-model="bejometerName1"></md-input>
@@ -11,7 +11,7 @@
       <label>Tanggal lahir anda</label>
       <md-input type="date" v-model="bejometerDate1"></md-input>
     </md-input-container>
-    <md-input-container :class="bejometerResult && bejometerResult.person2.genderConfidence <= 0.33 ? 'md-input-invalid' : ''">
+    <md-input-container :class="bejometerResult && !human(bejometerResult.person2.genderConfidence) ? 'md-input-invalid' : ''">
       <md-icon>person</md-icon>
       <label>Nama "dia"</label>
       <md-input v-model="bejometerName2"></md-input>
@@ -29,21 +29,21 @@
   </form>
 </md-tab>
 
-<md-dialog class="md-subheading" md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
+<md-dialog v-if="bejometerResult" class="md-subheading" md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
   <md-dialog-content>
-    <div v-if="bejometerResult">
-      <md-layout md-align="center" v-if="bejometerResult.person1.gender === bejometerResult.person2.gender">
-        Maaf {{bejometerResult.person1.gender === 'L' ? 'mas' : 'mbak'}}, Bejometer tidak mengenal hubungan sesama jenis.
-      </md-layout>
-      <md-layout md-column v-if="bejometerResult.person1.gender !== bejometerResult.person2.gender">
-        <md-layout md-align="center">{{bejometerResult.person1.gender === 'L' ? 'Mas' : 'Mbak'}} {{toTitleCase(bejometerName1)}}</md-layout>
-        <md-layout md-align="center" v-if="bejometerDate1">{{toTitleCase(bejometerResult.person1.indonesiaDay+' '+bejometerResult.person1.javaDay)}}</md-layout>
-        <md-layout md-align="center"><md-icon class="md-primary">favorite</md-icon></md-layout>
-        <md-layout md-align="center">{{bejometerResult.person2.gender === 'L' ? 'Mas' : 'Mbak'}} {{toTitleCase(bejometerName2)}}</md-layout>
-        <md-layout md-align="center" v-if="bejometerDate2">{{toTitleCase(bejometerResult.person2.indonesiaDay+' '+bejometerResult.person2.javaDay)}}</md-layout>
-        <md-layout md-align="center" class="md-title md-primary md-raised">{{toPercent(bejometerResult.match)}} Jodoh</md-layout>
-      </md-layout>
-    </div>
+    <md-layout md-align="center" v-if="bejometerResult.person1.gender === bejometerResult.person2.gender">
+      Maaf {{bejometerResult.person1.gender === 'L' ? 'mas' : 'mbak'}}, Bejometer tidak mengenal hubungan sesama jenis.
+    </md-layout>
+    <md-layout md-column v-if="bejometerResult.person1.gender !== bejometerResult.person2.gender">
+      <md-layout md-align="center">{{bejometerResult.person1.gender === 'L' ? 'Mas' : 'Mbak'}} {{toTitleCase(bejometerName1)}}</md-layout>
+      <md-layout md-align="center" v-if="bejometerDate1">{{toTitleCase(bejometerResult.person1.indonesiaDay+' '+bejometerResult.person1.javaDay)}}</md-layout>
+      <md-layout md-align="center"><md-icon class="md-primary">favorite</md-icon></md-layout>
+      <md-layout md-align="center">{{bejometerResult.person2.gender === 'L' ? 'Mas' : 'Mbak'}} {{toTitleCase(bejometerName2)}}</md-layout>
+      <md-layout md-align="center" v-if="bejometerDate2">{{toTitleCase(bejometerResult.person2.indonesiaDay+' '+bejometerResult.person2.javaDay)}}</md-layout>
+      <md-layout md-align="center" class="md-title md-primary md-raised">{{toPercent(bejometerResult.match)}} Jodoh</md-layout>
+    </md-layout>
   </md-dialog-content>
-  <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
+  <md-dialog-actions>
+    <md-button class="md-primary" @click.native="closeDialog('bejometerResult')">Tutup</md-button>
+  </md-dialog-actions>
 </md-dialog>
