@@ -107,14 +107,26 @@ new Vue({
     closeDialog(ref) {
       this.$refs[ref].close()
     },
+
+    human(confidence) {
+      return confidence > 0.33
+    },
+
+    sanitize(name) {
+      return name.replace(/[^A-Za-z']/g, ' ').replace(/ +/g, ' ').trim().replace(/ /g, '-')
+    },
+
+    toTitleCase(text) {
+      return text.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase()+word.slice(1)).join(' ')
+    },
+
+    toPercent(value) {
+      return Math.round(value * 10000) / 100 + '%'
+    },
   },
 })
 
-let sanitize = (name) => name.replace(/[^A-Za-z']/g, ' ').replace(/ +/g, ' ').trim().replace(/ /g, '-')
-let toTitleCase = (text) => text.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase()+word.slice(1)).join(' ')
-let toPercent = (value) => Math.round(value * 10000) / 100 + '%'
-let human = (confidence) => confidence > 0.33
-
+/*
 let bejometerBuildShareURL = (name1, date1, name2, date2) => {
   name1 = sanitize(name1 || '').toLowerCase()
   date1 = date1 || ''
@@ -133,11 +145,4 @@ let tebakgenderBuildShareURL = (name) => {
   name = sanitize(name || '').toLowerCase()
   return `${location.origin}/tebakgender/${name}`
 }
-
-sanitize
-toTitleCase
-toPercent
-human
-bejometerBuildShareURL
-consultationBuildShareURL
-tebakgenderBuildShareURL
+*/
