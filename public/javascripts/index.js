@@ -11,12 +11,13 @@ new Vue({
   el: '#app',
 
   data: {
-    bejometerInput: localStorage.bejometerInput ?
-      JSON.parse(localStorage.bejometerInput) : {},
-    consultationInput: localStorage.consultationInput ?
-      JSON.parse(localStorage.consultationInput) : {},
-    tebakgenderInput: localStorage.tebakgenderInput ?
-      JSON.parse(localStorage.tebakgenderInput) : {},
+    bejometerName1: localStorage.bejometerName1 || '',
+    bejometerDate1: localStorage.bejometerDate1 || '',
+    bejometerName2: localStorage.bejometerName2 || '',
+    bejometerDate2: localStorage.bejometerDate2 || '',
+    consultationName: localStorage.consultationName || '',
+    consultationDate: localStorage.consultationDate || '',
+    tebakgenderName: localStorage.tebakgenderName || '',
 
     bejometerRequesting: false,
     bejometerResult: null,
@@ -44,25 +45,28 @@ new Vue({
       this.bejometerError = null
 
       let params = {
-        name1: this.bejometerInput.name1,
-        date1: this.bejometerInput.date1,
-        name2: this.bejometerInput.name2,
-        date2: this.bejometerInput.date2,
+        name1: this.bejometerName1,
+        date1: this.bejometerDate1,
+        name2: this.bejometerName2,
+        date2: this.bejometerDate2,
       }
       axios.get('/api/bejometer', {params})
-        .then((response) => {
-          this.bejometerResult = response.data
-          this.bejometerShareURL = this.bejometerBuildShareURL(
-            this.bejometerInput.name1,
-            this.bejometerInput.date1,
-            this.bejometerInput.name2,
-            this.bejometerInput.date2
-          )
-        })
-        .catch((error) => this.bejometerError = error)
-        .then(() => this.bejometerRequesting = false)
+      .then((response) => {
+        this.bejometerResult = response.data
+        this.bejometerShareURL = this.bejometerBuildShareURL(
+          this.bejometerName1,
+          this.bejometerDate1,
+          this.bejometerName2,
+          this.bejometerDate2
+        )
+      })
+      .catch((error) => this.bejometerError = error)
+      .then(() => this.bejometerRequesting = false)
 
-      localStorage.bejometerInput = JSON.stringify(this.bejometerInput)
+      localStorage.bejometerName1 = this.bejometerName1
+      localStorage.bejometerDate1 = this.bejometerDate1
+      localStorage.bejometerName2 = this.bejometerName2
+      localStorage.bejometerDate2 = this.bejometerDate2
     },
 
     consultationSubmit() {
@@ -74,18 +78,19 @@ new Vue({
       this.consultationError = null
 
       let params = {
-        name: this.consultationInput.name,
-        date: this.consultationInput.date,
+        name: this.consultationName,
+        date: this.consultationDate,
       }
       axios.get('/api/consultation', {params})
-        .then((response) => {
-          this.consultationResult = response.data
-          this.consultationShareURL = this.consultationBuildShareURL()
-        })
-        .catch((error) => this.consultationError = error)
-        .then(() => this.consultationRequesting = false)
+      .then((response) => {
+        this.consultationResult = response.data
+        this.consultationShareURL = this.consultationBuildShareURL()
+      })
+      .catch((error) => this.consultationError = error)
+      .then(() => this.consultationRequesting = false)
 
-      localStorage.consultationInput = JSON.stringify(this.consultationInput)
+      localStorage.consultationName = this.consultationName
+      localStorage.consultationDate = this.consultationDate
     },
 
     tebakgenderSubmit() {
@@ -96,16 +101,16 @@ new Vue({
       this.tebakgenderShareURL = null
       this.tebakgenderError = null
 
-      let params = {name: this.tebakgenderInput.name}
+      let params = {name: this.tebakgenderName}
       axios.get('/api/tebakgender', {params})
-        .then((response) => {
-          this.tebakgenderResult = response.data
-          this.tebakgenderShareURL = this.tebakgenderBuildShareURL()
-        })
-        .catch((error) => this.tebakgenderError = error)
-        .then(() => this.tebakgenderRequesting = false)
+      .then((response) => {
+        this.tebakgenderResult = response.data
+        this.tebakgenderShareURL = this.tebakgenderBuildShareURL()
+      })
+      .catch((error) => this.tebakgenderError = error)
+      .then(() => this.tebakgenderRequesting = false)
 
-      localStorage.tebakgenderInput = JSON.stringify(this.tebakgenderInput)
+      localStorage.tebakgenderName = this.tebakgenderName
     },
 
     bejometerBuildShareURL(name1, date1, name2, date2) {
@@ -117,13 +122,13 @@ new Vue({
     },
 
     consultationBuildShareURL() {
-      let name = this.sanitize(this.consultationInput.name || '')
-      let date = this.consultationInput.date || ''
+      let name = this.sanitize(this.consultationName || '')
+      let date = this.consultationDate || ''
       return `${location.origin}/consultation/${name}:${date}`
     },
 
     tebakgenderBuildShareURL() {
-      let name = this.sanitize(this.tebakgenderInput.name || '')
+      let name = this.sanitize(this.tebakgenderName || '')
       return `${location.origin}/tebakgender/${name}`
     },
 

@@ -3,7 +3,7 @@
     <md-input-container>
       <md-icon>person</md-icon>
       <label>Nama orang, bukan nama hewan</label>
-      <md-input v-model="tebakgenderInput.name"></md-input>
+      <md-input v-model="tebakgenderName"></md-input>
     </md-input-container>
     <md-layout md-align="center">
       <md-button id="tebakgenderButton" :disabled="tebakgenderRequesting" type="submit" class="md-raised md-primary">TEBAK GENDER</md-button>
@@ -19,13 +19,13 @@
     </md-layout>
     <div v-if="tebakgenderResult">
       <span v-if="tebakgenderResult.confidence > 0.33">
-        {{toTitleCase(tebakgenderInput.name)}}
+        {{toTitleCase(tebakgenderName)}}
         <span v-if="tebakgenderResult.confidence < 0.95">sepertinya</span>
         adalah nama
         {{tebakgenderResult.gender === 'L' ? 'laki-laki' : 'perempuan'}}.
       </span>
       <span v-if="tebakgenderResult.confidence <= 0.33">
-        Hmm, tidak yakin {{toTitleCase(tebakgenderInput.name)}}
+        Hmm, tidak yakin {{toTitleCase(tebakgenderName)}}
         laki-laki atau perempuan.
         Mungkin juga bukan nama orang.
       </span>

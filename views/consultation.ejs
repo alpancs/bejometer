@@ -3,12 +3,12 @@
     <md-input-container>
       <md-icon>person</md-icon>
       <label>Nama</label>
-      <md-input v-model="consultationInput.name"></md-input>
+      <md-input v-model="consultationName"></md-input>
     </md-input-container>
     <md-input-container>
       <md-icon>today</md-icon>
       <label>Tanggal lahir</label>
-      <md-input type="date" v-model="consultationInput.date"></md-input>
+      <md-input type="date" v-model="consultationDate"></md-input>
     </md-input-container>
     <md-layout md-align="center">
       <md-button id="consultationButton" :disabled="consultationRequesting" type="submit" class="md-raised md-primary">KONSULTASI</md-button>
@@ -17,7 +17,7 @@
 </md-tab>
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
-  <md-dialog-title v-if="consultationResult">Rekomendasi jodoh untuk {{toTitleCase(consultationInput.name)}}</md-dialog-title>
+  <md-dialog-title v-if="consultationResult">Rekomendasi jodoh untuk {{toTitleCase(consultationName)}}</md-dialog-title>
   <md-dialog-title v-if="consultationError"><md-layout md-align="center">NJEBLUG</md-layout></md-dialog-title>
   <md-dialog-content>
     <md-layout md-align="center" v-if="consultationRequesting">
@@ -31,7 +31,7 @@
             <span>{{person.placeOfBirth}}, {{new Date(person.dateOfBirth).toLocaleDateString()}}</span>
             <span>{{toPercent(person.match)}} jodoh</span>
           </div>
-          <md-button class="md-icon-button md-list-action" :href="bejometerBuildShareURL(consultationInput.name, consultationInput.date, person.name, person.dateOfBirth)" target="_blank">
+          <md-button class="md-icon-button md-list-action" :href="bejometerBuildShareURL(consultationName, consultationDate, person.name, person.dateOfBirth)" target="_blank">
             <md-icon class="md-primary">open_in_new</md-icon>
           </md-button>
           <md-divider></md-divider>
