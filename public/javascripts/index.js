@@ -3,7 +3,7 @@ Vue.use(VueMaterial)
 Vue.material.registerTheme('default', {
   primary: 'pink',
   accent: 'purple',
-  warn: 'grey',
+  warn: 'deep-orange',
   background: 'white',
 })
 

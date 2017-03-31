@@ -1,19 +1,21 @@
 <md-tab md-icon="favorite_border">
   <form novalidate @submit.stop.prevent="bejometerSubmit">
-    <md-input-container>
+    <md-input-container :class="bejometerResult && bejometerResult.person1.genderConfidence <= 0.33 ? 'md-input-invalid' : ''">
       <md-icon>person</md-icon>
       <label>Nama anda</label>
       <md-input v-model="bejometerName1"></md-input>
+      <span class="md-error">Harus nama orang, bukan nama hewan</span>
     </md-input-container>
     <md-input-container>
       <md-icon>today</md-icon>
       <label>Tanggal lahir anda</label>
       <md-input type="date" v-model="bejometerDate1"></md-input>
     </md-input-container>
-    <md-input-container>
+    <md-input-container :class="bejometerResult && bejometerResult.person2.genderConfidence <= 0.33 ? 'md-input-invalid' : ''">
       <md-icon>person</md-icon>
       <label>Nama "dia"</label>
       <md-input v-model="bejometerName2"></md-input>
+      <span class="md-error">Harus nama orang, bukan nama hewan</span>
     </md-input-container>
     <md-input-container>
       <md-icon>today</md-icon>
