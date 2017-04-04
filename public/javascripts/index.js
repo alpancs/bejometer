@@ -44,10 +44,9 @@ new Vue({
       .then((response) => {
         let genderConfidence1 = response.data.person1.genderConfidence
         let genderConfidence2 = response.data.person2.genderConfidence
-        if (this.human(genderConfidence1) && this.human(genderConfidence2)) {
+        if (this.human(genderConfidence1) && this.human(genderConfidence2))
           this.openDialog('bejometerResult')
-          this.bejometerResult = response.data
-        }
+        this.bejometerResult = response.data
       })
       .catch(() => this.$refs.error.open())
       .then(() => this.bejometerRequesting = false)
@@ -68,10 +67,9 @@ new Vue({
       }
       axios.get('/api/consultation', {params})
       .then((response) => {
-        if (this.human(response.data.person.genderConfidence)) {
+        if (this.human(response.data.person.genderConfidence))
           this.openDialog('consultationResult')
-          this.consultationResult = response.data
-        }
+        this.consultationResult = response.data
       })
       .catch(() => this.$refs.error.open())
       .then(() => this.consultationRequesting = false)
