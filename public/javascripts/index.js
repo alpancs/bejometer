@@ -48,8 +48,19 @@ new Vue({
       .then(() => {
         let genderConfidence1 = this.bejometerResult.person1.genderConfidence
         let genderConfidence2 = this.bejometerResult.person2.genderConfidence
-        if (this.human(genderConfidence1) && this.human(genderConfidence2))
+        if (this.human(genderConfidence1) && this.human(genderConfidence2)) {
+          let match = Math.round(this.bejometerResult.match * 10000) / 10000
+          let diff = 0.01
+          this.bejometerResult.match = 0
           this.openDialog('bejometerResult')
+          setTimeout(() => {
+            let interval = setInterval(() => {
+              if (diff < 0.00001) clearInterval(interval)
+              else if (this.bejometerResult.match + diff > match) diff /= 10
+              else this.bejometerResult.match += diff
+            }, 50)
+          }, 500)
+        }
       })
       .catch(() => this.$refs.error.open())
       .then(() => this.bejometerRequesting = false)
