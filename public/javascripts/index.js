@@ -42,11 +42,14 @@ new Vue({
       }
       axios.get('/api/bejometer', {params})
       .then((response) => {
-        let genderConfidence1 = response.data.person1.genderConfidence
-        let genderConfidence2 = response.data.person2.genderConfidence
+        this.bejometerResult = response.data
+        return new Promise((resolve) => setTimeout(resolve, 500))
+      })
+      .then(() => {
+        let genderConfidence1 = this.bejometerResult.person1.genderConfidence
+        let genderConfidence2 = this.bejometerResult.person2.genderConfidence
         if (this.human(genderConfidence1) && this.human(genderConfidence2))
           this.openDialog('bejometerResult')
-        this.bejometerResult = response.data
       })
       .catch(() => this.$refs.error.open())
       .then(() => this.bejometerRequesting = false)
@@ -67,9 +70,12 @@ new Vue({
       }
       axios.get('/api/consultation', {params})
       .then((response) => {
-        if (this.human(response.data.person.genderConfidence))
-          this.openDialog('consultationResult')
         this.consultationResult = response.data
+        return new Promise((resolve) => setTimeout(resolve, 500))
+      })
+      .then(() => {
+        if (this.human(this.consultationResult.person.genderConfidence))
+          this.openDialog('consultationResult')
       })
       .catch(() => this.$refs.error.open())
       .then(() => this.consultationRequesting = false)
@@ -85,9 +91,10 @@ new Vue({
       let params = {name: this.tebakgenderName}
       axios.get('/api/tebakgender', {params})
       .then((response) => {
-        this.openDialog('tebakgenderResult')
         this.tebakgenderResult = response.data
+        return new Promise((resolve) => setTimeout(resolve, 500))
       })
+      .then(() => this.openDialog('tebakgenderResult'))
       .catch(() => this.$refs.error.open())
       .then(() => this.tebakgenderRequesting = false)
 
