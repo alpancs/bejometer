@@ -101,8 +101,8 @@ new Vue({
       date1 = date1 || ''
       name2 = this.sanitize(name2 || '').toLowerCase()
       date2 = date2 || ''
-      date1 = date1.match(/\d{4}-\d{1,2}-\d{1,2}/) ? date1 : new Date(date1).toISOString().slice(0, 10)
-      date2 = date2.match(/\d{4}-\d{1,2}-\d{1,2}/) ? date2 : new Date(date2).toISOString().slice(0, 10)
+      date1 = typeof a === 'number' ? new Date(date1).toISOString().slice(0, 10) : date1
+      date2 = typeof a === 'number' ? new Date(date2).toISOString().slice(0, 10) : date2
       return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
     },
 
