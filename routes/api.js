@@ -40,7 +40,16 @@ router.get('/bejometer', (req, res) => {
 })
 
 router.get('/tebakgender', (req, res) => {
-  res.json(filterPrediction(tebakgender(req.query.name || '')))
+  let name = sanitize(req.query.name || '')
+  let response = filterPrediction(tebakgender(name, true))
+  res.json(response)
+
+  global.logger.info('tebakgender', {
+    name,
+    result: response,
+    ip: req.ip,
+    userAgent: req.get('User-Agent'),
+  })
 })
 
 router.get('/bulk-tebakgender', (req, res) => {
