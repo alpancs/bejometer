@@ -14,10 +14,11 @@ let logger = winston
 module.exports = (req, res, next) => {
   let startTime = Date.now()
   next()
-  logger.info({
+  logger.info('request', {
     path: req.originalUrl,
     ip: req.ip,
     user_agent: req.get('User-Agent'),
+    statusCode: res.statusCode,
     elapsedTime: Date.now() - startTime,
   })
 }
