@@ -11,7 +11,7 @@ router.get('/bejometer', (req, res) => {
   let name2 = sanitize(req.query.name2 || '')
   let time2 = Date.parse(req.query.date2) || Date.now()
   let result = bejometer(name1, time1, name2, time2)
-  res.json({
+  let response = {
     match: result.match,
     person1: {
       gender: result.person1.estimation.gender,
@@ -25,6 +25,16 @@ router.get('/bejometer', (req, res) => {
       indonesiaDay: result.person2.indonesiaDay,
       javaDay: result.person2.javaDay,
     },
+  }
+  res.json(response)
+
+  global.logger.info('bejometer', {
+    name1,
+    date1: time1,
+    name2,
+    date2: time2,
+    ip: req.ip,
+    userAgent: req.get('User-Agent'),
   })
 })
 

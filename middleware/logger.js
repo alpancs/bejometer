@@ -9,12 +9,12 @@ if (process.env.NODE_ENV === 'production') {
   winston.add(winston.transports.MongoDB, option)
 }
 
-let logger = winston
+global.logger = winston
 
 module.exports = (req, res, next) => {
   let startTime = Date.now()
   next()
-  logger.info('request', {
+  global.logger.info('request', {
     path: req.originalUrl,
     ip: req.ip,
     user_agent: req.get('User-Agent'),
