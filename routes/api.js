@@ -33,6 +33,7 @@ router.get('/bejometer', (req, res) => {
     date1: time1,
     name2,
     date2: time2,
+    result: response,
     ip: req.ip,
     userAgent: req.get('User-Agent'),
   })
