@@ -6,6 +6,7 @@ if (process.env.NODE_ENV === 'production') {
   let option = {
     db: `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}`,
   }
+  console.log(option);
   winston.add(winston.transports.MongoDB, option)
 }
 
