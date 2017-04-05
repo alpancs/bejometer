@@ -1,5 +1,15 @@
-const bunyan = require('bunyan')
-const logger = bunyan.createLogger({name: 'bejometer'})
+const winston = require('winston')
+
+if (process.env.NODE_ENV === 'production') {
+  winston.remove(winston.transports.Console)
+  require('winston-mongodb').MongoDB
+  let option = {
+    db: `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}`,
+  }
+  winston.add(winston.transports.MongoDB, option)
+}
+
+let logger = winston
 
 module.exports = (req, res, next) => {
   let startTime = Date.now()
@@ -8,6 +18,6 @@ module.exports = (req, res, next) => {
     path: req.originalUrl,
     ip: req.ip,
     user_agent: req.get('User-Agent'),
-    elapsed_time: Date.now() - startTime,
+    elapsedTime: Date.now() - startTime,
   })
 }
