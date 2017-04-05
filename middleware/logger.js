@@ -4,7 +4,7 @@ if (process.env.NODE_ENV === 'production') {
   winston.remove(winston.transports.Console)
   require('winston-mongodb').MongoDB
   let option = {
-    db: `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}`,
+    db: `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}`,
   }
   console.log(option);
   winston.add(winston.transports.MongoDB, option)
