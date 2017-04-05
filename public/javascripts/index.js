@@ -21,7 +21,6 @@ new Vue({
 
     bejometerRequesting: false,
     bejometerResult: null,
-    bejometerProgress: 0,
 
     consultationRequesting: false,
     consultationResult: null,
@@ -53,12 +52,11 @@ new Vue({
           let match = Math.round(this.bejometerResult.match * 10000) / 10000
           let diff = 0.1
           this.bejometerResult.match = 0
-          this.bejometerProgress = 0
           this.openDialog('bejometerResult')
           setTimeout(() => {
             let interval = setInterval(() => {
               if (diff < 0.0001) {
-                this.bejometerProgress = this.bejometerResult.match = match
+                this.bejometerResult.match = match
                 clearInterval(interval)
               } else {
                 if (this.bejometerResult.match + diff > match) diff /= 10
