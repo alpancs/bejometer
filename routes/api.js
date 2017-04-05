@@ -56,12 +56,22 @@ router.get('/consultation', (req, res) => {
   limit = limit > 100 ? 100 : limit
   let suggestions = name ? suggestion(name, time, limit) : []
   let prediction = tebakgender(name, true)
-  res.json({
+  let response = {
     person: {
       gender: prediction.gender,
       genderConfidence: prediction.confidence,
     },
     suggestions: suggestions.map(filterSuggestion),
+  }
+  res.json(response)
+
+  global.logger.info('consultation', {
+    name,
+    date: time,
+    limit,
+    result: response,
+    ip: req.ip,
+    userAgent: req.get('User-Agent'),
   })
 })
 
