@@ -28,7 +28,7 @@ router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
     date2,
     day2,
     result,
-    description: `Hasil Bejometer ${name1} (${day1}) dengan ${name2} (${day2}): ${percent} jodoh!`,
+    description: `Hasil Bejometer ${name1} dengan ${name2}: ${percent} jodoh!`,
   }
   res.render('bejometer', data)
 })
