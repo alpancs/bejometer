@@ -16,8 +16,9 @@ module.exports = (name, time, limit) => {
   let minMatch = 0.999
   let failure = 0
   let suggestions = []
+  let tryTime = 0
   let i = randomNumber(length)
-  while (suggestions.length < limit) {
+  while (suggestions.length < limit && ++tryTime < 100000) {
     i = (i + randomNumber(length)) % length
     let target = targets[i]
     let result = bejometer(name, time, target.name, target.dateOfBirth)
