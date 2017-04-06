@@ -1,9 +1,12 @@
 const tebakgender = require('tebakgender')
+const sanitize = require('tebakgender/lib/sanitize')
 const day = require('modules/day')
-
-const mod = 101
+const mod = 41
 
 module.exports = (name1, time1, name2, time2) => {
+  name1 = sanitize(name1)
+  name2 = sanitize(name2)
+
   let javaDay1 = day.javaDay(time1)
   let javaDay2 = day.javaDay(time2)
   let indonesiaDay1 = day.indonesiaDay(time1)
@@ -22,6 +25,7 @@ module.exports = (name1, time1, name2, time2) => {
   let confidenceFactor = estimation1.confidence * estimation2.confidence
   let nameFactor = valueLow / valueHigh
   let match = genderFactor * confidenceFactor * nameFactor
+
   return {
     match,
     person1: {
