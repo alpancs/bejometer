@@ -22,9 +22,12 @@
             <md-layout md-align="center"><%= `${result.person1.gender === 'L' ? 'Mas' : 'Mbak'} ${name1}` %></md-layout>
             <md-layout md-align="center"><%= day1 %></md-layout>
             <md-layout md-align="center"><md-icon class="md-primary md-size-2x">favorite</md-icon></md-layout>
+            <md-layout md-align="center"></md-layout>
             <md-layout md-align="center"><%= `${result.person2.gender === 'L' ? 'Mas' : 'Mbak'} ${name2}` %></md-layout>
             <md-layout md-align="center"><%= day2 %></md-layout>
+            <md-layout md-align="center"></md-layout>
             <md-layout md-align="center" class="md-display-1"><%= Math.round(result.match * 10000) / 100 + '%' %> jodoh </md-layout>
+            <md-layout md-align="center"></md-layout>
             <md-layout md-align="center"></md-layout>
             <md-layout md-align="center"><md-button class="md-primary">
               <span @click='save("<%=name1%>", "<%=new Date(date1).toISOString().slice(0, 10)%>", "<%=name2%>", "<%=new Date(date2).toISOString().slice(0, 10)%>")'>Buka di Bejometer</span>
