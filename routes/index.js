@@ -18,13 +18,11 @@ router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
 
   let result = bejometer(name1, date1, name2, date2)
   let percent = Math.round(result.match * 10000) / 100 + '%'
-  let day1 = toTitleCase(result.person1.indonesiaDay + ' ' + result.person1.javaDay)
-  let day2 = toTitleCase(result.person2.indonesiaDay + ' ' + result.person2.javaDay)
 
   let data = {
     production: process.env.NODE_ENV === 'production',
     description: `Hasil Bejometer ${name1} dengan ${name2}: ${percent} jodoh!`,
-    name1, date1, day1, name2, date2, day2, result,
+    name1, date1, name2, date2, result,
   }
   res.render('bejometer', data)
 })
