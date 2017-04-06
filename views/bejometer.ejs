@@ -19,9 +19,9 @@
         <md-layout md-row>
           <md-layout md-flex="25" md-hide-small></md-layout>
           <md-layout md-column class="md-headline">
-            <md-layout md-align="center"><%= (result.person1.gender === 'L' ? 'Mas' : 'Mbak') + ' ' +name1 %></md-layout>
+            <md-layout md-align="center"><%= `${result.person1.gender === 'L' ? 'Mas' : 'Mbak'} ${name1}` %></md-layout>
             <md-layout md-align="center"><md-icon class="md-primary md-size-2x">favorite</md-icon></md-layout>
-            <md-layout md-align="center"><%= (result.person2.gender === 'L' ? 'Mas' : 'Mbak') + ' ' +name2 %></md-layout>
+            <md-layout md-align="center"><%= `${result.person2.gender === 'L' ? 'Mas' : 'Mbak'} ${name2}` %></md-layout>
             <md-layout md-align="center" class="md-display-1"><%= Math.round(result.match * 10000) / 100 + '%' %> jodoh </md-layout>
             <md-layout md-align="center"></md-layout>
             <md-layout md-align="center"><md-button class="md-primary">
