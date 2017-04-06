@@ -27,7 +27,7 @@ router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
   let data = {
     production: process.env.NODE_ENV === 'production',
     description: `Hasil Bejometer ${name1} dengan ${name2}: ${percent} jodoh!`,
-    name1, date1, day1, name2, date2, day2, result,
+    name1, date1, day1, name2, date2, day2, percent,
   }
   res.render('bejometer', data)
 })
