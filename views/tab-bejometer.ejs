@@ -43,7 +43,7 @@
     <md-layout md-column v-if="bejometerResult.person1.gender !== bejometerResult.person2.gender">
       <md-layout md-align="center">{{bejometerResult.person1.gender === 'L' ? 'Mas' : 'Mbak'}} {{toTitleCase(bejometerName1)}}</md-layout>
       <md-layout md-align="center" v-if="bejometerDate1">{{toTitleCase(bejometerResult.person1.indonesiaDay+' '+bejometerResult.person1.javaDay)}}</md-layout>
-      <md-layout md-align="center"><md-icon class="md-primary">favorite</md-icon></md-layout>
+      <md-layout md-align="center"><md-icon class="md-primary md-size-2x">favorite</md-icon></md-layout>
       <md-layout md-align="center">{{bejometerResult.person2.gender === 'L' ? 'Mas' : 'Mbak'}} {{toTitleCase(bejometerName2)}}</md-layout>
       <md-layout md-align="center" v-if="bejometerDate2">{{toTitleCase(bejometerResult.person2.indonesiaDay+' '+bejometerResult.person2.javaDay)}}</md-layout>
       <md-layout md-align="center" class="md-title md-primary md-raised">{{toPercent(bejometerResult.match)}} Jodoh</md-layout>
