@@ -1,16 +1,15 @@
 const express = require('express')
 const router = new express.Router()
 const tebakgender = require('tebakgender')
-const sanitize = require('tebakgender/lib/sanitize')
 const bejometer = require('modules/bejometer')
 const suggestion = require('modules/suggestion')
 
 router.get('/bejometer', (req, res) => {
-  let name1 = sanitize(req.query.name1 || '')
-  let time1 = Date.parse(req.query.date1) || Date.now()
-  let name2 = sanitize(req.query.name2 || '')
-  let time2 = Date.parse(req.query.date2) || Date.now()
-  let result = bejometer(name1, time1, name2, time2)
+  let name1 = req.query.name1 || ''
+  let date1 = Date.parse(req.query.date1) || Date.now()
+  let name2 = req.query.name2 || ''
+  let date2 = Date.parse(req.query.date2) || Date.now()
+  let result = bejometer(name1, date1, name2, date2)
   let response = {
     match: result.match,
     person1: {
@@ -30,9 +29,9 @@ router.get('/bejometer', (req, res) => {
 
   global.logger.info('bejometer', {
     name1,
-    date1: time1,
+    date1,
     name2,
-    date2: time2,
+    date2,
     result: response,
     ip: req.ip,
     userAgent: req.get('User-Agent'),
@@ -40,8 +39,8 @@ router.get('/bejometer', (req, res) => {
 })
 
 router.get('/tebakgender', (req, res) => {
-  let name = sanitize(req.query.name || '')
-  let response = filterPrediction(tebakgender(name, true))
+  let name = req.query.name || ''
+  let response = filterPrediction(tebakgender(name))
   res.json(response)
 
   global.logger.info('tebakgender', {
@@ -59,12 +58,12 @@ router.get('/bulk-tebakgender', (req, res) => {
 })
 
 router.get('/consultation', (req, res) => {
-  let name = sanitize(req.query.name || '')
+  let name = req.query.name || ''
   let time = Date.parse(req.query.date) || Date.now()
   let limit = parseInt(req.query.limit || '0') || 6
   limit = limit > 100 ? 100 : limit
   let suggestions = name ? suggestion(name, time, limit) : []
-  let prediction = tebakgender(name, true)
+  let prediction = tebakgender(name)
   let response = {
     person: {
       gender: prediction.gender,
