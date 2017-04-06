@@ -29,9 +29,9 @@
             <md-layout md-align="center" class="md-display-1"><%= Math.round(result.match * 10000) / 100 + '%' %> jodoh </md-layout>
             <md-layout md-align="center"></md-layout>
             <md-layout md-align="center"></md-layout>
-            <md-layout md-align="center"><md-button class="md-primary">
-              <span @click='save("<%=name1%>", "<%=new Date(date1).toISOString().slice(0, 10)%>", "<%=name2%>", "<%=new Date(date2).toISOString().slice(0, 10)%>")'>Buka di Bejometer</span>
-            </md-button></md-layout>
+            <md-layout md-align="center">
+              <md-button class="md-primary" @click.native='save("<%=name1%>", "<%=new Date(date1).toISOString().slice(0, 10)%>", "<%=name2%>", "<%=new Date(date2).toISOString().slice(0, 10)%>")'>Buka di Bejometer</md-button>
+            </md-layout>
           </md-layout>
           <md-layout md-flex="25" md-hide-small></md-layout>
         </md-layout>
