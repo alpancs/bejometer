@@ -152,6 +152,8 @@ new Vue({
   },
 })
 
+new Clipboard('#copy')
+
 /*
 consultationBuildShareURL = (name, date) {
   name = this.sanitize(name || '').toLowerCase()

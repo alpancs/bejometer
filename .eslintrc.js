@@ -9,6 +9,7 @@ module.exports = {
     'Vue': true,
     'VueMaterial': true,
     'axios': true,
+    'Clipboard': true,
   },
   'rules': {
     'indent': [
