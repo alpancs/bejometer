@@ -12,8 +12,8 @@ module.exports = (name1, time1, name2, time2) => {
   let indonesiaDay1 = day.indonesiaDay(time1)
   let indonesiaDay2 = day.indonesiaDay(time2)
 
-  let hash1 = hash(name1) * hash(javaDay1)
-  let hash2 = hash(name2) * hash(javaDay2)
+  let hash1 = hash(name1) * hash(javaDay1) + 1
+  let hash2 = hash(name2) * hash(javaDay2) + 1
   let valueLow = (hash1 + hash2) % mod
   let valueHigh = (hash1 * hash2) % mod
   if (valueLow > valueHigh) [valueLow, valueHigh] = [valueHigh, valueLow]
