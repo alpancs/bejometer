@@ -14,7 +14,6 @@
 </head>
 
 <body>
-  <div id="loading" :hidden="true">Bejometer...</div>
   <div id="app" hidden :hidden="false">
     <md-tabs md-fixed>
       <%- include('tab-bejometer') %>
@@ -24,6 +23,7 @@
     <md-snackbar ref="error"><md-icon>sentiment_dissatisfied</md-icon> koneksi ke server bermasalah</md-snackbar>
     <md-snackbar ref="copy">Teks telah disalin ke clipboard</md-snackbar>
   </div>
+  <div id="loading" :hidden="true">Bejometer...</div>
 </body>
 
 <% let vuejs = production ? 'vue.min.js' : 'vue.js' %>

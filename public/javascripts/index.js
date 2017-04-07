@@ -152,5 +152,5 @@ new Vue({
   },
 })
 
-new Vue({el: '#loading'})
 new Clipboard('#copy')
+new Vue({el: '#loading'})
