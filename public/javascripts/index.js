@@ -152,17 +152,5 @@ new Vue({
   },
 })
 
+new Vue({el: '#loading'})
 new Clipboard('#copy')
-
-/*
-consultationBuildShareURL = (name, date) {
-  name = this.sanitize(name || '').toLowerCase()
-  date = date || ''
-  return `${location.origin}/consultation/${name}:${date}`
-}
-
-tebakgenderBuildShareURL = (name) {
-  name = this.sanitize(name || '').toLowerCase()
-  return `${location.origin}/tebakgender/${name}`
-}
-*/

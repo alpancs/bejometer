@@ -14,7 +14,8 @@
 </head>
 
 <body>
-  <div id="app">
+  <div id="loading" :hidden="true">Bejometer...</div>
+  <div id="app" hidden :hidden="false">
     <md-tabs md-fixed>
       <%- include('tab-bejometer') %>
       <%- include('tab-consultation') %>
