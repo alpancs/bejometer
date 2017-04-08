@@ -1,5 +1,4 @@
-const express = require('express')
-const router = new express.Router()
+const router = new (require('express').Router)()
 const tebakgender = require('tebakgender')
 const bejometer = require('modules/bejometer')
 const suggestion = require('modules/suggestion')
