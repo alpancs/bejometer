@@ -121,8 +121,6 @@ new Vue({
       date1 = date1 || new Date().toISOString().slice(0, 10)
       name2 = this.sanitize(name2 || '').toLowerCase()
       date2 = date2 || new Date().toISOString().slice(0, 10)
-      date1 = typeof date1 === 'number' ? new Date(date1).toISOString().slice(0, 10) : date1
-      date2 = typeof date2 === 'number' ? new Date(date2).toISOString().slice(0, 10) : date2
       return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
     },
 
@@ -149,8 +147,20 @@ new Vue({
     toPercent(value) {
       return Math.round(value * 10000) / 100 + '%'
     },
+
+    humanFormat(time) {
+      let date = new Date(time)
+      return `${date.getDate()} ${bulan[date.getMonth()]} ${date.getFullYear()}`
+    },
+
+    textFieldFormat(time) {
+      let date = new Date(time)
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    },
   },
 })
 
 new Clipboard('#copy')
 new Vue({el: '#loading'})
+
+const bulan = 'Januari Februari Maret April Mei Juni Juli Agustus September Oktober November Desember'.split(' ')
