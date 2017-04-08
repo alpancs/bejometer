@@ -52,7 +52,7 @@
         <md-input-container>
           <label>Bagikan hasilnya</label>
           <md-input id="shareURL" readonly :value="bejometerBuildShareURL(bejometerName1, bejometerDate1, bejometerName2, bejometerDate2)"></md-input>
-          <md-icon id="copy" data-clipboard-target="#shareURL" @click.native="$refs.copy.open()">content_copy</md-icon>
+          <md-icon id="copy" data-clipboard-target="#shareURL" @click.native="$refs.copy.open()" style="cursor:pointer">content_copy</md-icon>
         </md-input-container>
       </md-layout>
     </md-layout>
