@@ -154,7 +154,8 @@ new Vue({
   },
 })
 
-new Clipboard('#copy')
 new Vue({el: '#loading'})
 
 const bulan = 'Januari Februari Maret April Mei Juni Juli Agustus September Oktober November Desember'.split(' ')
+
+new Clipboard('#copy')
