@@ -61,7 +61,7 @@ router.get('/consultation', (req, res) => {
   let time = Date.parse(req.query.date) || Date.now()
   let limit = parseInt(req.query.limit || '0') || 6
   limit = limit > 100 ? 100 : limit
-  let suggestions = name ? suggestion(name, time, limit) : []
+  let suggestions = suggestion(name, time, limit)
   let prediction = tebakgender(name)
   let response = {
     person: {
