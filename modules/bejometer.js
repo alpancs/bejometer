@@ -3,7 +3,7 @@ const sanitize = require('tebakgender/lib/sanitize')
 const day = require('modules/day')
 const mod = 47
 
-module.exports = (name1, time1, name2, time2) => {
+let bejometer = (name1, time1, name2, time2) => {
   name1 = sanitize(name1)
   name2 = sanitize(name2)
 
@@ -46,3 +46,5 @@ let hash = (array) => { // djb2. source: http://www.cse.yorku.ca/~oz/hash.html
   for (let c of array) h = ((h << 5) + h + c.codePointAt(0)) % mod
   return h
 }
+
+module.exports = bejometer
