@@ -25,8 +25,13 @@
 </md-tab>
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
-  <md-dialog-title v-if="consultationResult">
+  <md-dialog-title v-if="consultationResult && consultationResult.suggestions.length">
     Rekomendasi jodoh untuk
+    {{consultationResult.person.gender === 'L' ? 'mas' : 'mbak'}}
+    {{toTitleCase(consultationName)}}
+  </md-dialog-title>
+  <md-dialog-title v-if="consultationResult && consultationResult.suggestions.length === 0">
+    Sedih sekali. Tidak ada rekomendasi jodoh untuk
     {{consultationResult.person.gender === 'L' ? 'mas' : 'mbak'}}
     {{toTitleCase(consultationName)}}
   </md-dialog-title>
