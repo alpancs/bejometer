@@ -1,7 +1,7 @@
 const tebakgender = require('tebakgender')
 const sanitize = require('tebakgender/lib/sanitize')
 const day = require('modules/day')
-const mod = 41
+const mod = 47
 
 module.exports = (name1, time1, name2, time2) => {
   name1 = sanitize(name1)
