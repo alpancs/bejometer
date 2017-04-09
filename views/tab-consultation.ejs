@@ -37,13 +37,13 @@
   </md-dialog-title>
   <md-dialog-content v-if="consultationResult">
     <md-list class="md-triple-line">
-      <md-list-item v-for="person in consultationResult.suggestions">
+      <md-list-item v-for="suggestion in consultationResult.suggestions">
         <div class="md-list-text-container">
-          <span>{{toTitleCase(person.name)}}</span>
-          <span>{{toTitleCase(person.placeOfBirth)}}, {{humanFormat(person.dateOfBirth)}}</span>
-          <span>{{toPercent(person.match)}} jodoh</span>
+          <span>{{toTitleCase(suggestion.name)}}</span>
+          <span>{{toTitleCase(suggestion.placeOfBirth)}}, {{textFieldToHuman(suggestion.dateOfBirth)}}</span>
+          <span>{{toPercent(suggestion.match)}} jodoh</span>
         </div>
-        <md-button class="md-icon-button md-list-action" :href="bejometerBuildShareURL(consultationName, consultationDate, person.name, textFieldFormat(person.dateOfBirth))" target="_blank">
+        <md-button class="md-icon-button md-list-action" :href="bejometerBuildShareURL(consultationName, consultationDate, suggestion.name, suggestion.dateOfBirth)" target="_blank">
           <md-icon class="md-primary">open_in_new</md-icon>
         </md-button>
         <md-divider></md-divider>

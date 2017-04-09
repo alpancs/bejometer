@@ -68,7 +68,7 @@ router.get('/consultation', (req, res) => {
       gender: prediction.gender,
       genderConfidence: prediction.confidence,
     },
-    suggestions: suggestions.map(filterSuggestion),
+    suggestions,
   }
   res.json(response)
 
@@ -85,14 +85,6 @@ router.get('/consultation', (req, res) => {
 let filterPrediction = (prediction) => ({
   gender: prediction.gender,
   confidence: prediction.confidence,
-})
-
-let filterSuggestion = (sug) => ({
-  match: sug.match,
-  name: sug.person.name,
-  gender: sug.person.gender,
-  placeOfBirth: sug.person.placeOfBirth,
-  dateOfBirth: sug.person.dateOfBirth,
 })
 
 module.exports = router

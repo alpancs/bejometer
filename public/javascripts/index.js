@@ -109,9 +109,9 @@ new Vue({
 
     bejometerBuildShareURL(name1, date1, name2, date2) {
       name1 = this.sanitize(name1 || '').toLowerCase()
-      date1 = date1 || this.textFieldFormat(Date.now())
+      date1 = date1 || this.timeToTextField(Date.now())
       name2 = this.sanitize(name2 || '').toLowerCase()
-      date2 = date2 || this.textFieldFormat(Date.now())
+      date2 = date2 || this.timeToTextField(Date.now())
       return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
     },
 
@@ -139,14 +139,14 @@ new Vue({
       return Math.round(value * 10000) / 100 + '%'
     },
 
-    humanFormat(time) {
-      let date = new Date(time)
+    textFieldToHuman(dateString) {
+      let date = new Date(dateString)
       return `${date.getDate()} ${bulan[date.getMonth()]} ${date.getFullYear()}`
     },
 
-    textFieldFormat(time) {
+    timeToTextField(time) {
       let date = new Date(time)
-      return `${date.getFullYear()}-${this.twoDigits(date.getMonth() + 1)}-${this.twoDigits(date.getDate())}`
+      return `${date.getFullYear()}-${this.twoDigits(date.getMonth()+1)}-${this.twoDigits(date.getDate())}`
     },
     twoDigits(number) {
       return number < 10 ? '0' + number : number.toString()

@@ -1,6 +1,5 @@
 const tebakgender = require('tebakgender')
 const bejometer = require('modules/bejometer')
-const sanitize = require('tebakgender/lib/sanitize')
 const students = require('corpus/data-siswa-clean')
 
 for (let student of students)
@@ -12,8 +11,6 @@ let people = {
 }
 
 let suggestion = (name, time, limit) => {
-  name = sanitize(name)
-  if (!name) return []
   let targets = tebakgender(name).gender === 'L' ? people.P : people.L
   let length = targets.length
   let minMatch = 0.999
@@ -26,7 +23,12 @@ let suggestion = (name, time, limit) => {
     let target = targets[i]
     let result = bejometer(name, time, target.name, target.dateOfBirth)
     if (result.match >= minMatch) {
-      suggestions.push({match: result.match, person: target})
+      suggestions.push({
+        match: result.match,
+        name: target.name,
+        placeOfBirth: target.placeOfBirth,
+        dateOfBirth: new Date(target.dateOfBirth).toISOString().slice(0, 10),
+      })
       failure >>= 1
     } else {
       ++failure

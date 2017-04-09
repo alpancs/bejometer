@@ -27,9 +27,9 @@ router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
     production: process.env.NODE_ENV === 'production',
     description: `Hasil Bejometer ${title1} ${name1} dengan ${title2} ${name2}`,
     title1, name1,
-    date1: textFieldFormat(date1), day1,
+    date1: dateToTextField(date1), day1,
     title2, name2,
-    date2: textFieldFormat(date2), day2,
+    date2: dateToTextField(date2), day2,
     percent,
     toTitleCase,
   }
@@ -37,7 +37,7 @@ router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
 })
 
 let toTitleCase = (text) => text.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase()+word.slice(1)).join(' ')
-let textFieldFormat = (date) => `${date.getFullYear()}-${twoDigits(date.getMonth() + 1)}-${twoDigits(date.getDate())}`
+let dateToTextField = (date) => `${date.getFullYear()}-${twoDigits(date.getMonth() + 1)}-${twoDigits(date.getDate())}`
 let twoDigits = (number) => number < 10 ? '0' + number : number.toString()
 
 module.exports = router
