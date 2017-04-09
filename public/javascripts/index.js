@@ -21,6 +21,7 @@ new Vue({
 
     bejometerRequesting: false,
     bejometerResult: null,
+    bejometerShareURL: '',
 
     consultationRequesting: false,
     consultationResult: null,
@@ -33,6 +34,7 @@ new Vue({
     bejometerSubmit() {
       this.bejometerRequesting = true
       this.bejometerResult = null
+      this.bejometerShareURL = ''
 
       let params = {
         name1: this.bejometerName1,
@@ -54,6 +56,10 @@ new Vue({
             let interval = setInterval(() => {
               if (diff < 0.0001) {
                 this.bejometerResult.match = match
+                this.bejometerShareURL = this.bejometerBuildShareURL(
+                  this.bejometerName1, this.bejometerDate1,
+                  this.bejometerName2, this.bejometerDate2
+                )
                 clearInterval(interval)
               } else {
                 if (this.bejometerResult.match + diff > match) diff /= 10

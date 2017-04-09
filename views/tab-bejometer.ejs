@@ -48,10 +48,10 @@
       <md-layout md-align="center" v-if="bejometerDate2">{{toTitleCase(bejometerResult.person2.indonesiaDay+' '+bejometerResult.person2.javaDay)}}</md-layout>
       <md-layout md-align="center" class="md-title md-primary md-raised">{{toPercent(bejometerResult.match)}} Jodoh</md-layout>
       <md-layout md-align="center" v-if="bejometerResult.match > 0.1"><md-spinner :md-progress="bejometerResult.match*100"></md-spinner></md-layout>
-      <md-layout md-align="center">
+      <md-layout md-align="center" v-if="bejometerShareURL">
         <md-input-container>
           <label>Bagikan hasilnya</label>
-          <md-input id="shareURL" readonly :value="bejometerBuildShareURL(bejometerName1, bejometerDate1, bejometerName2, bejometerDate2)"></md-input>
+          <md-input id="shareURL" readonly :value="bejometerShareURL"></md-input>
           <md-icon id="copy" data-clipboard-target="#shareURL" @click.native="$refs.copy.open()" style="cursor:pointer">content_copy</md-icon>
         </md-input-container>
       </md-layout>
