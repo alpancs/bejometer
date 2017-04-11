@@ -84,7 +84,7 @@ new Vue({
 
       let params = {
         name: this.consultationName,
-        date: this.consultationDate,
+        date: this.consultationDate || new Date().toISOString().slice(0, 10),
       }
       axios.get('/api/consultation', {params})
       .then((response) => this.consultationResult = response.data)
