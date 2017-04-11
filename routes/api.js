@@ -5,10 +5,10 @@ const suggestion = require('modules/suggestion')
 
 router.get('/bejometer', (req, res) => {
   let name1 = req.query.name1 || ''
-  let date1 = Date.parse(req.query.date1) || Date.now()
+  let time1 = Date.parse(req.query.date1) || Date.now()
   let name2 = req.query.name2 || ''
-  let date2 = Date.parse(req.query.date2) || Date.now()
-  let result = bejometer(name1, date1, name2, date2)
+  let time2 = Date.parse(req.query.date2) || Date.now()
+  let result = bejometer(name1, time1, name2, time2)
   let response = {
     match: result.match,
     person1: {
@@ -28,9 +28,9 @@ router.get('/bejometer', (req, res) => {
 
   global.logger.info('bejometer', {
     name1,
-    date1,
+    date1: req.query.date1 || new Date().toISOString().slice(0, 10),
     name2,
-    date2,
+    date2: req.query.date2 || new Date().toISOString().slice(0, 10),
     result: response,
     ip: req.ip,
     userAgent: req.get('User-Agent'),
@@ -74,7 +74,7 @@ router.get('/consultation', (req, res) => {
 
   global.logger.info('consultation', {
     name,
-    date: time,
+    date: req.query.date || new Date().toISOString().slice(0, 10),
     limit,
     result: response,
     ip: req.ip,
