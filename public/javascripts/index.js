@@ -38,9 +38,9 @@ new Vue({
 
       let params = {
         name1: this.bejometerName1,
-        date1: this.bejometerDate1,
+        date1: this.bejometerDate1 || new Date().toISOString().slice(0, 10),
         name2: this.bejometerName2,
-        date2: this.bejometerDate2,
+        date2: this.bejometerDate2 || new Date().toISOString().slice(0, 10),
       }
       axios.get('/api/bejometer', {params})
       .then((response) => this.bejometerResult = response.data)
