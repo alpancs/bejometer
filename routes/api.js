@@ -28,9 +28,9 @@ router.get('/bejometer', (req, res) => {
 
   global.logger.info('bejometer', {
     name1,
-    date1: req.query.date1 || new Date().toISOString().slice(0, 10),
+    date1: req.query.date1 || new Date(time1).toISOString().slice(0, 10),
     name2,
-    date2: req.query.date2 || new Date().toISOString().slice(0, 10),
+    date2: req.query.date2 || new Date(time2).toISOString().slice(0, 10),
     result: response,
     ip: req.ip,
     userAgent: req.get('User-Agent'),
@@ -74,7 +74,7 @@ router.get('/consultation', (req, res) => {
 
   global.logger.info('consultation', {
     name,
-    date: req.query.date || new Date().toISOString().slice(0, 10),
+    date: req.query.date || new Date(time).toISOString().slice(0, 10),
     limit,
     result: response,
     ip: req.ip,
