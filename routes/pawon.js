@@ -2,6 +2,13 @@ const router = new (require('express').Router)()
 const client = require('mongodb').MongoClient
 
 router.get('/', (req, res) => {
+  let data = {
+    production: process.env.NODE_ENV === 'production',
+  }
+  res.render('pawon', data)
+})
+
+router.get('/stream', (req, res) => {
   let connectionClosed = false
   req.connection.on('close', () => connectionClosed = true)
 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pawon Bejometer</title>
+  <meta name="description" content="Pawon Bejometer. Catetan kagiatane Bejometer ono ning kene.">
+  <meta content="/images/bejometer.png" property="og:image">
+  <meta name=viewport content="width=device-width, initial-scale=1">
+
+  <link rel="preload" href="/stylesheets/vue-material-v0.7.1.css" onload="this.rel='stylesheet'">
+
+  <link rel="preload" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" onload="this.rel='stylesheet'">
+  <link rel="preload" href="//fonts.googleapis.com/icon?family=Material+Icons" onload="this.rel='stylesheet'">
+</head>
+
+<body>
+  <md-tabs md-fixed id="app">
+    <md-tab md-icon="favorite">
+      <h1>Kagiatane Bejometer</h1>
+      <md-list>
+        <md-list-item v-for="log in logs">
+          <div class="md-list-text-container">
+            <span>{{log.message}}: {{log.meta}}</span>
+          </div>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-tab>
+  </md-tabs>
+</body>
+
+<% let vuejs = production ? 'vue.min.js' : 'vue.js' %>
+<script src="/javascripts/<%= vuejs %>"></script>
+<script src="/javascripts/vue-material-v0.7.1.js"></script>
+<script src="/javascripts/pawon.js"></script>
+
+</html>
