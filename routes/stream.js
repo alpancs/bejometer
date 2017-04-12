@@ -6,21 +6,22 @@ router.get('/', (req, res) => {
   req.connection.on('close', () => connectionClosed = true)
 
   res.set('Content-Type', 'text/event-stream')
-  let getLog = (offset) => {
+  let getLog = (minDate) => {
     client.connect(process.env.MONGODB, (err, db) => {
       db.collection('log')
-        .find({})
-        .sort({timestamp: -1})
-        .limit(1)
-        .skip(offset)
+        .find({timestamp: {$gt: minDate}})
+        .sort({timestamp: 1})
         .toArray((err, logs) => {
-          res.write(`data: ${JSON.stringify(logs[0])}\n\n`)
+          logs.forEach((log) => {
+            res.write(`data: ${JSON.stringify(log)}\n\n`)
+            minDate = log.timestamp
+          })
           res.flush()
-          if (!connectionClosed) setTimeout(getLog, 1000, offset + 1)
+          if (!connectionClosed) setTimeout(getLog, 1000, minDate)
         })
     })
   }
-  getLog(0)
+  getLog(new Date())
 })
 
 module.exports = router
