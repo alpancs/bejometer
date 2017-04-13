@@ -6,13 +6,13 @@
         <md-input-container :class="consultationResult && !human(consultationResult.person.genderConfidence) ? 'md-input-invalid' : ''">
           <md-icon>person</md-icon>
           <label>Nama</label>
-          <md-input v-model="consultationName"></md-input>
+          <md-input v-model.lazy="consultationName"></md-input>
           <span class="md-error">Harus nama orang, bukan nama hewan</span>
         </md-input-container>
         <md-input-container>
           <md-icon>today</md-icon>
           <label>Tanggal lahir</label>
-          <md-input type="date" v-model="consultationDate"></md-input>
+          <md-input type="date" v-model.lazy="consultationDate"></md-input>
         </md-input-container>
         <md-layout md-align="center">
           <md-button id="consultationButton" :disabled="consultationRequesting" type="submit" class="md-raised md-primary">KONSULTASI</md-button>

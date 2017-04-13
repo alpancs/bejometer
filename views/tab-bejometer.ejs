@@ -6,24 +6,24 @@
         <md-input-container :class="bejometerResult && !human(bejometerResult.person1.genderConfidence) ? 'md-input-invalid' : ''">
           <md-icon>person</md-icon>
           <label>Nama anda</label>
-          <md-input v-model="bejometerName1"></md-input>
+          <md-input v-model.lazy="bejometerName1"></md-input>
           <span class="md-error">Harus nama orang, bukan nama hewan</span>
         </md-input-container>
         <md-input-container>
           <md-icon>today</md-icon>
           <label>Tanggal lahir anda</label>
-          <md-input type="date" v-model="bejometerDate1"></md-input>
+          <md-input type="date" v-model.lazy="bejometerDate1"></md-input>
         </md-input-container>
         <md-input-container :class="bejometerResult && !human(bejometerResult.person2.genderConfidence) ? 'md-input-invalid' : ''">
           <md-icon>person</md-icon>
           <label>Nama "dia"</label>
-          <md-input v-model="bejometerName2"></md-input>
+          <md-input v-model.lazy="bejometerName2"></md-input>
           <span class="md-error">Harus nama orang, bukan nama hewan</span>
         </md-input-container>
         <md-input-container>
           <md-icon>today</md-icon>
           <label>Tanggal lahir "dia"</label>
-          <md-input type="date" v-model="bejometerDate2"></md-input>
+          <md-input type="date" v-model.lazy="bejometerDate2"></md-input>
         </md-input-container>
         <md-layout md-align="center">
           <md-button id="bejometerButton" :disabled="bejometerRequesting" type="submit" class="md-raised md-primary">JODOH?</md-button>

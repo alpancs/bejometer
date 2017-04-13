@@ -6,7 +6,7 @@
         <md-input-container>
           <md-icon>person</md-icon>
           <label>Nama orang, bukan nama hewan</label>
-          <md-input v-model="tebakgenderName"></md-input>
+          <md-input v-model.lazy="tebakgenderName"></md-input>
         </md-input-container>
         <md-layout md-align="center">
           <md-button id="tebakgenderButton" :disabled="tebakgenderRequesting" type="submit" class="md-raised md-primary">TEBAK GENDER</md-button>
