@@ -15,6 +15,7 @@ router.get('/stream', (req, res) => {
   res.set('Content-Type', 'text/event-stream')
   let getLog = (minDate) => {
     client.connect(process.env.MONGODB, (err, db) => {
+      if (err) return
       db.collection('log')
         .find({timestamp: {$gt: minDate}})
         .sort({timestamp: 1})

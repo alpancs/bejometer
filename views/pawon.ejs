@@ -11,19 +11,39 @@
 
   <link rel="preload" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" onload="this.rel='stylesheet'">
   <link rel="preload" href="//fonts.googleapis.com/icon?family=Material+Icons" onload="this.rel='stylesheet'">
+  <style>
+    .list-complete-item {
+    transition: all 1s;
+    display: inline-block;
+    margin-right: 10px;
+    }
+    .list-complete-enter, .list-complete-leave-to
+    /* .list-complete-leave-active for <2.1.8 */ {
+    opacity: 0;
+    transform: translateY(-30px);
+    }
+    .list-complete-leave-active {
+    position: absolute;
+    }
+  </style>
 </head>
 
 <body>
   <md-tabs md-fixed id="app">
     <md-tab md-icon="favorite">
       <h1>Kagiatane Bejometer</h1>
-      <md-list>
-        <md-list-item v-for="log in logs">
-          <div class="md-list-text-container">
-            <span>{{log.message}}: {{log.meta}}</span>
-          </div>
-          <md-divider></md-divider>
-        </md-list-item>
+      <md-list class="md-triple-line">
+        <transition-group name="list-complete" tag="p">
+          <md-list-item v-for="log in logs" :key="log._id" name="list-complete" class="list-complete-item">
+            <div class="md-list-text-container">
+              <span>{{log.message}}</span>
+              <span v-if="log.message === 'request'">path {{log.meta.path}}</span>
+              <span v-if="log.message === 'request'">ip {{log.meta.ip}} | response code {{log.meta.statusCode}} | time {{log.meta.elapsedTime}}ms</span>
+              <p v-else>{{log.meta}}</p>
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+        </transition-group>
       </md-list>
     </md-tab>
   </md-tabs>

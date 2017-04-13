@@ -15,4 +15,4 @@ let app = new Vue({
   },
 })
 
-app.es.onmessage = (ev) => app.logs.push(JSON.parse(ev.data))
+app.es.onmessage = (ev) => app.logs.unshift(JSON.parse(ev.data))
