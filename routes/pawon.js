@@ -25,7 +25,7 @@ router.get('/stream', (req, res) => {
             minDate = log.timestamp
           })
           res.flush()
-          if (!connectionClosed) setTimeout(getLog, 1000, minDate)
+          if (!connectionClosed) setTimeout(getLog, 500, minDate)
         })
     })
   }
