@@ -21,7 +21,7 @@
       <md-layout md-row>
         <md-layout md-flex-small md-flex="50">
           <md-list>
-            <transition-group name="list-complete" tag="div">
+            <transition-group name="list-complete" tag="p">
               <md-list-item v-for="calculation in calculations" :key="calculation._id" name="list-complete" class="list-complete-item">
                 <span>{{calculation.message}} {{calculation.name1}} - {{calculation.name2}} {{calculation.name}}</span>
               </md-list-item>
@@ -30,7 +30,7 @@
         </md-layout>
         <md-layout md-flex-small md-flex="50">
           <md-list>
-            <transition-group name="list-complete" tag="div">
+            <transition-group name="list-complete" tag="p">
               <md-list-item v-for="request in requests" :key="request._id" name="list-complete" class="list-complete-item">
                 <span>path {{request.meta.path}}</span>
               </md-list-item>
