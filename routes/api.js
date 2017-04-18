@@ -26,12 +26,12 @@ router.get('/bejometer', (req, res) => {
   }
   res.json(response)
 
-  global.logger.info('bejometer', {
+  global.logger.info('bejometer-api', {
     name1,
     date1: req.query.date1 || new Date(time1).toISOString().slice(0, 10),
     name2,
     date2: req.query.date2 || new Date(time2).toISOString().slice(0, 10),
-    result: response,
+    result,
     ip: req.ip,
     userAgent: req.get('User-Agent'),
   })

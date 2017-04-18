@@ -34,6 +34,14 @@ router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
     toTitleCase,
   }
   res.render('bejometer', data)
+
+  global.logger.info('bejometer-static', {
+    name1, date1: dateToTextField(date1),
+    name2, date2: dateToTextField(date2),
+    result,
+    ip: req.ip,
+    userAgent: req.get('User-Agent'),
+  })
 })
 
 let toTitleCase = (text) => text.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase()+word.slice(1)).join(' ')
