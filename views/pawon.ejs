@@ -19,7 +19,7 @@
     <md-tab md-icon="ondemand_video">
       <h1>Kagiatane Bejometer</h1>
       <md-layout md-row>
-        <md-layout md-flex-xsmall md-flex-small="50">
+        <md-layout md-flex-xsmall md-flex="50">
           <md-list>
             <transition-group name="list-complete" tag="div">
               <md-list-item v-for="calculation in calculations" :key="calculation._id" name="list-complete" class="list-complete-item">
@@ -28,7 +28,7 @@
             </transition-group>
           </md-list>
         </md-layout>
-        <md-layout md-flex-xsmall md-flex-small="50">
+        <md-layout md-flex-xsmall md-flex="50">
           <md-list>
             <transition-group name="list-complete" tag="div">
               <md-list-item v-for="request in requests" :key="request._id" name="list-complete" class="list-complete-item">
