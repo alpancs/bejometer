@@ -16,38 +16,31 @@
 
 <body>
   <md-tabs md-fixed id="app">
-    <md-tab md-icon="favorite">
+    <md-tab md-icon="ondemand_video">
       <h1>Kagiatane Bejometer</h1>
       <md-layout md-row>
         <md-layout md-flex-xsmall md-flex-small="50">
-          <md-list class="md-triple-line">
-            <transition-group name="list-complete" tag="p">
+          <md-list>
+            <transition-group name="list-complete" tag="div">
               <md-list-item v-for="calculation in calculations" :key="calculation._id" name="list-complete" class="list-complete-item">
-                <div class="md-list-text-container">
-                  <span>{{calculation.message}} {{calculations.name1}} {{calculations.name2}}</span>
-                  <span>ip {{calculation.meta.ip}} | response code {{calculation.meta.statusCode}} | time {{calculation.meta.elapsedTime}}ms</span>
-                  <p>user agent {{calculation.userAgent}}</p>
-                </div>
-                <md-divider></md-divider>
+                <span>{{calculation.message}} {{calculations.name1}} - {{calculations.name2}} {{calculations.name}}</span>
               </md-list-item>
             </transition-group>
           </md-list>
         </md-layout>
         <md-layout md-flex-xsmall md-flex-small="50">
-          <md-list class="md-triple-line">
-            <transition-group name="list-complete" tag="p">
+          <md-list>
+            <transition-group name="list-complete" tag="div">
               <md-list-item v-for="request in requests" :key="request._id" name="list-complete" class="list-complete-item">
-                <div class="md-list-text-container">
-                  <span>path {{request.meta.path}}</span>
-                  <span>ip {{request.meta.ip}} | response code {{request.meta.statusCode}} | time {{request.meta.elapsedTime}}ms</span>
-                  <p>user agent {{request.userAgent}}</p>
-                </div>
-                <md-divider></md-divider>
+                <span>path {{request.meta.path}}</span>
               </md-list-item>
             </transition-group>
           </md-list>
         </md-layout>
       </md-layout>
+    </md-tab>
+
+    <md-tab md-icon="history">
     </md-tab>
   </md-tabs>
 </body>
