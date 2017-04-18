@@ -11,8 +11,14 @@ let app = new Vue({
   el: '#app',
   data: {
     es: new EventSource('/pawon/stream'),
-    logs: [],
+    calculations: [],
+    requests: [],
   },
 })
 
-app.es.onmessage = (ev) => app.logs.unshift(JSON.parse(ev.data))
+app.es.onmessage = (ev) => {
+  let data = JSON.parse(ev.data)
+  data.message === 'request' ?
+    app.requests.unshift(data) :
+    app.calculations.unshift(data)
+}
