@@ -8,7 +8,6 @@
   <meta name=viewport content="width=device-width, initial-scale=1">
 
   <link rel="preload" href="/stylesheets/vue-material-v0.7.1.css" onload="this.rel='stylesheet'">
-  <link rel="preload" href="/stylesheets/pawon.css" onload="this.rel='stylesheet'">
 
   <link rel="preload" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" onload="this.rel='stylesheet'">
   <link rel="preload" href="//fonts.googleapis.com/icon?family=Material+Icons" onload="this.rel='stylesheet'">
@@ -17,23 +16,26 @@
 <body>
   <md-tabs md-fixed id="app">
     <md-tab md-icon="ondemand_video">
-      <h1>Kagiatane Bejometer</h1>
-      <transition-group>
-        <md-whiteframe name="list-complete" tag="div" v-for="calculation in calculations" :key="calculation._id" class="list-complete-item">
-          {{calculation.meta.name1}} -
-          {{calculation.meta.name2}}:<br>
-          {{calculation.meta.result.match}}
-        </md-whiteframe>
-      </transition-group>
-      <transition-group>
-        <md-whiteframe name="list-complete" tag="div" v-for="request in requests" :key="request._id" class="list-complete-item">
-          {{request.meta.path}}<br>
-          {{request.meta.elapsedTime}}ms
-        </md-whiteframe>
-      </transition-group>
+      <div class="md-title">Kagiatane Bejometer</div>
+      <md-table>
+        <md-table-header>
+          <md-table-row>
+            <md-table-head>Wektu</md-table-head>
+            <md-table-head>Jenis</md-table-head>
+            <md-table-head>Isine</md-table-head>
+          </md-table-row>
+        </md-table-header>
+        <md-table-body>
+          <md-table-row v-for="log in logs" :key="log._id">
+            <md-table-cell>{{Date(log.timestamp)}}</md-table-cell>
+            <md-table-cell>{{log.message}}</md-table-cell>
+            <md-table-cell>{{log.meta}}</md-table-cell>
+          </md-table-row>
+        </md-table-body>
+      </md-table>
     </md-tab>
 
-    <md-tab md-icon="history">
+    <md-tab md-icon="history">Not implemented yet
     </md-tab>
   </md-tabs>
 </body>

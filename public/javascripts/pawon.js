@@ -10,15 +10,9 @@ Vue.material.registerTheme('default', {
 let app = new Vue({
   el: '#app',
   data: {
-    es: new EventSource('/pawon/stream'),
-    calculations: [],
-    requests: [],
+    stream: new EventSource('/pawon/stream'),
+    logs: [],
   },
 })
 
-app.es.onmessage = (ev) => {
-  let data = JSON.parse(ev.data)
-  data.message === 'request' ?
-    app.requests.unshift(data) :
-    app.calculations.unshift(data)
-}
+app.stream.onmessage = (ev) => app.logs.push(JSON.parse(ev.data))
