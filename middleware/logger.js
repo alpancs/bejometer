@@ -4,7 +4,7 @@ if (process.env.NODE_ENV === 'production')
   winston.remove(winston.transports.Console)
 
 require('winston-mongodb').MongoDB
-let option = {db: process.env.MONGODB}
+let option = {db: process.env.MONGODB_URL}
 winston.add(winston.transports.MongoDB, option)
 
 global.logger = winston
