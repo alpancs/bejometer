@@ -14,20 +14,22 @@ router.get('/stream', (req, res) => {
 
   res.set('Content-Type', 'text/event-stream')
   let getLog = (minDate) => {
-    client.connect(process.env.MONGODB, (err, db) => {
-      if (err) return
-      db.collection('log')
-        .find({timestamp: {$gt: minDate}})
-        .sort({timestamp: 1})
-        .toArray((err, logs) => {
-          logs.forEach((log) => {
-            res.write(`data: ${JSON.stringify(log)}\n\n`)
-            minDate = log.timestamp
-          })
-          res.flush()
-          if (!connectionClosed) setTimeout(getLog, 500, minDate)
+    client.connect(process.env.MONGODB_URL)
+      .then((db) => {
+        return db.collection('log')
+          .find({timestamp: {$gt: minDate}})
+          .sort({timestamp: 1})
+          .toArray()
+      })
+      .then((logs) => {
+        logs.forEach((log) => {
+          res.write(`data: ${JSON.stringify(log)}\n\n`)
+          minDate = log.timestamp
         })
-    })
+        res.flush()
+        if (!connectionClosed) setTimeout(getLog, 500, minDate)
+      })
+      .catch(global.logger.error)
   }
   getLog(new Date())
 })
