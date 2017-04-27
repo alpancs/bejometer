@@ -3,7 +3,7 @@
     <md-layout md-flex="25" md-hide-small></md-layout>
     <md-layout md-column>
       <form novalidate @submit.stop.prevent="consultationSubmit">
-        <md-input-container :class="consultationResult && !human(consultationResult.person.genderConfidence) ? 'md-input-invalid' : ''">
+        <md-input-container :class="{'md-input-invalid': consultationResult && !human(consultationResult.person.genderConfidence)}">
           <md-icon>person</md-icon>
           <label>Nama</label>
           <md-input v-model.lazy="consultationName"></md-input>
