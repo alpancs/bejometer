@@ -11,7 +11,7 @@
         <md-layout md-align="center">
           <md-button id="tebakgenderButton" :disabled="tebakgenderRequesting" type="submit" class="md-raised md-primary">TEBAK GENDER</md-button>
         </md-layout>
-        <md-progress md-indeterminate v-if="tebakgenderRequesting"></md-progress>
+        <md-progress md-indeterminate v-show="tebakgenderRequesting"></md-progress>
       </form>
     </md-layout>
     <md-layout md-flex="25" md-hide-small></md-layout>
@@ -20,13 +20,13 @@
 
 <md-dialog class="md-subheading" md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
   <md-dialog-content v-if="tebakgenderResult">
-    <span v-if="human(tebakgenderResult.confidence)">
-      <span v-if="tebakgenderResult.confidence < 0.95">Sepertinya</span>
+    <span v-show="human(tebakgenderResult.confidence)">
+      <span v-show="tebakgenderResult.confidence < 0.95">Sepertinya</span>
       {{toTitleCase(tebakgenderName)}}
       adalah nama
       {{tebakgenderResult.gender === 'L' ? 'laki-laki' : 'perempuan'}}.
     </span>
-    <span v-if="!human(tebakgenderResult.confidence)">
+    <span v-show="!human(tebakgenderResult.confidence)">
       Hmm, tidak yakin {{toTitleCase(tebakgenderName)}}
       laki-laki atau perempuan.
       Mungkin juga bukan nama orang.

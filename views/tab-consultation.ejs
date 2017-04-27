@@ -17,7 +17,7 @@
         <md-layout md-align="center">
           <md-button id="consultationButton" :disabled="consultationRequesting" type="submit" class="md-raised md-primary">KONSULTASI</md-button>
         </md-layout>
-        <md-progress md-indeterminate v-if="consultationRequesting"></md-progress>
+        <md-progress md-indeterminate v-show="consultationRequesting"></md-progress>
       </form>
     </md-layout>
     <md-layout md-flex="25" md-hide-small></md-layout>
