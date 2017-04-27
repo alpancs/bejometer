@@ -7,7 +7,7 @@
   <meta content="/images/bejometer.png" property="og:image">
   <meta name=viewport content="width=device-width, initial-scale=1">
 
-  <link rel="preload" href="/stylesheets/vue-material-v0.7.1.css" onload="this.rel='stylesheet'">
+  <link rel="preload" href="https://unpkg.com/vue-material@0.7.1/dist/vue-material.css" onload="this.rel='stylesheet'">
 
   <link rel="preload" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" onload="this.rel='stylesheet'">
   <link rel="preload" href="//fonts.googleapis.com/icon?family=Material+Icons" onload="this.rel='stylesheet'">
@@ -39,9 +39,8 @@
   </md-tabs>
 </body>
 
-<% let vuejs = production ? 'vue.min.js' : 'vue.js' %>
-<script src="/javascripts/<%= vuejs %>"></script>
-<script src="/javascripts/vue-material-v0.7.1.js"></script>
-<script src="/javascripts/pawon.js"></script>
+<script src="https://unpkg.com/vue@2.2.6/dist/<%= production ? 'vue.min.js' : 'vue.js' %>"></script>
+<script src="https://unpkg.com/vue-material@0.7.1"></script>
+<script async src="/javascripts/pawon.js"></script>
 
 </html>
