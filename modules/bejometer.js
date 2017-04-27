@@ -1,6 +1,6 @@
 const tebakgender = require('tebakgender')
 const sanitize = require('tebakgender/lib/sanitize')
-const day = require('modules/day')
+const day = require('./day')
 const mod = 47
 
 let bejometer = (name1, time1, name2, time2) => {

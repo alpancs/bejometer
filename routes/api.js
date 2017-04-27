@@ -1,7 +1,7 @@
 const router = new (require('express').Router)()
 const tebakgender = require('tebakgender')
-const bejometer = require('modules/bejometer')
-const suggestion = require('modules/suggestion')
+const bejometer = require('../modules/bejometer')
+const suggestion = require('../modules/suggestion')
 
 router.get('/bejometer', (req, res) => {
   let name1 = req.query.name1 || ''

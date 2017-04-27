@@ -1,5 +1,5 @@
 const router = new (require('express').Router)()
-const bejometer = require('modules/bejometer')
+const bejometer = require('../modules/bejometer')
 const sanitize = require('tebakgender/lib/sanitize')
 const title = {L: 'mas', P: 'mbak'}
 

@@ -1,6 +1,6 @@
 const tebakgender = require('tebakgender')
-const bejometer = require('modules/bejometer')
-const students = require('corpus/data-siswa-clean')
+const bejometer = require('./bejometer')
+const students = require('../corpus/data-siswa-clean')
 
 for (let student of students)
   student.dateOfBirth = Date.parse(student.dateOfBirth)
