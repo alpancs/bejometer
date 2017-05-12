@@ -21,3 +21,11 @@ app.use(require('./middleware/not-found'))
 app.use(require('./middleware/error'))
 
 module.exports = app
+
+const client = require('mongodb').MongoClient
+global.save = (data) => {
+  data.timestamp = new Date()
+  client.connect(process.env.MONGODB_URL)
+    .then((db) => db.collection('history').insert(data))
+    .catch(global.logger.error)
+}

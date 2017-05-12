@@ -35,7 +35,8 @@ router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
   }
   res.render('bejometer', data)
 
-  global.logger.info('bejometer-static', {
+  global.save({
+    type: 'Bejometer Static',
     name1, date1: dateToTextField(date1),
     name2, date2: dateToTextField(date2),
     result,

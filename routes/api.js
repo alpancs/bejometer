@@ -26,7 +26,8 @@ router.get('/bejometer', (req, res) => {
   }
   res.json(response)
 
-  global.logger.info('bejometer-api', {
+  global.save({
+    type: 'Bejometer API',
     name1,
     date1: req.query.date1 || new Date(time1).toISOString().slice(0, 10),
     name2,
@@ -42,7 +43,8 @@ router.get('/tebakgender', (req, res) => {
   let response = filterPrediction(tebakgender(name))
   res.json(response)
 
-  global.logger.info('tebakgender', {
+  global.save({
+    type: 'Tebakgender API',
     name,
     result: response,
     ip: req.ip,
@@ -72,7 +74,8 @@ router.get('/consultation', (req, res) => {
   }
   res.json(response)
 
-  global.logger.info('consultation', {
+  global.save({
+    type: 'Consultation API',
     name,
     date: req.query.date || new Date(time).toISOString().slice(0, 10),
     limit,
