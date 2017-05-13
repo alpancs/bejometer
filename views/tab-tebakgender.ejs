@@ -11,7 +11,6 @@
         <md-layout md-align="center">
           <md-button id="tebakgenderButton" :disabled="tebakgenderRequesting" type="submit" class="md-raised md-primary">TEBAK GENDER</md-button>
         </md-layout>
-        <md-progress md-indeterminate v-show="tebakgenderRequesting"></md-progress>
       </form>
     </md-layout>
     <md-layout md-flex="25" md-hide-small></md-layout>
@@ -19,20 +18,25 @@
 </md-tab>
 
 <md-dialog class="md-subheading" md-open-from="#tebakgenderButton" md-close-to="#tebakgenderButton" ref="tebakgenderResult">
+  <md-dialog-content v-show="tebakgenderRequesting">
+    <md-layout md-align="center"> <md-spinner md-indeterminate></md-spinner> </md-layout>
+  </md-dialog-content>
   <md-dialog-content v-if="tebakgenderResult">
-    <span v-show="human(tebakgenderResult.confidence)">
-      <span v-show="tebakgenderResult.confidence < 0.95">Sepertinya</span>
-      {{toTitleCase(tebakgenderName)}}
-      adalah nama
-      {{tebakgenderResult.gender === 'L' ? 'laki-laki' : 'perempuan'}}.
-    </span>
-    <span v-show="!human(tebakgenderResult.confidence)">
-      Hmm, tidak yakin {{toTitleCase(tebakgenderName)}}
-      laki-laki atau perempuan.
-      Mungkin juga bukan nama orang.
-    </span>
+    <div style="padding-top: 20px">
+      <span v-show="human(tebakgenderResult.confidence)">
+        <span v-show="tebakgenderResult.confidence < 0.95">Sepertinya</span>
+        {{toTitleCase(tebakgenderName)}}
+        adalah nama
+        {{tebakgenderResult.gender === 'L' ? 'laki-laki' : 'perempuan'}}.
+      </span>
+      <span v-show="!human(tebakgenderResult.confidence)">
+        Hmm, tidak yakin {{toTitleCase(tebakgenderName)}}
+        laki-laki atau perempuan.
+        Mungkin juga bukan nama orang.
+      </span>
+    </div>
   </md-dialog-content>
   <md-dialog-actions>
-    <md-button class="md-primary" @click.native="closeDialog('tebakgenderResult')">Tutup</md-button>
+    <md-button class="md-primary" @click.native="$refs.tebakgenderResult.close()">Tutup</md-button>
   </md-dialog-actions>
 </md-dialog>

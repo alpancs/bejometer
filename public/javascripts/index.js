@@ -32,6 +32,7 @@ new Vue({
 
   methods: {
     bejometerSubmit() {
+      this.$refs.bejometerResult.open()
       this.bejometerRequesting = true
       this.bejometerResult = null
       this.bejometerShareURL = ''
@@ -43,15 +44,14 @@ new Vue({
         date2: this.bejometerDate2 || new Date().toISOString().slice(0, 10),
       }
       axios.get('/api/bejometer', {params})
-      .then((response) => this.bejometerResult = response.data)
-      .then(() => {
-        let genderConfidence1 = this.bejometerResult.person1.genderConfidence
-        let genderConfidence2 = this.bejometerResult.person2.genderConfidence
+      .then((response) => {
+        let genderConfidence1 = response.data.person1.genderConfidence
+        let genderConfidence2 = response.data.person2.genderConfidence
         if (this.human(genderConfidence1) && this.human(genderConfidence2)) {
+          this.bejometerResult = response.data
           let match = Math.round(this.bejometerResult.match * 10000) / 10000
           let diff = 0.1
           this.bejometerResult.match = 0
-          this.openDialog('bejometerResult')
           setTimeout(() => {
             let interval = setInterval(() => {
               if (diff < 0.0001) {
@@ -65,8 +65,11 @@ new Vue({
                 if (this.bejometerResult.match + diff > match) diff /= 10
                 else this.bejometerResult.match += diff
               }
-            }, 50)
+            }, 20)
           }, 1000)
+        } else {
+          this.$refs.bejometerResult.close()
+          setTimeout(() => this.bejometerResult = response.data, 500)
         }
       })
       .catch(() => this.$refs.error.open())
@@ -79,6 +82,7 @@ new Vue({
     },
 
     consultationSubmit() {
+      this.$refs.consultationResult.open()
       this.consultationRequesting = true
       this.consultationResult = null
 
@@ -87,12 +91,15 @@ new Vue({
         date: this.consultationDate || new Date().toISOString().slice(0, 10),
       }
       axios.get('/api/consultation', {params})
-      .then((response) => this.consultationResult = response.data)
-      .then(() => {
-        if (this.human(this.consultationResult.person.genderConfidence))
-          this.openDialog('consultationResult')
+      .then((response) => {
+        if (this.human(response.data.person.genderConfidence)) {
+          this.consultationResult = response.data
+        } else {
+          this.$refs.consultationResult.close()
+          setTimeout(() => this.consultationResult = response.data, 500)
+        }
       })
-      .catch(() => this.$refs.error.open())
+      .catch((e) => this.$refs.error.open())
       .then(() => this.consultationRequesting = false)
 
       localStorage.consultationName = this.consultationName
@@ -100,13 +107,13 @@ new Vue({
     },
 
     tebakgenderSubmit() {
+      this.$refs.tebakgenderResult.open()
       this.tebakgenderRequesting = true
       this.tebakgenderResult = null
 
       let params = {name: this.tebakgenderName}
       axios.get('/api/tebakgender', {params})
       .then((response) => this.tebakgenderResult = response.data)
-      .then(() => this.openDialog('tebakgenderResult'))
       .catch(() => this.$refs.error.open())
       .then(() => this.tebakgenderRequesting = false)
 
@@ -119,14 +126,6 @@ new Vue({
       name2 = this.sanitize(name2 || '').toLowerCase()
       date2 = date2 || this.timeToTextField(Date.now())
       return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
-    },
-
-    openDialog(ref) {
-      this.$refs[ref].open()
-    },
-
-    closeDialog(ref) {
-      this.$refs[ref].close()
     },
 
     human(confidence) {

@@ -17,7 +17,6 @@
         <md-layout md-align="center">
           <md-button id="consultationButton" :disabled="consultationRequesting" type="submit" class="md-raised md-primary">KONSULTASI</md-button>
         </md-layout>
-        <md-progress md-indeterminate v-show="consultationRequesting"></md-progress>
       </form>
     </md-layout>
     <md-layout md-flex="25" md-hide-small></md-layout>
@@ -25,6 +24,9 @@
 </md-tab>
 
 <md-dialog md-open-from="#consultationButton" md-close-to="#consultationButton" ref="consultationResult">
+  <md-dialog-content v-show="consultationRequesting">
+    <md-layout md-align="center"> <md-spinner md-indeterminate></md-spinner> </md-layout>
+  </md-dialog-content>
   <md-dialog-title v-if="consultationResult && consultationResult.suggestions.length">
     Rekomendasi jodoh untuk
     {{consultationResult.person.gender === 'L' ? 'mas' : 'mbak'}}
@@ -51,6 +53,6 @@
     </md-list>
   </md-dialog-content>
   <md-dialog-actions>
-    <md-button class="md-primary" @click.native="closeDialog('consultationResult')">Tutup</md-button>
+    <md-button class="md-primary" @click.native="$refs.consultationResult.close()">Tutup</md-button>
   </md-dialog-actions>
 </md-dialog>
