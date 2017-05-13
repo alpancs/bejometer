@@ -69,7 +69,13 @@ new Vue({
           let increment = this.bejometerResult.match/repeat
           let interval = setInterval(() => {
             this.bejometerMatch += increment
-            if (--repeat === 0) clearInterval(interval)
+            if (--repeat === 0) {
+              this.bejometerShareURL = this.bejometerBuildShareURL(
+                this.bejometerName1, this.bejometerDate1,
+                this.bejometerName2, this.bejometerDate2
+              )
+              clearInterval(interval)
+            }
           }, duration/repeat)
         } else {
           this.$refs.bejometerResult.close()
