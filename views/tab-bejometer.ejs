@@ -38,7 +38,7 @@
   <md-dialog-content v-show="bejometerRequesting">
     <md-layout md-align="center"> <md-spinner md-indeterminate></md-spinner> </md-layout>
   </md-dialog-content>
-  <md-dialog-content v-if="bejometerResult">
+  <md-dialog-content v-if="bejometerResult" style="padding-top: 20px">
     <md-layout md-align="center" v-show="bejometerResult.person1.gender === bejometerResult.person2.gender">
       Maaf {{bejometerResult.person1.gender === 'L' ? 'mas' : 'mbak'}}, Bejometer tidak mengenal hubungan sesama jenis.
     </md-layout>

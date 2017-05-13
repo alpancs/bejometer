@@ -50,23 +50,19 @@ new Vue({
         if (this.human(genderConfidence1) && this.human(genderConfidence2)) {
           this.bejometerResult = response.data
           let match = Math.round(this.bejometerResult.match * 10000) / 10000
-          let diff = 0.1
           this.bejometerResult.match = 0
           setTimeout(() => {
+            let duration = 1000
+            let repeat = 33
+            let increment = match/repeat
             let interval = setInterval(() => {
-              if (diff < 0.0001) {
+              this.bejometerResult.match += increment
+              if (--repeat === 0) {
                 this.bejometerResult.match = match
-                this.bejometerShareURL = this.bejometerBuildShareURL(
-                  this.bejometerName1, this.bejometerDate1,
-                  this.bejometerName2, this.bejometerDate2
-                )
                 clearInterval(interval)
-              } else {
-                if (this.bejometerResult.match + diff > match) diff /= 10
-                else this.bejometerResult.match += diff
               }
-            }, 20)
-          }, 1000)
+            }, duration/repeat)
+          }, 500)
         } else {
           this.$refs.bejometerResult.close()
           setTimeout(() => this.bejometerResult = response.data, 500)

@@ -21,20 +21,18 @@
   <md-dialog-content v-show="tebakgenderRequesting">
     <md-layout md-align="center"> <md-spinner md-indeterminate></md-spinner> </md-layout>
   </md-dialog-content>
-  <md-dialog-content v-if="tebakgenderResult">
-    <div style="padding-top: 20px">
-      <span v-show="human(tebakgenderResult.confidence)">
-        <span v-show="tebakgenderResult.confidence < 0.95">Sepertinya</span>
-        {{toTitleCase(tebakgenderName)}}
-        adalah nama
-        {{tebakgenderResult.gender === 'L' ? 'laki-laki' : 'perempuan'}}.
-      </span>
-      <span v-show="!human(tebakgenderResult.confidence)">
-        Hmm, tidak yakin {{toTitleCase(tebakgenderName)}}
-        laki-laki atau perempuan.
-        Mungkin juga bukan nama orang.
-      </span>
-    </div>
+  <md-dialog-content v-if="tebakgenderResult" style="padding-top: 20px">
+    <span v-show="human(tebakgenderResult.confidence)">
+      <span v-show="tebakgenderResult.confidence < 0.95">Sepertinya</span>
+      {{toTitleCase(tebakgenderName)}}
+      adalah nama
+      {{tebakgenderResult.gender === 'L' ? 'laki-laki' : 'perempuan'}}.
+    </span>
+    <span v-show="!human(tebakgenderResult.confidence)">
+      Hmm, tidak yakin {{toTitleCase(tebakgenderName)}}
+      laki-laki atau perempuan.
+      Mungkin juga bukan nama orang.
+    </span>
   </md-dialog-content>
   <md-dialog-actions>
     <md-button class="md-primary" @click.native="$refs.tebakgenderResult.close()">Tutup</md-button>
