@@ -1,4 +1,16 @@
-Vue.use(VueMaterial)
+Vue.use(VueMaterial.MdCore)
+Vue.use(VueMaterial.MdBackdrop)
+Vue.use(VueMaterial.MdButton)
+Vue.use(VueMaterial.MdDialog)
+Vue.use(VueMaterial.MdDivider)
+Vue.use(VueMaterial.MdIcon)
+Vue.use(VueMaterial.MdInputContainer)
+Vue.use(VueMaterial.MdLayout)
+Vue.use(VueMaterial.MdList)
+Vue.use(VueMaterial.MdSnackbar)
+Vue.use(VueMaterial.MdSpinner)
+Vue.use(VueMaterial.MdTabs)
+Vue.use(VueMaterial.MdWhiteframe)
 
 Vue.material.registerTheme('default', {
   primary: 'pink',
@@ -68,7 +80,10 @@ new Vue({
           setTimeout(() => this.bejometerResult = response.data, 500)
         }
       })
-      .catch(() => this.$refs.error.open())
+      .catch(() => {
+        this.$refs.bejometerResult.close()
+        this.$refs.error.open()
+      })
       .then(() => this.bejometerRequesting = false)
 
       localStorage.bejometerName1 = this.bejometerName1
@@ -95,7 +110,10 @@ new Vue({
           setTimeout(() => this.consultationResult = response.data, 500)
         }
       })
-      .catch((e) => this.$refs.error.open())
+      .catch(() => {
+        this.$refs.consultationResult.close()
+        this.$refs.error.open()
+      })
       .then(() => this.consultationRequesting = false)
 
       localStorage.consultationName = this.consultationName
@@ -110,7 +128,10 @@ new Vue({
       let params = {name: this.tebakgenderName}
       axios.get('/api/tebakgender', {params})
       .then((response) => this.tebakgenderResult = response.data)
-      .catch(() => this.$refs.error.open())
+      .catch(() => {
+        this.$refs.tebakgenderResult.close()
+        this.$refs.error.open()
+      })
       .then(() => this.tebakgenderRequesting = false)
 
       localStorage.tebakgenderName = this.tebakgenderName
