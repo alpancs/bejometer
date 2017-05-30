@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   res.render('index', data)
 })
 
-router.get('/bejometer/:name1::date1&:name2::date2', (req, res) => {
+router.get('/:name1::date1&:name2::date2', (req, res) => {
   let name1 = toTitleCase(sanitize(req.params.name1))
   let date1 = new Date(req.params.date1)
   let name2 = toTitleCase(sanitize(req.params.name2))

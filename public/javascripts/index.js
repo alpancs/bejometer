@@ -144,7 +144,7 @@ new Vue({
       date1 = date1 || this.timeToTextField(Date.now())
       name2 = this.sanitize(name2 || '').toLowerCase()
       date2 = date2 || this.timeToTextField(Date.now())
-      return `${location.origin}/bejometer/${name1}:${date1}&${name2}:${date2}`
+      return `${location.origin}/${name1}:${date1}&${name2}:${date2}`
     },
 
     human(confidence) {

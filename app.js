@@ -15,7 +15,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(require('./middleware/logger'))
 app.use('/', require('./routes/index'))
 app.use('/api', require('./routes/api'))
-app.use('/pawon', require('./routes/pawon'))
 
 app.use(require('./middleware/not-found'))
 app.use(require('./middleware/error'))

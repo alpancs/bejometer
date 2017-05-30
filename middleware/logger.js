@@ -1,11 +1,8 @@
 const winston = require('winston')
-
-if (process.env.NODE_ENV === 'production')
-  winston.remove(winston.transports.Console)
-
 require('winston-mongodb').MongoDB
-let option = {db: process.env.MONGODB_URL}
-winston.add(winston.transports.MongoDB, option)
+
+winston.add(winston.transports.MongoDB, {db: process.env.MONGODB_URL})
+winston.remove(winston.transports.Console)
 
 global.logger = winston
 
