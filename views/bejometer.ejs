@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Hasil Bejometer</title>
   <meta name="description" content="<%= description %>">
@@ -45,8 +44,11 @@
   </div>
 </body>
 
-<script src="https://unpkg.com/vue@2.2.6/dist/<%= production ? 'vue.min.js' : 'vue.js' %>"></script>
+<% if (production) { %>
+  <script src="https://unpkg.com/vue@2.2.6/dist/vue.min.js"></script>
+<% } else { %>
+  <script src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
+<% } %>
 <script src="https://unpkg.com/vue-material@0.7.1"></script>
 <script async src="/javascripts/bejometer.js"></script>
-
 </html>

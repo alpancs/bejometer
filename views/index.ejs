@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Bejometer</title>
   <meta name="description" content="Bejometer: alat ukur kabegjan. Sebagai sebuah alat ukur, Bejometer selalu memberikan hasil yang konsisten. Bejometer menghitung dengan seksama setiap detil nama dan tanggal yang dimasukkan, tidak asal mengeluarkan angka acak sebagai hasil.">
@@ -28,12 +27,11 @@
 
 <% if (production) { %>
   <script src="https://unpkg.com/vue@2.2.6/dist/vue.min.js"></script>
-<% else { %>
+<% } else { %>
   <script src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
 <% } %>
 <script src="https://unpkg.com/vue-material@0.7.1"></script>
 <script async src="/javascripts/index.js"></script>
 <script async src="https://cdn.jsdelivr.net/clipboard.js/1.6.0/clipboard.min.js" onload="new Clipboard('#copy')"></script>
 <script async src="https://unpkg.com/axios@0.16.1/dist/axios.min.js"></script>
-
 </html>
