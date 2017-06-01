@@ -148,7 +148,7 @@ let app = new Vue({
     },
 
     human(confidence) {
-      return confidence > 0.33
+      return confidence > 0.4
     },
 
     sanitize(name) {
