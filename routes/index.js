@@ -6,6 +6,10 @@ const title = {L: 'mas', P: 'mbak'}
 router.get('/', (req, res) => {
   let data = {
     production: process.env.NODE_ENV === 'production',
+    name1: req.query.name1,
+    date1: req.query.date1,
+    name2: req.query.name2,
+    date2: req.query.date2,
   }
   res.render('index', data)
 })
@@ -32,6 +36,7 @@ router.get('/:name1::date1&:name2::date2', (req, res) => {
     date2: dateToTextField(date2), day2,
     percent,
     toTitleCase,
+    inAppURL: `/?name1=${name1}&date1=${req.params.date1}&name2=${name2}&date2=${req.params.date2}`,
   }
   res.render('bejometer', data)
 

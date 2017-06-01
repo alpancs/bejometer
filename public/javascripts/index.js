@@ -19,7 +19,7 @@ Vue.material.registerTheme('default', {
   background: 'white',
 })
 
-new Vue({
+let app = new Vue({
   el: '#app',
 
   data: {
@@ -65,7 +65,7 @@ new Vue({
           this.bejometerMatch = 0
 
           let duration = 1000
-          let repeat = 33
+          let repeat = 25
           let increment = this.bejometerResult.match/repeat
           let interval = setInterval(() => {
             this.bejometerMatch += increment
@@ -177,6 +177,17 @@ new Vue({
     },
   },
 })
+
+setTimeout(() => {
+  if (app.$refs.bejometerName1.innerText)
+    app.bejometerName1 = app.$refs.bejometerName1.innerText
+  if (app.$refs.bejometerDate1.innerText)
+    app.bejometerDate1 = app.$refs.bejometerDate1.innerText
+  if (app.$refs.bejometerName2.innerText)
+    app.bejometerName2 = app.$refs.bejometerName2.innerText
+  if (app.$refs.bejometerDate2.innerText)
+    app.bejometerDate2 = app.$refs.bejometerDate2.innerText
+}, 0);
 
 new Vue({el: '#loading'})
 
