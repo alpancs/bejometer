@@ -65,7 +65,7 @@ let app = new Vue({
           this.bejometerMatch = 0
 
           let duration = 1000
-          let repeat = 25
+          let repeat = 20
           let increment = this.bejometerResult.match/repeat
           let interval = setInterval(() => {
             this.bejometerMatch += increment

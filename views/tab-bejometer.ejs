@@ -36,7 +36,7 @@
 
 <md-dialog class="md-subheading" md-open-from="#bejometerButton" md-close-to="#bejometerButton" ref="bejometerResult">
   <md-dialog-content v-show="bejometerRequesting">
-    <md-layout md-align="center"> <md-spinner md-indeterminate></md-spinner> </md-layout>
+    <md-layout md-align="center"><md-spinner md-indeterminate></md-spinner></md-layout>
   </md-dialog-content>
   <md-dialog-content v-if="bejometerResult" style="padding-top: 20px">
     <md-layout md-align="center" v-show="bejometerResult.person1.gender === bejometerResult.person2.gender">
