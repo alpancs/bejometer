@@ -79,7 +79,7 @@ let app = new Vue({
           }, duration/repeat)
         } else {
           this.$refs.bejometerResult.close()
-          setTimeout(() => this.bejometerResult = response.data, 500)
+          setTimeout(() => this.bejometerResult = response.data, 250)
         }
       })
       .catch(() => {
@@ -109,7 +109,7 @@ let app = new Vue({
           this.consultationResult = response.data
         } else {
           this.$refs.consultationResult.close()
-          setTimeout(() => this.consultationResult = response.data, 500)
+          setTimeout(() => this.consultationResult = response.data, 250)
         }
       })
       .catch(() => {
@@ -187,7 +187,7 @@ setTimeout(() => {
     app.bejometerName2 = app.$refs.bejometerName2.innerText
   if (app.$refs.bejometerDate2.innerText)
     app.bejometerDate2 = app.$refs.bejometerDate2.innerText
-}, 0);
+}, 0)
 
 new Vue({el: '#loading'})
 
