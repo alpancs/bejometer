@@ -21,10 +21,10 @@ app.use(require('./middleware/error'))
 
 module.exports = app
 
-const client = require('mongodb').MongoClient
+const mongodbPromise = require('mongodb').MongoClient.connect(process.env.MONGODB_URL)
 global.save = (data) => {
   data.timestamp = new Date()
-  client.connect(process.env.MONGODB_URL)
+  return mongodbPromise
     .then((db) => db.collection('history').insert(data))
     .catch(global.logger.error)
 }
