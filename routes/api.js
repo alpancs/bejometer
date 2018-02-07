@@ -54,6 +54,7 @@ router.get('/tebakgender', (req, res) => {
 
 router.get('/bulk-tebakgender', (req, res) => {
   let names = req.query.names || []
+  if (typeof(names) === 'string') names = [names]
   let predictions = names.map(tebakgender).map(filterPrediction)
   res.json(predictions)
 })
