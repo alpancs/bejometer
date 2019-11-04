@@ -21,7 +21,7 @@
 </head>
 
 <body>
-  <div id="app" hidden :hidden="false">
+  <div id="app">
     <md-tabs md-fixed>
       <%- include('tab-bejometer') %>
       <%- include('tab-consultation') %>
@@ -30,7 +30,6 @@
     <md-snackbar ref="error"><md-icon>sentiment_dissatisfied</md-icon> koneksi ke server bermasalah</md-snackbar>
     <md-snackbar ref="copy">Teks telah disalin ke clipboard</md-snackbar>
   </div>
-  <div id="loading" :hidden="true">Bejometer...</div>
 </body>
 
 <% if (production) { %>
